@@ -1,0 +1,22 @@
+.header-container {
+    padding: 16px 0;
+    border-bottom: 1px solid #e8ecef;
+    background-color: #fff;
+}
+
+.logo span {
+    color: #6c757d;
+}
+
+.nav-links a {
+    margin: 0 20px;
+    color: #141718;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.signup-btn {
+    border-radius: 8px; /* 3legant는 아주 살짝 둥글거나 직각인 경우가 많음 */
+    padding: 10px 24px;
+    background-color: #141718;
+}
