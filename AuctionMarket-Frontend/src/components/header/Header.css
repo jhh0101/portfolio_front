@@ -15,8 +15,24 @@
     font-weight: 500;
 }
 
-.signup-btn {
-    border-radius: 8px; /* 3legant는 아주 살짝 둥글거나 직각인 경우가 많음 */
+.nav-btn1 {
+    border-radius: 8px;
     padding: 10px 24px;
     background-color: #141718;
+}
+
+.nav-btn2 {
+    border-radius: 8px;
+    padding: 10px 24px;
+    background-color: #f8f9fa;
+    border: black solid 1px;
+}
+.nav-btn2:hover {
+    border: black solid 1px;
+}
+
+.menu {
+    display: flex;
+    align-items: center;
+    gap: 20px;
 }
