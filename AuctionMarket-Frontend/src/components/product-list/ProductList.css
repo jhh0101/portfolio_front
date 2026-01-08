@@ -2,7 +2,6 @@
 .product-list {
     max-width: 1200px; /* 메인 컨테이너 너비 */
     margin: 60px auto; /* 섹션 간 간격 */
-    padding: 0 20px;
 }
 
 .section-header {
