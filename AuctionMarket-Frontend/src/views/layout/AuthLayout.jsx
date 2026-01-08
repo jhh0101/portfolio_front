@@ -14,7 +14,6 @@ const AuthLayout = ({ title, children }) => {
             <div className="auth-form-section">
                 <div className="auth-form-wrapper">
                     <h2>{title}</h2>
-                    {/* 여기에 로그인 폼이나 회원가입 폼이 들어감 */}
                     {children}
                 </div>
             </div>
