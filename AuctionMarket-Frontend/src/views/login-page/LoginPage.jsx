@@ -19,6 +19,9 @@ const LoginPage = () => {
         if (result && result.success) {
             authLogin(result.data);
             navigate('/');
+        } else {
+            // 여기서 alert를 띄우는 것이 UI 흐름상 자연스럽습니다.
+            alert("로그인 실패: " + (result?.message || "서버 연결에 실패했습니다."));
         }
     };
 
