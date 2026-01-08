@@ -1,0 +1,55 @@
+.auth-container {
+    display: flex;
+    height: calc(100vh - 80px); /* 화면 전체 높이 */
+    width: 100vw;
+    background-color: #fff;
+}
+
+/* 왼쪽 이미지 섹션 */
+.auth-image-section {
+    flex: 0.9; /* 이미지를 살짝 더 넓게 */
+    overflow: hidden;
+}
+
+.auth-image-section img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* 이미지가 찌그러지지 않게 꽉 채움 */
+}
+
+/* 오른쪽 폼 섹션 */
+.auth-form-section {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 60px;
+}
+
+.auth-form-wrapper {
+    width: 100%;
+    max-width: 400px;
+}
+
+.auth-form-wrapper h2 {
+    font-size: 32px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    margin-bottom: 40px;
+}
+
+/* 입력창: 세련된 밑줄 스타일 */
+.auth-form-wrapper input {
+    width: 100%;
+    padding: 16px 0;
+    margin-bottom: 10px;
+    border: none;
+    border-bottom: 1px solid #E8ECEF; /* 아주 연한 선 */
+    outline: none;
+    font-size: 15px;
+    transition: border-color 0.3s;
+}
+
+.auth-form-wrapper input:focus {
+    border-bottom: 1px solid #141718; /* 클릭 시 선명하게 */
+}
