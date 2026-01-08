@@ -1,0 +1,26 @@
+/* ProductSection.css */
+.product-list {
+    max-width: 1200px; /* 메인 컨테이너 너비 */
+    margin: 60px auto; /* 섹션 간 간격 */
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 30px;
+}
+
+.product-grid {
+    display: grid;
+    /* 핵심: 한 줄에 4개씩(1fr은 동일한 비율) */
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px 20px; /* 상하 30px, 좌우 20px 간격 */
+}
+
+/* 모바일 대응: 화면이 작아지면 한 줄에 2개씩 */
+@media (max-width: 768px) {
+    .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
