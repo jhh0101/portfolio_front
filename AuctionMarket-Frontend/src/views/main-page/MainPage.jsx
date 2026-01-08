@@ -1,9 +1,8 @@
 import './MainPage.css'
 import MainBanner from "../../components/main-banner/MainBanner.jsx";
 import ProductList from "../../components/product-list/ProductList.jsx";
-import {useProducts} from "../../components/hooks/useProducts.js";
 import React from "react";
-import {useMainPageData} from "../../components/hooks/useMainPageData.js";
+import {useMainPageData} from "../../hooks/useMainPageData.js";
 
 const MainPage = () => {
 
