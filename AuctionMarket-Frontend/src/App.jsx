@@ -4,6 +4,7 @@ import MainPage from "./views/main-page/MainPage.jsx";
 import LoginPage from "./views/login-page/LoginPage.jsx";
 import {AuthProvider} from "./context/AuthContext.jsx";
 import SignupPage from "./views/signup-page/SignupPage.jsx";
+import ProductAddPage from "./views/product/product-add-page/ProductAddPage.jsx";
 
 function App() {
     return (
@@ -14,6 +15,7 @@ function App() {
                     <Route path="/" element={<MainPage />} />
                     <Route path="/login" element={<LoginPage />} />
                     <Route path="/signup" element={<SignupPage />} />
+                    <Route path="/product-add" element={<ProductAddPage />} />
                 </Routes>
             </Router>
         </AuthProvider>
