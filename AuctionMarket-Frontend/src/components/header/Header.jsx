@@ -5,7 +5,7 @@ import {useAuth} from "../../context/AuthContext.jsx";
 
 const Header = () => {
 
-    const { isLoggedIn, logout } = useAuth(); // 전역 상태 사용
+    const { isLoggedIn, logout, user } = useAuth(); // 전역 상태 사용
     const navigate = useNavigate();
 
     const handleLogout = () => {
@@ -30,6 +30,9 @@ const Header = () => {
                     <Link to="/shop">Shop</Link>
                     <Link to="/product">Product</Link>
                     <Link to="/contact">Contact Us</Link>
+                    {user?.role === 'SELLER' && (
+                        <Link to="/product-add">Product Add</Link>
+                    )}
                 </nav>
 
                 {/* 사용자 메뉴 */}
