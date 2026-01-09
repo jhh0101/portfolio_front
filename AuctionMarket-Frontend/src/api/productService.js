@@ -7,6 +7,11 @@ export const productService = {
         return response.data;
     },
 
+    getProduct: async (productId) => {
+        const response = await api.get(`/product/${productId}`);
+        return response.data;
+    },
+
     postProduct: async (productData, auctionData) => {
         const requestBody = {
             productRequest: productData,
@@ -26,6 +31,11 @@ export const productService = {
         });
 
         return await api.post(`/product/${productId}/images`, formData);
+    },
+
+    loadImages: async (productId) => {
+        const images = await api.get(`/product/${productId}/images`);
+        return images.data;
     }
 
 };
