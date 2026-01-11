@@ -3,9 +3,9 @@ import { categoryService } from '../api/categoryService';
 
 export const useCategory = () => {
     const [catLoading, setCatLoading] = useState(false);
-    const [categoryMap, setCategoryMap] = useState({}); // 가공된 데이터 저장
+    const [categories, setCategories] = useState([]); // 원본 트리 데이터 (선택용)
+    const [categoryMap, setCategoryMap] = useState({}); // 평면 데이터 (조회용)
 
-    // 중첩 트리를 찾기 쉬운 평면 구조로 바꾸는 함수 (내부 로직)
     const flatten = (list, res = {}) => {
         list.forEach(cat => {
             res[cat.categoryId] = { name: cat.category, parentId: cat.parentId };
@@ -18,18 +18,19 @@ export const useCategory = () => {
         setCatLoading(true);
         try {
             const res = await categoryService.getAllCategories();
-            if (res.data.success) {
-                const flatData = flatten(res.data.data);
-                setCategoryMap(flatData);
-                return flatData; // 가공된 지도 데이터 반환
+            // 지난번 데이터 구조에 맞춰 res.data.data 확인
+            if (res.data && res.data.success) {
+                const rawData = res.data.data;
+                setCategories(rawData); // 트리 구조 저장
+                setCategoryMap(flatten(rawData)); // 평면 구조 저장
+                return rawData;
             }
         } catch (e) {
             console.error("카테고리 로딩 실패", e);
-            return null;
         } finally {
             setCatLoading(false);
         }
     };
 
-    return { fetchCategories, categoryMap, catLoading };
+    return { fetchCategories, categories, categoryMap, catLoading };
 };

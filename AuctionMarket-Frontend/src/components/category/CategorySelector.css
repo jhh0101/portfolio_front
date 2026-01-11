@@ -1,0 +1,100 @@
+/* 카테고리 패널 전체 컨테이너 */
+.category-panel-container {
+    width: 100%;
+    margin-bottom: 32px;
+}
+
+/* 3단 패널을 감싸는 박스 */
+.category-selector-wrapper {
+    display: flex;
+    border: 1px solid #E8ECEF;
+    border-radius: 8px;
+    background: #FFFFFF;
+    height: 280px; /* 높이를 고정하여 스크롤 유도 */
+    overflow: hidden;
+}
+
+/* 각 카테고리 기둥(Column) */
+.category-column {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid #E8ECEF;
+}
+
+.category-column:last-child {
+    border-right: none;
+}
+
+/* 각 기둥의 헤더 */
+.column-header {
+    background: #F9FAFB;
+    padding: 10px 16px;
+    font-size: 13px;
+    font-weight: 700;
+    color: #4B5563;
+    border-bottom: 1px solid #E8ECEF;
+}
+
+/* 카테고리 리스트 (ul) */
+.category-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    overflow-y: auto;
+    flex: 1;
+}
+
+/* 각 항목 (li) */
+.category-list li {
+    padding: 12px 16px;
+    font-size: 14px;
+    color: #1F2937;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border-bottom: 1px solid #F3F4F6;
+}
+
+.category-list li:hover {
+    background-color: #F3F4F6;
+}
+
+/* 항목 선택 시 스타일 (Brand Color: Neutral Blue) */
+.category-list li.is-selected {
+    background-color: #EEF2FF;
+    color: #4F46E5;
+    font-weight: 600;
+}
+
+/* 데이터가 없을 때 표시되는 메시지 */
+.list-empty-msg {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    color: #9CA3AF;
+    font-size: 13px;
+    background-color: #FCFDFF;
+    cursor: default !important;
+}
+
+/* 선택 결과 요약 정보 */
+.selection-summary {
+    margin-top: 12px;
+    font-size: 13px;
+    color: #6B7280;
+}
+
+.selection-summary span {
+    color: #4F46E5;
+    font-weight: 700;
+}
+
+/* 스크롤바 커스텀 (깔끔하게) */
+.category-list::-webkit-scrollbar {
+    width: 6px;
+}
+.category-list::-webkit-scrollbar-thumb {
+    background: #E5E7EB;
+    border-radius: 10px;
+}
