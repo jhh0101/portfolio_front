@@ -1,6 +1,6 @@
 import './MainPage.css'
 import MainBanner from "../../components/main-banner/MainBanner.jsx";
-import ProductList from "../../components/product-list/ProductList.jsx";
+import ProductList from "../../components/product/product-list/ProductList.jsx";
 import React from "react";
 import {useMainPageData} from "../../hooks/useMainPageData.js";
 
@@ -22,6 +22,7 @@ const MainPage = () => {
             {newAuction.products.length === 0 ? (
                 <>
                     <h2 style={{marginTop: 60}}>신규 경매</h2>
+                    <hr />
                     <p>등록된 상품이 없습니다.</p>
                 </>
             ) : (
@@ -30,6 +31,7 @@ const MainPage = () => {
             {closingAuction.products.length === 0 ? (
                 <>
                     <h2 style={{marginTop: 60}}>마감 임박 상품</h2>
+                    <hr />
                     <p>등록된 상품이 없습니다.</p>
                 </>
             ) : (
