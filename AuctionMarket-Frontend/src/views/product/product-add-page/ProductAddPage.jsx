@@ -110,7 +110,7 @@ const ProductAddPage = () => {
 
             // 4. [핵심] 이미지 업로드 여부와 상관없이 최종적으로 페이지 이동
             alert("상품 등록이 완료되었습니다.");
-            navigate('/');
+            navigate(`/product/${newId}`);
         } else {
             // 등록 실패 시 에러 메시지
             alert("상품 등록 실패: " + (result?.message || "알 수 없는 에러"));

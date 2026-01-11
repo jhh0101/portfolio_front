@@ -3,97 +3,108 @@ import './ProductPage.css';
 import { useProduct } from "../../../hooks/useProduct.js";
 import { useParams } from "react-router-dom";
 import { useCategory } from "../../../hooks/useCategory.js";
+import AuctionCountdown from "../../../components/product/end-time/AuctionCountdown.jsx";
 
 const ProductPage = () => {
     const { productId } = useParams();
     const { productDetail, productImages } = useProduct();
-    const { fetchCategories } = useCategory(); // 카테고리 훅 사용
+    const { fetchCategories } = useCategory();
 
     const [data, setData] = useState(null);
     const [images, setImages] = useState([]);
     const [breadcrumb, setBreadcrumb] = useState([]);
+    const [selectedImage, setSelectedImage] = useState(null); // 이미지 변경 상태
 
     useEffect(() => {
         const getData = async () => {
-            // 1. API 호출들 (이름 안 겹치게 수정)
             const result = await productDetail(productId);
             const imgRes = await productImages(productId);
-            const catMap = await fetchCategories(); // 'breadcrumb' 대신 'catMap'으로 받으세요
 
-            if (result.success && imgRes.success && catMap) {
+            // 1. 원본 트리 데이터(배열)를 가져옴
+            const rawCategories = await fetchCategories();
+
+            if (result.success && imgRes.success && rawCategories) {
                 setData(result.data);
-                setImages(imgRes.data);
 
-                // 2. [핵심] 브레드크럼 경로 생성 로직 추가
+                // 이미지 정렬 및 메인 이미지 초기 설정
+                const sortedImages = imgRes.data.sort((a, b) => a.imageOrder - b.imageOrder);
+                setImages(sortedImages);
+                const mainImg = sortedImages.find(img => img.imageOrder === 1);
+                setSelectedImage(mainImg ? mainImg.imageUrl : sortedImages[0]?.imageUrl);
+
+                // 2. [수정] 페이지 내부에서 트리 배열을 평면 객체(Map)로 즉시 변환
+                const lookup = {};
+                const flatten = (list) => {
+                    list.forEach(cat => {
+                        lookup[String(cat.categoryId)] = {
+                            name: cat.category,
+                            parentId: cat.parentId
+                        };
+                        if (cat.children) flatten(cat.children);
+                    });
+                };
+                flatten(rawCategories);
+
+                // 3. 브레드크럼 생성
                 const targetId = result.data.productDetailResponse.categoryId;
                 const path = [];
-                let currentId = targetId;
+                let currentId = String(targetId);
 
-                // 부모 ID를 타고 올라가며 이름을 배열 앞에 추가
-                while (currentId && catMap[currentId]) {
-                    path.unshift(catMap[currentId].name);
-                    currentId = catMap[currentId].parentId;
+                while (currentId && lookup[currentId]) {
+                    path.unshift(lookup[currentId].name);
+                    currentId = String(lookup[currentId].parentId);
+                    if (currentId === "0" || currentId === "null") break;
                 }
-                setBreadcrumb(path); // 여기서 상태를 업데이트해야 화면이 바뀝니다!
+                setBreadcrumb(path);
 
             } else {
-                // 에러 메시지 처리
-                const errorMsg = result.message || imgRes.message || "데이터 로드 실패";
-                alert(errorMsg);
+                console.error("데이터 로드 실패");
             }
         };
         getData().catch(console.error);
     }, [productId]);
 
-    // 데이터 로딩 보호막
-    if (!data || !images) {
+    if (!data || !images.length) {
         return <div className="loading">상품 정보와 이미지를 불러오는 중입니다...</div>;
     }
 
     const { productDetailResponse: product, auctionResponse: auction } = data;
 
-    // 이미지 처리 로직
-    const mainImageData = images.find(img => img.imageOrder === 1);
-    const mainImageUrl = mainImageData ? mainImageData.imageUrl : "https://via.placeholder.com/600x800";
-
-    const thumbnailImages = images
-        .filter(img => img.imageOrder !== 1)
-        .sort((a, b) => a.imageOrder - b.imageOrder);
-
     return (
         <div className="product-page-container">
-            {/* 상단 브레드크럼 (동적으로 출력) */}
             <nav className="breadcrumb">
-                Home &gt;
+                <span className="path-item">Home</span>
                 {breadcrumb.map((name, index) => (
                     <React.Fragment key={index}>
-                        {" "}{name} &gt;
+                        <span className="separator">&gt;</span>
+                        <span className="path-item">{name}</span>
                     </React.Fragment>
                 ))}
-                <span> {product.title}</span>
+                <span className="separator">&gt;</span>
+                <span>{product.title}</span>
             </nav>
 
             <div className="product-main-content">
-                {/* 왼쪽: 이미지 섹션 */}
                 <div className="product-gallery">
                     <div className="main-image">
-                        <img src={mainImageUrl} alt="Main Image" />
+                        {/* 선택된 이미지 출력 */}
+                        <img src={selectedImage} alt="Main Image" />
                     </div>
                     <div className="thumbnail-list">
-                        {thumbnailImages.map((thumb) => (
+                        {images.map((thumb) => (
                             <img
                                 key={thumb.imageId}
                                 src={thumb.imageUrl}
                                 alt={`Sub Image ${thumb.imageOrder}`}
+                                // 클릭 시 메인 이미지 변경
+                                onClick={() => setSelectedImage(thumb.imageUrl)}
+                                className={selectedImage === thumb.imageUrl ? "active" : ""}
+                                style={{ cursor: 'pointer' }}
                             />
                         ))}
-                        {thumbnailImages.length === 0 && (
-                            <span style={{ color: '#999', fontSize: '0.8rem' }}>추가 이미지가 없습니다.</span>
-                        )}
                     </div>
                 </div>
 
-                {/* 오른쪽: 상품 정보 섹션 */}
                 <div className="product-info-aside">
                     <h1 className="product-title">{product.title}</h1>
                     <p className="product-description">{product.description}</p>
@@ -119,6 +130,7 @@ const ProductPage = () => {
                             <span className="current-price">{auction.currentPrice.toLocaleString()}원</span>
                         </div>
                     </div>
+                    <AuctionCountdown deadline={new Date(auction.endTime)} />
 
                     <div className="purchase-actions">
                         <button className="wishlist-btn">♡ Wishlist</button>
@@ -127,18 +139,20 @@ const ProductPage = () => {
                     <button className="add-to-cart-btn">Product Bid</button>
 
                     <div className="product-meta">
-                        <div><span>SELLER:</span> {product.seller}</div>
-                        <div><span>CATEGORY:</span>
+                        <div>
+                            <span>SELLER : {product.seller}</span>
+                        </div>
+                        <div>
+                            <span>CATEGORY :</span>
                             {breadcrumb.map((name, index) => (
-                            <React.Fragment key={index}>
-                                {" "} {name} &gt; {" "}
-                            </React.Fragment>
-                        ))}{product.title}</div>
+                                <span key={index}>{""} {name} &gt; </span>
+                            ))}
+                            <span> {product.title} </span>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            {/* 하단 상세 정보 탭 */}
             <div className="product-tabs">
                 <div className="tab-header">
                     <span className="active">Additional Info</span>

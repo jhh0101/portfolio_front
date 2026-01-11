@@ -1,5 +1,5 @@
 import React from 'react';
-import ProductCard from '../product-card/ProductCard';
+import ProductCard from '../product-card/ProductCard.jsx';
 import './ProductList.css';
 
 const ProductList = ({title, products}) => {
@@ -9,7 +9,7 @@ const ProductList = ({title, products}) => {
                 <h2>{title}</h2>
                 <a href={"/mord"} className={"more-link"}>More Products →</a>
             </div>
-
+            <hr />
             <div className={"product-grid"}>
                 {products.map((item) => (
                     <ProductCard key={item.productResponse.productId} data={item} />
