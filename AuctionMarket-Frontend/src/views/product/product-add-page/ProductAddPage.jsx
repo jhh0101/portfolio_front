@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useProduct } from "../../../hooks/useProduct.js";
 import { productService } from "../../../api/productService.js";
 import './ProductAddPage.css';
+import CategorySelector from "../../../components/category/CategorySelector.jsx";
 
 const ProductAddPage = () => {
     const navigate = useNavigate();
@@ -13,7 +14,7 @@ const ProductAddPage = () => {
         categoryId: 1,
         title: '',
         description: '',
-        startPrice: 0,
+        startPrice: '',
         startTime: '',
         endTime: '',
     });
@@ -124,11 +125,11 @@ const ProductAddPage = () => {
 
             <form className="product-add-form" onSubmit={handleSubmit}>
                 <div className="form-grid">
+                    {/* 왼쪽: 이미지 섹션 */}
                     <div className="image-upload-section">
                         <label className="section-label">Product Images ({imageFiles.length}/5)</label>
 
                         <div className="multi-upload-container">
-                            {/* 이미지 그리드 */}
                             <div className="image-grid">
                                 {imagePreviews.map((src, index) => (
                                     <div key={index} className="image-item">
@@ -161,49 +162,64 @@ const ProductAddPage = () => {
                         <p className="upload-hint">You can upload up to 5 photos.</p>
                     </div>
 
-                    {/* 오른쪽: 정보 입력 섹션 */}
+                    {/* 오른쪽: 상세 정보 입력 섹션 */}
                     <div className="info-input-section">
-                        <div className="input-group">
-                            <label>Product Name</label>
-                            <input type="text" name="title" onChange={handleChange} required />
-                        </div>
-
-                        <div className="input-row">
+                        {/* 상품명 */}
+                        <div className="form-section">
                             <div className="input-group">
-                                <label>Category</label>
-                                <select name="categoryId" onChange={handleChange} value={formData.categoryId}>
-                                    <option value="1">Living Room</option>
-                                    <option value="2">Bedroom</option>
-                                    <option value="3">Kitchen</option>
-                                    <option value="12">Refrigerator (ID: 12)</option>
-                                </select>
-                            </div>
-                            <div className="input-group">
-                                <label>Start Price</label>
-                                <input type="number" name="startPrice" onChange={handleChange} required />
+                                <label className="input-label">Product Name</label>
+                                <input type="text" name="title" className="main-input" value={formData.title} onChange={handleChange} placeholder="Enter product name" required />
                             </div>
                         </div>
 
-                        <div className="input-row">
-                            <div className="input-group">
-                                <label>Start Time</label>
-                                <input type="datetime-local" name="startTime" min={minStartTime} onChange={handleChange} required />
+                        {/* 카테고리 (넓게 배치) */}
+                        <div className="form-section">
+                            <CategorySelector formData={formData} setFormData={setFormData} />
+                        </div>
+
+                        <div className="details-row">
+                            {/* 시작가 설정 */}
+                            <div className="input-group price-container">
+                                <label className="input-label">Start Price</label>
+                                <div className="currency-wrapper">
+                                    <span className="unit-symbol">₩</span>
+                                    <input
+                                        type="number"
+                                        name="startPrice"
+                                        value={formData.startPrice}
+                                        onChange={handleChange}
+                                        placeholder="0"
+                                        required
+                                    />
+                                </div>
                             </div>
-                            <div className="input-group">
-                                <label>End Time</label>
-                                <input type="datetime-local" name="endTime" min={minEndTime} onChange={handleChange} required />
+
+                            {/* 시간 설정 그룹 */}
+                            <div className="time-group">
+                                <div className="input-group">
+                                    <label className="input-label">Start Time</label>
+                                    <input type="datetime-local" name="startTime" min={minStartTime} onChange={handleChange} required />
+                                </div>
+                                <div className="input-group">
+                                    <label className="input-label">End Time</label>
+                                    <input type="datetime-local" name="endTime" min={minEndTime} onChange={handleChange} required />
+                                </div>
                             </div>
                         </div>
 
-                        <div className="input-group">
-                            <label>Description</label>
-                            <textarea name="description" rows="5" onChange={handleChange} required></textarea>
+                        {/* 상세 설명 */}
+                        <div className="form-section">
+                            <div className="input-group">
+                                <label className="input-label">Description</label>
+                                <textarea name="description" rows="6" value={formData.description} onChange={handleChange} placeholder="Describe your product in detail..." required></textarea>
+                            </div>
                         </div>
 
-                        <div className="form-actions">
-                            <button type="button" className="btn-secondary" onClick={() => navigate(-1)}>Cancel</button>
-                            <button type="submit" className="btn-primary" disabled={loading}>
-                                {loading ? "Publishing..." : "Publish Product"}
+                        {/* 버튼 섹션 */}
+                        <div className="form-actions-fixed">
+                            <button type="button" className="btn-cancel" onClick={() => navigate(-1)}>Cancel</button>
+                            <button type="submit" className="btn-submit" disabled={loading}>
+                                {loading ? "Processing..." : "Publish Product"}
                             </button>
                         </div>
                     </div>
