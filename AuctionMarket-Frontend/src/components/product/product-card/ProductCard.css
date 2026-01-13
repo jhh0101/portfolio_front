@@ -33,3 +33,7 @@
     text-decoration: none;
     color: black;
 }
+
+.product-info p {
+    font-size: 20px;
+}

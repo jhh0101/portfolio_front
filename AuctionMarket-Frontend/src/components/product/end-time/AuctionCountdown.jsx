@@ -1,5 +1,6 @@
 import React from 'react';
 import {useCountdown} from "../../../hooks/useCountdown.js";
+import './AuctionCountdown.css';
 
 const AuctionCountdown = ({ deadline }) => {
     const { days, hours, minutes, seconds } = useCountdown(deadline);

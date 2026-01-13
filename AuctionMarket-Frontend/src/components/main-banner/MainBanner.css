@@ -46,7 +46,7 @@
     width: 100%;
     /* 1. 높이를 확실하게 지정하세요 */
     height: 500px;
-    background-color: black; /* 사진 없을 때 확인용 */
+    /*background-color: black; !* 사진 없을 때 확인용 *!*/
 }
 
 .swiper-slide {
