@@ -1,0 +1,54 @@
+/* 전체 배경: 헤더와 이어지는 화이트 또는 아주 연한 그레이 */
+.policy-wrapper {
+    background-color: #f8f9fa;
+    min-height: 100%;
+    color: #333; /* 글자색은 진한 회색으로 */
+}
+
+.policy-main-title {
+    font-size: 2.2rem;
+    color: #111;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 24px;
+}
+
+/* 개별 조항 카드: 흰색 바탕에 부드러운 그림자 */
+.article-content-box {
+    background-color: #ffffff;
+    border: 1px solid #e9ecef;
+    border-radius: 12px;
+    padding: 32px;
+    max-height: 300px;
+    overflow-y: auto;
+    /* 은은한 그림자로 고급스러움 강조 */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+/* 텍스트 스타일링 */
+.article-title {
+    font-size: 1.15rem;
+    color: #222 !important;
+    margin-bottom: 12px;
+}
+
+.article-text {
+    color: #495057; /* 가독성 좋은 회색 */
+    line-height: 1.8;
+}
+
+.tag-item {
+    background-color: #f1f3f5;
+    color: #0d6efd; /* 포인트 컬러 (블루 톤) */
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+}
+
+/* 스크롤바 디자인 (라이트 모드용) */
+.article-content-box::-webkit-scrollbar {
+    width: 5px;
+}
+.article-content-box::-webkit-scrollbar-thumb {
+    background: #dee2e6;
+    border-radius: 10px;
+}
