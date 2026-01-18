@@ -1,75 +1,86 @@
 import React, { useState, useEffect } from 'react';
 import { useCategory } from '../../hooks/useCategory';
+import './CategorySelector.css';
 
-const CategorySelector = ({ formData, setFormData }) => {
+const CategorySelector = ({ setParams, onSelect, onConfirm, mode = 'register' }) => {
     const { fetchCategories, categories, catLoading } = useCategory();
     const [mediumList, setMediumList] = useState([]);
     const [smallList, setSmallList] = useState([]);
+    const [activeIds, setActiveIds] = useState({ large: "", medium: "", small: "" });
 
-    // 현재 UI상에서 강조 표시를 위한 상태
-    const [activeIds, setActiveIds] = useState({ large: "", medium: "" });
+    useEffect(() => { fetchCategories(); }, []);
 
-    useEffect(() => {
-        fetchCategories();
-    }, []);
+    const updateSelection = (cat) => {
+        if (mode === 'search' && setParams) {
+            setParams(prev => ({ ...prev, path: cat.path, page: 0 }));
+            if (onSelect) onSelect(cat.category);
+        }
+    };
 
-    // 1단계: 대분류 선택
-    const handleLargeSelect = (id) => {
-        setActiveIds({ large: id, medium: "" });
+    const handleLargeSelect = (cat) => {
+        setActiveIds({ large: cat.categoryId, medium: "", small: "" });
+        setMediumList(cat.children || []);
         setSmallList([]);
-        const target = categories.find(c => c.categoryId === id);
-        setMediumList(target?.children || []);
-        setFormData(prev => ({ ...prev, categoryId: "" })); // 최종값 초기화
+        updateSelection(cat);
     };
 
-    // 2단계: 중분류 선택
-    const handleMediumSelect = (id) => {
-        setActiveIds(prev => ({ ...prev, medium: id }));
-        const target = mediumList.find(c => c.categoryId === id);
-        setSmallList(target?.children || []);
-        setFormData(prev => ({ ...prev, categoryId: "" }));
+    const handleMediumSelect = (cat) => {
+        setActiveIds(prev => ({ ...prev, medium: cat.categoryId, small: "" }));
+        setSmallList(cat.children || []);
+        updateSelection(cat);
     };
 
-    // 3단계: 소분류 선택 (최종 데이터 저장)
-    const handleSmallSelect = (id) => {
-        setFormData(prev => ({ ...prev, categoryId: id }));
+    const handleSmallSelect = (cat) => {
+        setActiveIds(prev => ({ ...prev, small: cat.categoryId }));
+        updateSelection(cat);
     };
 
-    if (catLoading) return <div className="category-loading">카테고리 로딩 중...</div>;
+    const handleSelectAll = () => {
+        setActiveIds({ large: "", medium: "", small: "" });
+        setMediumList([]);
+        setSmallList([]);
+        if (setParams) setParams(prev => ({ ...prev, path: "", page: 0 }));
+        if (onSelect) onSelect("전체 카테고리");
+    };
+
+    const handleConfirm = () => {
+        if (onConfirm) onConfirm();
+    };
+
+    if (catLoading) return <div className="category-loading">로딩 중...</div>;
 
     return (
         <div className="category-panel-section">
-            <label className="section-label">Category</label>
             <div className="category-panel-wrapper">
-                {/* 대분류 */}
                 <div className="cat-column">
                     <div className="cat-header">대분류</div>
                     <ul className="cat-list">
-                        {categories.map(c => (
-                            <li key={c.categoryId} className={activeIds.large === c.categoryId ? 'selected' : ''} onClick={() => handleLargeSelect(c.categoryId)}>
-                                {c.category}
-                            </li>
+                        <li className={activeIds.large === "" ? 'selected' : ''}
+                            onClick={handleSelectAll}> 전체 카테고리</li>
+                        {categories?.map(c => (
+                            <li key={c.categoryId} className={activeIds.large === c.categoryId ? 'selected' : ''} onClick={() => handleLargeSelect(c)}>{c.category}</li>
                         ))}
                     </ul>
                 </div>
-                {/* 중분류 */}
                 <div className="cat-column">
                     <div className="cat-header">중분류</div>
                     <ul className="cat-list">
-                        {mediumList.length > 0 ? (
-                            mediumList.map(c => <li key={c.categoryId} className={activeIds.medium === c.categoryId ? 'selected' : ''} onClick={() => handleMediumSelect(c.categoryId)}>{c.category}</li>)
-                        ) : <li className="empty">선택 대기</li>}
+                        {mediumList.length > 0 ? mediumList.map(c => (
+                            <li key={c.categoryId} className={activeIds.medium === c.categoryId ? 'selected' : ''} onClick={() => handleMediumSelect(c)}>{c.category}</li>
+                        )) : <li className="empty">선택 대기</li>}
                     </ul>
                 </div>
-                {/* 소분류 */}
                 <div className="cat-column">
                     <div className="cat-header">소분류</div>
                     <ul className="cat-list">
-                        {smallList.length > 0 ? (
-                            smallList.map(c => <li key={c.categoryId} className={formData.categoryId === c.categoryId ? 'selected' : ''} onClick={() => handleSmallSelect(c.categoryId)}>{c.category}</li>)
-                        ) : <li className="empty">선택 대기</li>}
+                        {smallList.length > 0 ? smallList.map(c => (
+                            <li key={c.categoryId} className={activeIds.small === c.categoryId ? 'selected' : ''} onClick={() => handleSmallSelect(c)}>{c.category}</li>
+                        )) : <li className="empty">선택 대기</li>}
                     </ul>
                 </div>
+            </div>
+            <div className="category-footer">
+                <button className="category-confirm-btn" onClick={handleConfirm}>확인</button>
             </div>
         </div>
     );

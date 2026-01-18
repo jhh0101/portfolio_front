@@ -28,9 +28,9 @@ const MainBanner = () => {
                     className="mySwiper"
                     style={{backgroundColor: 'black'}}
                 >
-                    <SwiperSlide><div className="temp-slide">Slide 1</div></SwiperSlide>
-                    <SwiperSlide><div className="temp-slide">Slide 2</div></SwiperSlide>
-                    <SwiperSlide><div className="temp-slide">Slide 3</div></SwiperSlide>
+                    <SwiperSlide><div className="temp-slide"><img src={"https://picsum.photos/1440/500?random=1"} alt={"배너 1"}/></div></SwiperSlide>
+                    <SwiperSlide><div className="temp-slide"><img src={"https://picsum.photos/1440/500?random=2"} alt={"배너 2"}/></div></SwiperSlide>
+                    <SwiperSlide><div className="temp-slide"><img src={"https://picsum.photos/1440/500?random=3"} alt={"배너 3"}/></div></SwiperSlide>
                 </Swiper>
 
                 {/* 커스텀 버튼 배치 */}

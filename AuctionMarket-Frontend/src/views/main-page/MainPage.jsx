@@ -26,7 +26,7 @@ const MainPage = () => {
                     <p>등록된 상품이 없습니다.</p>
                 </>
             ) : (
-                <ProductList title="신규 경매" products={newAuction.products} />
+                <ProductList title="신규 경매" products={newAuction.products} mode="carousel" />
             )}
             {closingAuction.products.length === 0 ? (
                 <>
@@ -35,7 +35,7 @@ const MainPage = () => {
                     <p>등록된 상품이 없습니다.</p>
                 </>
             ) : (
-                <ProductList title="마감 임박 상품" products={closingAuction.products} />
+                <ProductList title="마감 임박 상품" products={closingAuction.products} mode="carousel" />
             )}
         </div>
     );

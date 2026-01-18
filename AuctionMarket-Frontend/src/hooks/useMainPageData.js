@@ -1,8 +1,8 @@
 import useProducts from "./useProducts.js";
 
 export const useMainPageData = () => {
-    const newAuction = useProducts();
-    const closingAuction = useProducts({initialSort: "endingSoon"});
+    const newAuction = useProducts({initialSize: 10});
+    const closingAuction = useProducts({initialSort: "endingSoon", initialSize: "10"});
 
     return {
         newAuction,

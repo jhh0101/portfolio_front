@@ -1,0 +1,50 @@
+.category-search-container {
+    display: inline-block;
+    min-width: 200px;
+}
+
+.category-trigger {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 16px;
+    border: 1px solid #e8ecef;
+    border-radius: 8px;
+    cursor: pointer;
+    background-color: #ffffff;
+    transition: border-color 0.2s;
+}
+
+.category-trigger:hover {
+    border-color: #141718;
+}
+
+.selected-name {
+    font-size: 14px;
+    font-weight: 500;
+    color: #141718;
+}
+
+.category-trigger {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-width: 160px;
+    padding: 10px 16px;
+    border: 1px solid #E8ECEF; /* 이미지와 동일한 연한 테두리 */
+    border-radius: 8px;
+    cursor: pointer;
+    background-color: #fff;
+}
+
+.selected-name {
+    font-size: 14px;
+    font-weight: 500;
+    color: #141718;
+}
+
+.category-trigger span:last-child {
+    font-size: 10px;
+    margin-left: 10px;
+    color: #6C7275;
+}
