@@ -174,7 +174,7 @@ const ProductAddPage = () => {
 
                         {/* 카테고리 (넓게 배치) */}
                         <div className="form-section">
-                            <CategorySelector formData={formData} setFormData={setFormData} />
+                            <CategorySelector formData={formData} setFormData={setFormData} mode={"register"} />
                         </div>
 
                         <div className="details-row">
