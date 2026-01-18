@@ -7,6 +7,7 @@ import SignupPage from "./views/signup-page/SignupPage.jsx";
 import ProductAddPage from "./views/product/product-add-page/ProductAddPage.jsx";
 import ProductPage from "./views/product/product-page/ProductPage.jsx";
 import Footer from "./components/footer/Footer.jsx";
+import PolicyPage from "./views/policy/PolicyPage.jsx";
 
 function App() {
     return (
@@ -19,6 +20,8 @@ function App() {
                     <Route path="/signup" element={<SignupPage />} />
                     <Route path="/product-add" element={<ProductAddPage />} />
                     <Route path="/product/:productId" element={<ProductPage />} />
+                    <Route path="/terms" element={<PolicyPage type={"terms"} />} />
+                    <Route path="/privacy" element={<PolicyPage type={"privacy"} />} />
                 </Routes>
                 <Footer />
             </Router>

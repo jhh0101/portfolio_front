@@ -1,6 +1,5 @@
 .footer-container {
-    margin-top: 150px;
-    height: 249px;
+    height: 280px;
     background-color: #141718;
     padding: 80px 160px 32px 160px;
 }
@@ -13,7 +12,7 @@
 }
 
 .copyright {
-    padding-top: 15px;
+    padding-top: 10px;
 }
 
 .footer-hr {
@@ -23,7 +22,7 @@
 }
 
 .git-icon {
-    padding-top: 15px;
+    padding-top: 10px;
     width: 40px;
     height: 100%;
     color: #e0e0e0;
