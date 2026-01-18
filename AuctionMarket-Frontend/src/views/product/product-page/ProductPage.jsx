@@ -107,15 +107,21 @@ const ProductPage = () => {
 
                 <div className="product-info-aside">
                     <h1 className="product-title">{product.title}</h1>
-                    <p className="product-description">{product.description}</p>
-
+                    <div className="auction-stats-container d-flex gap-2 mb-3">
+                        <div className="auction-badge view-badge">
+                            🔥 조회수 {product.viewCount}
+                        </div>
+                        <div className="auction-badge bid-badge">
+                            🔨 입찰현황 {product.viewCount}건
+                        </div>
+                    </div>
                     <div className="product-price">
                         <div className="product-price-div">
-                            Start Time :
+                            Start Time&nbsp;:
                             <span className="start-time">{new Date(auction.startTime).toLocaleString()}</span>
                         </div>
                         <div className="product-price-div">
-                            End Time :
+                            End Time &nbsp; :
                             <span className="end-time">{new Date(auction.endTime).toLocaleString()}</span>
                         </div>
                     </div>
@@ -155,12 +161,13 @@ const ProductPage = () => {
 
             <div className="product-tabs">
                 <div className="tab-header">
-                    <span className="active">Additional Info</span>
+                    <span className="active">Product Description</span>
                     <span>Questions</span>
                     <span>Reviews</span>
                 </div>
                 <div className="tab-content">
-                    <h4>Features</h4>
+                    <h4>{product.title}</h4>
+                    <br/>
                     <p>{product.description}</p>
                 </div>
             </div>
