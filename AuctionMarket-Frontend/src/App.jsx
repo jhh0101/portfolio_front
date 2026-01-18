@@ -6,6 +6,7 @@ import {AuthProvider} from "./context/AuthContext.jsx";
 import SignupPage from "./views/signup-page/SignupPage.jsx";
 import ProductAddPage from "./views/product/product-add-page/ProductAddPage.jsx";
 import ProductPage from "./views/product/product-page/ProductPage.jsx";
+import Footer from "./components/footer/Footer.jsx";
 
 function App() {
     return (
@@ -19,6 +20,7 @@ function App() {
                     <Route path="/product-add" element={<ProductAddPage />} />
                     <Route path="/product/:productId" element={<ProductPage />} />
                 </Routes>
+                <Footer />
             </Router>
         </AuthProvider>
     );
