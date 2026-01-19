@@ -1,5 +1,5 @@
 import {useState} from "react";
-import useProductList from '../../../hooks/useProductList.js'
+import {useProductList} from '../../../hooks/useProductList.js'
 import './ProductListPage.css';
 import ProductList from "../../../components/product/product-list/ProductList.jsx";
 import Pagination from "../../../components/product/pagination/Pagination.jsx";

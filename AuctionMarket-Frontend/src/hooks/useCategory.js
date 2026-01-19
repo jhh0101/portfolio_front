@@ -1,36 +1,30 @@
-import { useState } from 'react';
+import { useQuery } from '@tanstack/react-query'
 import { categoryService } from '../api/categoryService';
 
 export const useCategory = () => {
-    const [catLoading, setCatLoading] = useState(false);
-    const [categories, setCategories] = useState([]); // 원본 트리 데이터 (선택용)
-    const [categoryMap, setCategoryMap] = useState({}); // 평면 데이터 (조회용)
+    return useQuery({
+        queryKey: ['categories', 'tree'],
+        queryFn: () => categoryService.getAllCategories(),
+        // 💡 select는 서버 데이터를 컴포넌트에 전달하기 직전에 가공하는 역할입니다.
+        select: (response) => {
+            const rawCategories = response; // 서버 응답 구조에 맞게 조정
+            const lookup = {};
 
-    const flatten = (list, res = {}) => {
-        list.forEach(cat => {
-            res[cat.categoryId] = { name: cat.category, parentId: cat.parentId };
-            if (cat.children) flatten(cat.children, res);
-        });
-        return res;
-    };
+            const flatten = (list) => {
+                list.forEach(cat => {
+                    lookup[String(cat.categoryId)] = {
+                        name: cat.category,
+                        parentId: cat.parentId
+                    };
+                    if (cat.children && cat.children.length > 0) {
+                        flatten(cat.children);
+                    }
+                });
+            };
 
-    const fetchCategories = async () => {
-        setCatLoading(true);
-        try {
-            const res = await categoryService.getAllCategories();
-            // 지난번 데이터 구조에 맞춰 res.data.data 확인
-            if (res.data && res.data.success) {
-                const rawData = res.data.data;
-                setCategories(rawData); // 트리 구조 저장
-                setCategoryMap(flatten(rawData)); // 평면 구조 저장
-                return rawData;
-            }
-        } catch (e) {
-            console.error("카테고리 로딩 실패", e);
-        } finally {
-            setCatLoading(false);
-        }
-    };
-
-    return { fetchCategories, categories, categoryMap, catLoading };
+            flatten(rawCategories);
+            return lookup; // 이제 이 훅의 data는 변환된 lookup 객체가 됩니다.
+        },
+        staleTime: 1000 * 60 * 60, // 카테고리는 자주 안 변하니 1시간 동안 캐시 유지
+    });
 };
