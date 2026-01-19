@@ -24,34 +24,9 @@ export const useProduct = () => {
         }
     };
 
-    const productDetail = async (productId) => {
-        setLoading(true);
-        try {
-            const response = await productService.getProduct(productId);
-            return response.success !== undefined ? response : response.data;
-        } catch (e) {
-            return handleError(e, "상품 조회 중 에러가 발생했습니다.");
-        } finally {
-            setLoading(false);
-        }
-    };
-
-    const productImages = async (productId) => {
-        setLoading(true);
-        try {
-            const images = await productService.loadImages(productId);
-            return images.success !== undefined ? images : images.data;
-        } catch (e) {
-            return handleError(e, "이미지 조회 중 에러가 발생했습니다.");
-        } finally {
-            setLoading(false);
-        }
-    };
 
     return {
         product,
-        productDetail,
-        productImages,
         loading,
         error
     };

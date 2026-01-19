@@ -9,5 +9,3 @@ export const useProductList = (searchParams = {}) => {
         queryFn: () => productService.getProducts(searchParams)
     });
 };
-
-export default useProductList;
