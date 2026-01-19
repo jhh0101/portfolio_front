@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import './ProductPage.css';
-import { useProduct } from "../../../hooks/useProduct.js";
+import { useProductDetail } from "../../../hooks/useProductDetail.js";
 import { useParams } from "react-router-dom";
 import { useCategory } from "../../../hooks/useCategory.js";
 import AuctionCountdown from "../../../components/product/end-time/AuctionCountdown.jsx";
 
 const ProductPage = () => {
     const { productId } = useParams();
-    const { productDetail, productImages } = useProduct();
+    const { productDetail, productImages } = useProductDetail();
     const { fetchCategories } = useCategory();
 
     const [data, setData] = useState(null);

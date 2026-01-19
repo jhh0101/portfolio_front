@@ -49,14 +49,15 @@ const ProductList = ({ title, products, mode = 'carousel', setParams }) => {
                                 onKeyDown={handleSearch}
                             />
                         </div>
-                        <CategorySearch setParams={setParams} />
-                        <div className="filter-spacer"></div>
+                        <div className="filter-spacer">
+                            <CategorySearch setParams={setParams} />
+                        </div>
                         <div className="sort-filter-wrapper">
                             <select className="sort-select" onChange={handleSortChange}>
-                                <option value="createdAt,desc">최신 등록순</option>
-                                <option value="endTime,asc">마감 임박순</option>
-                                <option value="startPrice,asc">최저가순</option>
-                                <option value="startPrice,desc">최고가순</option>
+                                <option value="createdAt">최신 등록순</option>
+                                <option value="endingSoon">마감 임박순</option>
+                                <option value="priceLow">최저가순</option>
+                                <option value="priceHight">최고가순</option>
                             </select>
                         </div>
                     </div>

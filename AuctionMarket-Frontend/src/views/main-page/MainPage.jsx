@@ -19,23 +19,23 @@ const MainPage = () => {
         <div className="main-page">
             {/* 1. 배너 섹션 */}
             <MainBanner />
-            {newAuction.products.length === 0 ? (
+            {newAuction.content.length === 0 ? (
                 <>
                     <h2 style={{marginTop: 60}}>신규 경매</h2>
                     <hr />
                     <p>등록된 상품이 없습니다.</p>
                 </>
             ) : (
-                <ProductList title="신규 경매" products={newAuction.products} mode="carousel" />
+                <ProductList title="신규 경매" products={newAuction.content} mode="carousel" />
             )}
-            {closingAuction.products.length === 0 ? (
+            {closingAuction.content.length === 0 ? (
                 <>
                     <h2 style={{marginTop: 60}}>마감 임박 상품</h2>
                     <hr />
                     <p>등록된 상품이 없습니다.</p>
                 </>
             ) : (
-                <ProductList title="마감 임박 상품" products={closingAuction.products} mode="carousel" />
+                <ProductList title="마감 임박 상품" products={closingAuction.content} mode="carousel" />
             )}
         </div>
     );
