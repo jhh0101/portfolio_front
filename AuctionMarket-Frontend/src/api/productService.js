@@ -2,14 +2,14 @@ import api from "./axios.js";
 
 export const productService = {
     // 상품 리스트 조회
-    getProducts: async (title = "", path = "", sort = "", page = 0, size=20) => {
-        const response = await api.get(`/product`, {params: {title, path, sort, page, size}});
-        return response.data;
+    getProducts: async (searchParams) => {
+        const response = await api.get(`/product`, {params: searchParams});
+        return response.data.data;
     },
 
     getProduct: async (productId) => {
         const response = await api.get(`/product/${productId}`);
-        return response.data;
+        return response.data.data;
     },
 
     postProduct: async (productData, auctionData) => {
