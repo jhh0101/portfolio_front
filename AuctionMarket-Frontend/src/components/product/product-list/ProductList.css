@@ -142,12 +142,10 @@
     text-decoration: none;
     color: #141718;
     font-weight: 500;
-    border-bottom: 1px solid #141718;
     padding-bottom: 2px;
 }
 
 hr {
-    border: 0;
-    border-top: 1px solid #E8ECEF;
+    border: 1px solid #141718;
     margin-bottom: 24px;
 }

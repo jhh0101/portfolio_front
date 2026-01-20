@@ -1,53 +1,63 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useCategory } from '../../hooks/useCategory';
 import './CategorySelector.css';
 
 const CategorySelector = ({ setParams, onSelect, onConfirm, mode = 'register' }) => {
-    const { fetchCategories, categories, catLoading } = useCategory();
+    const { data: categories, isLoading } = useCategory();
     const [mediumList, setMediumList] = useState([]);
     const [smallList, setSmallList] = useState([]);
     const [activeIds, setActiveIds] = useState({ large: "", medium: "", small: "" });
 
-    useEffect(() => { fetchCategories(); }, []);
+    const [tempSelection, setTempSelection] = useState(null);
 
-    const updateSelection = (cat) => {
-        if (mode === 'search' && setParams) {
-            setParams(prev => ({ ...prev, path: cat.path, page: 0 }));
-            if (onSelect) onSelect(cat.category);
-        }
+    const handleCategoryClick = (cat) => {
+        setTempSelection(cat);
+        if (onSelect) onSelect(cat.category);
     };
 
     const handleLargeSelect = (cat) => {
         setActiveIds({ large: cat.categoryId, medium: "", small: "" });
         setMediumList(cat.children || []);
         setSmallList([]);
-        updateSelection(cat);
+        handleCategoryClick(cat);
     };
 
     const handleMediumSelect = (cat) => {
         setActiveIds(prev => ({ ...prev, medium: cat.categoryId, small: "" }));
         setSmallList(cat.children || []);
-        updateSelection(cat);
+        handleCategoryClick(cat);
     };
 
     const handleSmallSelect = (cat) => {
         setActiveIds(prev => ({ ...prev, small: cat.categoryId }));
-        updateSelection(cat);
+        handleCategoryClick(cat);
     };
 
     const handleSelectAll = () => {
         setActiveIds({ large: "", medium: "", small: "" });
         setMediumList([]);
         setSmallList([]);
-        if (setParams) setParams(prev => ({ ...prev, path: "", page: 0 }));
+        setTempSelection(null);
         if (onSelect) onSelect("전체 카테고리");
     };
 
     const handleConfirm = () => {
-        if (onConfirm) onConfirm();
+        if (tempSelection) {
+            // 특정 카테고리 선택 시
+            if (mode === 'search' && setParams) {
+                setParams(prev => ({ ...prev, path: tempSelection.path, page: 0 }));
+            }
+        } else {
+            // 💡 [수정] "전체 카테고리"를 선택한 상태에서 확인을 누른 경우
+            if (mode === 'search' && setParams) {
+                setParams(prev => ({ ...prev, path: "", page: 0 })); // path를 초기화하여 전체 검색
+            }
+        }
+
+        if (onConfirm) onConfirm(); // 모달 닫기
     };
 
-    if (catLoading) return <div className="category-loading">로딩 중...</div>;
+    if (isLoading) return <div className="category-loading">로딩 중...</div>;
 
     return (
         <div className="category-panel-section">
