@@ -1,10 +1,10 @@
 import { useMemo } from 'react';
 import { useProductDetail } from "./useProductDetail.js";
-import { useCategory } from "./useCategory.js";
+import { useCategoryLookup } from "./useCategoryLookup.js";
 
 export const useProductBreadcrumb = (productId) => {
     const { data: product, isLoading: isProductLoading } = useProductDetail(productId);
-    const { data: categoryLookup, isLoading: isCatLoading } = useCategory();
+    const { data: categoryLookup } = useCategoryLookup();
 
     const breadcrumb = useMemo(() => {
         if (!product || !categoryLookup) return [];
@@ -23,6 +23,6 @@ export const useProductBreadcrumb = (productId) => {
     return {
         breadcrumb,
         productTitle: product?.productDetailResponse?.title,
-        isLoading: isProductLoading || isCatLoading
+        isLoading: isProductLoading
     };
 };

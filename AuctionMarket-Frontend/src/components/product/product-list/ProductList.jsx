@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ProductCard from '../product-card/ProductCard.jsx';
 import CategorySearch from "../../category/CategorySearch.jsx";
+import {useCategoryLookup} from '../../../hooks/useCategoryLookup.js'
 import './ProductList.css';
 
 // Swiper 관련 임포트 추가
@@ -10,9 +11,15 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
-const ProductList = ({ title, products, mode = 'carousel', setParams }) => {
+const ProductList = ({ title, products, mode = 'carousel', params, setParams }) => {
+    const { data: lookup = {} } = useCategoryLookup();
 
-    // 제품 아이템들을 렌더링하는 공통 함수 (그리드용)
+// 💡 params.path가 "1/5/10" 이라면, '/'로 잘라서 마지막 요소인 "10"만 가져옵니다.
+    const lastCategoryId = params?.path ? params.path.split('/').pop() : "";
+
+// 💡 잘라낸 마지막 ID로 이름을 찾습니다.
+    const categoryName = lookup[String(lastCategoryId)]?.name || "전체 카테고리";
+
     const renderProducts = () => products.map((item) => (
         <ProductCard key={item.productResponse.productId} data={item} />
     ));
@@ -26,10 +33,8 @@ const ProductList = ({ title, products, mode = 'carousel', setParams }) => {
     };
 
     const handleSortChange = (e) => {
-        // 이전 논의에 맞춰 한 페이지에 20개씩(5줄) 나오도록 size를 20으로 설정
-        setParams(prev => ({ ...prev, sort: e.target.value, page: 0, size: 20 }));
+        setParams(prev => ({ ...prev, sort: e.target.value, page: 0, size: 12 }));
     };
-
     return (
         <section className={`product-list ${mode}`}>
             <div className="product-header">
@@ -50,10 +55,10 @@ const ProductList = ({ title, products, mode = 'carousel', setParams }) => {
                             />
                         </div>
                         <div className="filter-spacer">
-                            <CategorySearch setParams={setParams} />
+                            <CategorySearch setParams={setParams} categoryName={categoryName} />
                         </div>
                         <div className="sort-filter-wrapper">
-                            <select className="sort-select" onChange={handleSortChange}>
+                            <select className="sort-select" onChange={handleSortChange} value={params?.sort || "createdAt"} >
                                 <option value="createdAt">최신 등록순</option>
                                 <option value="endingSoon">마감 임박순</option>
                                 <option value="priceLow">최저가순</option>

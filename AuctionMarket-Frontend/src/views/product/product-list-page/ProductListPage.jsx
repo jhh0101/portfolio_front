@@ -27,6 +27,7 @@ const ProductListPage = () => {
                 title="전체 경매 상품"
                 products={products}
                 mode="grid"
+                params={params}
                 setParams={setParams}
             />
 
