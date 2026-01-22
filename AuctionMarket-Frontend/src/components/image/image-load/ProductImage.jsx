@@ -3,7 +3,7 @@ import {useState, useEffect} from "react";
 
 const ProductImage = ({productId}) => {
 
-    const { data: images = [], isLoading: isImagesLoading } = useProductImage(productId);
+    const { images, isLoading: isImagesLoading } = useProductImage(productId);
     const [selectedImage, setSelectedImage] = useState(null);
 
     useEffect(() => {

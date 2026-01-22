@@ -25,7 +25,6 @@ export const productService = {
     // 2. 이미지 다중 업로드 (Multipart)
     uploadImages: async (productId, files) => {
         const formData = new FormData();
-        // 백엔드 파라미터명 'files'와 일치시켜야 함
         files.forEach(file => {
             formData.append('files', file);
         });

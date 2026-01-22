@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import AuctionCountdown from "../../../components/product/end-time/AuctionCountdown.jsx";
 import Breadcrumb from '../../../components/product/breadcrumb/Breadcrumb.jsx'
 import SubBreadcrumb from '../../../components/product/breadcrumb/SubBreadcrumb.jsx'
-import ProductImage from '../../../components/product/product-image/ProductImage.jsx'
+import ProductImage from '../../../components/image/image-load/ProductImage.jsx'
 import ProductCount from '../../../components/product/product-count/ProductCount.jsx'
 import ProductInfo from '../../../components/product/product-info/ProductInfo.jsx'
 import ProductTab from "../../../components/product/product-tab/ProductTab.jsx";

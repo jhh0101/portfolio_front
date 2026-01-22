@@ -89,9 +89,11 @@ const CategorySelector = ({ setParams, onSelect, onConfirm, mode = 'register' })
                     </ul>
                 </div>
             </div>
-            <div className="category-footer">
-                <button className="category-confirm-btn" onClick={handleConfirm}>확인</button>
-            </div>
+            {mode !== 'register' && (
+                <div className="category-footer">
+                    <button className="category-confirm-btn" onClick={handleConfirm}>확인</button>
+                </div>
+            )}
         </div>
     );
 };
