@@ -57,15 +57,12 @@ export const useProductAdd = () => {
                 await uploadAsync({ productId: newId, formData: imageFormData });
             }
 
-            alert("상품 등록이 완료되었습니다.");
             navigate(`/product/${newId}`);
         } catch (err) {
-            // mutateAsync는 에러 발생 시 catch로 들어옵니다.
             alert("등록 중 오류가 발생했습니다.");
         }
     };
 
-    // View에서 필요한 것들만 골라서 내보냅니다.
     return {
         formData, setFormData,
         imageStates: { imagePreviews, setImagePreviews, imageFiles, setImageFiles },
