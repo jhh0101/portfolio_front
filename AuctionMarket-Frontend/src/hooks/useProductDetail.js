@@ -18,9 +18,6 @@ export const useProductDetail = (productId) => {
             queryClient.invalidateQueries({ queryKey: ['products', 'list']});
             alert("상품이 등록되었습니다.");
         },
-        onError: (error) => {
-            console.error("등록 실패 : ", error);
-        },
     });
 
     return {
