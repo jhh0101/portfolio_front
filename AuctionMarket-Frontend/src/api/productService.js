@@ -17,7 +17,6 @@ export const productService = {
             productRequest: productData,
             auctionRequest: auctionData
         }
-
         const response = await api.post(`/product`, requestBody);
         return response.data;
     },
