@@ -19,8 +19,8 @@ export const useLogin = () => {
                 if (token && typeof token === 'string') {
                     authLogin(token);
                     queryClient.clear();
-                    navigate('/');
                     toast.success("로그인 성공!");
+                    navigate('/');
                 } else {
                     toast.error("토큰 형식이 올바르지 않습니다.");
                 }

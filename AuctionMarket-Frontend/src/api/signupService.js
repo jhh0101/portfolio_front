@@ -2,6 +2,7 @@ import api from "./axios.js";
 
 export const signupService =  {
     postSignup: async (data) => {
-        return await api.post("/user/signup", data);
+        const response = await api.post("/user/signup", data);
+        return response.data;
     }
 }
