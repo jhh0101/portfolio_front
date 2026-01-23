@@ -11,7 +11,7 @@ import ProductTab from "../../../components/product/product-tab/ProductTab.jsx";
 
 const ProductPage = () => {
     const { productId } = useParams();
-    const { data: product, isLoading: isProductLoading } = useProductDetail(productId);
+    const { product, isLoading: isProductLoading } = useProductDetail(productId);
 
     const productInfo = product?.productDetailResponse || {};
     const auction = product?.auctionResponse || {};

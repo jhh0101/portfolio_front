@@ -61,6 +61,7 @@ const CategorySelector = ({ setParams, onSelect, onConfirm, mode = 'register' })
 
     return (
         <div className="category-panel-section">
+            <label className="input-label">Category</label>
             <div className="category-panel-wrapper">
                 <div className="cat-column">
                     <div className="cat-header">대분류</div>

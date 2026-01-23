@@ -1,11 +1,33 @@
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import {productService} from "../api/productService.js";
 
 
 export const useProductDetail = (productId) => {
-    return useQuery({
-        queryKey: ['products', 'detail', productId],
+    const queryClient = useQueryClient();
+
+    const getProduct = useQuery({
+        queryKey: ['product', 'detail', productId],
         queryFn: () => productService.getProduct(productId),
         enabled: !!productId,
     });
+
+    const postProduct = useMutation({
+        mutationFn: ({productRequest, auctionRequest}) =>
+            productService.postProduct(productRequest, auctionRequest),
+        onSuccess: (res) => {
+            queryClient.invalidateQueries({ queryKey: ['products', 'list']});
+            alert("상품이 등록되었습니다.");
+        },
+        onError: (error) => {
+            console.error("등록 실패 : ", error);
+        },
+    });
+
+    return {
+        product: getProduct.data,
+        isLoading: getProduct.isLoading,
+        isError: getProduct.isError,
+        addProduct: postProduct.mutateAsync,
+        isAdding: postProduct.isPending
+    };
 }

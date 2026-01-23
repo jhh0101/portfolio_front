@@ -3,7 +3,7 @@ import { useProductDetail } from "./useProductDetail.js";
 import { useCategoryLookup } from "./useCategoryLookup.js";
 
 export const useProductBreadcrumb = (productId) => {
-    const { data: product, isLoading: isProductLoading } = useProductDetail(productId);
+    const { product, isLoading: isProductLoading } = useProductDetail(productId);
     const { data: categoryLookup } = useCategoryLookup();
 
     const breadcrumb = useMemo(() => {

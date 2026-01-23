@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useProduct } from './useProduct';
+import { useProductDetail } from './useProductDetail';
 import { useProductImage } from './useProductImage';
 
 export const useProductAdd = () => {
     const navigate = useNavigate();
-    const { product, loading } = useProduct();
+    const { addProduct, isAdding } = useProductDetail();
     const { uploadAsync } = useProductImage();
 
     // 1. 상태 관리
@@ -46,18 +46,22 @@ export const useProductAdd = () => {
             },
         };
 
-        const result = await product(payload);
-        if (result?.success) {
-            const newId = result.data?.productId;
+        try {
+            const result = await addProduct(payload);
+
+            const newId = result.productId || result.data?.productId;
+
             if (newId && imageFiles.length > 0) {
                 const imageFormData = new FormData();
                 imageFiles.forEach(file => imageFormData.append("files", file));
-                try {
-                    await uploadAsync({ productId: newId, formData: imageFormData });
-                } catch (err) { console.error(err); }
+                await uploadAsync({ productId: newId, formData: imageFormData });
             }
+
             alert("상품 등록이 완료되었습니다.");
             navigate(`/product/${newId}`);
+        } catch (err) {
+            // mutateAsync는 에러 발생 시 catch로 들어옵니다.
+            alert("등록 중 오류가 발생했습니다.");
         }
     };
 
@@ -67,6 +71,6 @@ export const useProductAdd = () => {
         imageStates: { imagePreviews, setImagePreviews, imageFiles, setImageFiles },
         timeLimits: { minStartTime, minEndTime },
         handlers: { handleChange, handleSubmit },
-        status: { loading }
+        status: { isAdding }
     };
 };
