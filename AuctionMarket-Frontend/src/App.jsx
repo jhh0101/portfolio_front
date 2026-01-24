@@ -14,7 +14,7 @@ import ProductListPage from "./views/product/product-list-page/ProductListPage.j
 function App() {
     return (
         <>
-            <Toaster position="top-center" reverseOrder={false} />
+            <Toaster position="top-right" reverseOrder={false} />
 
             <AuthProvider>
                 <Router>
