@@ -25,11 +25,25 @@ export const AuthProvider = ({ children }) => {
         }
     }, []);
 
-    // 로그인 시 실행할 함수
     const login = (token) => {
-        localStorage.setItem('token', token);
-        setIsLoggedIn(true);
-        updateUserFromToken(token);
+        if (!token && typeof token !== 'string') {
+            throw new Error("유효하지 않은 토큰입니다.");
+        }
+
+        try {
+            const decoded = jwtDecode(token);
+
+            if (decoded.exp && decoded.exp * 1000 < Date.now()) {
+                throw new Error("만료된 토큰입니다.");
+            }
+            localStorage.setItem('token', token);
+            setIsLoggedIn(true);
+            setUser({role: decoded.role});
+        } catch (e) {
+            console.error("토큰 처리 실패 : ", e);
+            throw e;
+        }
+
     };
 
     // 로그아웃 시 실행할 함수
