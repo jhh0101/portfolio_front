@@ -2,8 +2,8 @@ import { useProductAdd } from '../../../hooks/useProductAdd.js';
 import './ProductAddPage.css';
 import CategorySelector from "../../../components/category/CategorySelector.jsx";
 import ImageUpload from '../../../components/image/image-upload/ImageUpload.jsx';
-import StartPrice from "../../../components/product-add/product-add-price/StartPrice.jsx";
-import StartAndEndTime from "../../../components/product-add/product-add-time/StartAndEndTime.jsx";
+import StartPrice from "../../../components/product/write/product-add-price/StartPrice.jsx";
+import StartAndEndTime from "../../../components/product/write/product-add-time/StartAndEndTime.jsx";
 
 const ProductAddPage = () => {
     const {

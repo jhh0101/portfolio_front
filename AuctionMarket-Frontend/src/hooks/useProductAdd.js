@@ -2,7 +2,9 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useProductDetail } from './useProductDetail';
 import { useProductImage } from './useProductImage';
+import { getFormattedDate, formatTime } from '../utils/dataFormmatter.js';
 
+import toast from 'react-hot-toast';
 export const useProductAdd = () => {
     const navigate = useNavigate();
     const { addProduct, isAdding } = useProductDetail();
@@ -17,10 +19,6 @@ export const useProductAdd = () => {
     });
 
     // 2. 시간 계산 로직
-    const getFormattedDate = (date) => {
-        const tzOffset = date.getTimezoneOffset() * 60000;
-        return new Date(date - tzOffset).toISOString().slice(0, 16);
-    };
     const minStartTime = getFormattedDate(new Date());
     const minEndTime = formData.startTime || getFormattedDate(new Date(new Date().getTime() + 24 * 60 * 60 * 1000));
 
@@ -32,7 +30,6 @@ export const useProductAdd = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const formatTime = (time) => (time ? `${time}:00` : "");
         const payload = {
             productRequest: {
                 categoryId: Number(formData.categoryId),
@@ -56,10 +53,10 @@ export const useProductAdd = () => {
                 imageFiles.forEach(file => imageFormData.append("files", file));
                 await uploadAsync({ productId: newId, formData: imageFormData });
             }
-
+            toast.success("상품이 등록되었습니다!");
             navigate(`/product/${newId}`);
         } catch (err) {
-            alert("등록 중 오류가 발생했습니다.");
+            console.error("등록 실패 : ", err);
         }
     };
 
