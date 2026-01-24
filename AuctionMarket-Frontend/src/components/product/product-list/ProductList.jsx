@@ -68,29 +68,31 @@ const ProductList = ({ title, products, mode = 'carousel', params, setParams }) 
                     </div>
                 )}
             </div>
-            {mode === 'carousel' && <hr /> }
-
             {/* [수정] 모드에 따른 본문 출력 분기 */}
             {mode === 'carousel' ? (
                 // 캐러셀 모드: Swiper 사용
-                <Swiper
-                    modules={[Navigation, Pagination, Autoplay]}
-                    spaceBetween={20}
-                    slidesPerView={5.3}
-                    grabCursor={true}
-                    className="mySwiper"
-                    breakpoints={{
-                        1024: { slidesPerView: 5.3 },
-                        768: { slidesPerView: 3 },
-                        320: { slidesPerView: 1.5 },
-                    }}
-                >
-                    {products.map((item) => (
-                        <SwiperSlide key={item.productResponse.productId}>
-                            <ProductCard data={item} />
-                        </SwiperSlide>
-                    ))}
-                </Swiper>
+                <>
+                    <hr />
+                    <Swiper
+                        modules={[Navigation, Pagination, Autoplay]}
+                        spaceBetween={20}
+                        slidesPerView={5.3}
+                        grabCursor={true}
+                        className="mySwiper"
+                        breakpoints={{
+                            1024: { slidesPerView: 5.3 },
+                            768: { slidesPerView: 3 },
+                            320: { slidesPerView: 1.5 },
+                        }}
+                    >
+                        {products.map((item) => (
+                            <SwiperSlide key={item.productResponse.productId}>
+                                <ProductCard data={item} />
+                            </SwiperSlide>
+                        ))}
+
+                    </Swiper>
+                </>
             ) : (
                 // 그리드 모드: 일반 div 레이아웃 사용
                 <div className="product-grid-layout">
