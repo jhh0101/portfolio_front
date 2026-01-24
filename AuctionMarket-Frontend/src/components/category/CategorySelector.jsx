@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useCategory } from '../../hooks/useCategory';
+import { useCategory } from '@/hooks/useCategory';
 import './CategorySelector.css';
 
 const CategorySelector = ({ setParams, onSelect, onConfirm, mode = 'register' }) => {

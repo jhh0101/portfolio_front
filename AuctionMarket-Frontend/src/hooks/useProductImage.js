@@ -1,4 +1,4 @@
-import { productService } from '../api/productService.js'
+import { productService } from '@/api/productService.js'
 import {useQuery, useMutation, useQueryClient} from '@tanstack/react-query'
 
 // hooks/useProductImage.js

@@ -1,5 +1,5 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import {productService} from "../api/productService.js";
+import {productService} from "@/api/productService.js";
 
 
 export const useProductDetail = (productId) => {

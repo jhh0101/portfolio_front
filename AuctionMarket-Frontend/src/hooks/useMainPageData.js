@@ -1,4 +1,4 @@
-import {useProductList} from './useProductList.js'
+import {useProductList} from '@/hooks/useProductList.js'
 
 export const useMainPageData = () => {
     // 1. 훅을 호출하면서 필요한 것만 바로 꺼냅니다.

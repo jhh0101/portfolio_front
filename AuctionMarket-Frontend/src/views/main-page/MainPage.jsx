@@ -1,10 +1,10 @@
 // src/views/main-page/MainPage.jsx
-import './MainPage.css'
-import MainBanner from "../../components/main-banner/MainBanner.jsx";
-import ProductList from "../../components/product/read/product-list/ProductList.jsx";
-import ProductCardSkeleton from "../../components/common/ProductCardSkeleton.jsx";
 import React from "react";
-import {useMainPageData} from "../../hooks/useMainPageData.js";
+import {useMainPageData} from "@/hooks/useMainPageData.js";
+import MainBanner from "@/components/main-banner/MainBanner.jsx";
+import ProductList from "@/components/product/read/product-list/ProductList.jsx";
+import ProductCardSkeleton from "@/components/common/ProductCardSkeleton.jsx";
+import './MainPage.css'
 
 const MainPage = () => {
     const {newAuction, closingAuction, isLoading, isError} = useMainPageData();

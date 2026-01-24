@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
-import { useProductDetail } from "./useProductDetail.js";
-import { useCategoryLookup } from "./useCategoryLookup.js";
+import { useProductDetail } from "@/hooks/useProductDetail.js";
+import { useCategoryLookup } from "@/hooks/useCategoryLookup.js";
 
 export const useProductBreadcrumb = (productId) => {
     const { product, isLoading: isProductLoading } = useProductDetail(productId);

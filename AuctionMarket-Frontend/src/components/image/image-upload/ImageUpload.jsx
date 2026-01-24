@@ -1,8 +1,4 @@
-import { useState } from 'react';
-import { useProductImage } from "../../../hooks/useProductImage.js";
-
-const ImageUpload = ({productId, imagePreviews, imageFiles, setImageFiles, setImagePreviews}) => {
-
+const ImageUpload = ({imagePreviews, imageFiles, setImageFiles, setImagePreviews}) => {
 
     // 3. 핸들러 함수들 수정
     const handleImageChange = (e) => {

@@ -1,7 +1,7 @@
-import React, { memo, useCallback } from "react";
+import React, { memo } from "react";
 import { Link, useNavigate } from 'react-router-dom';
 import './Header.css';
-import { useAuth } from "../../context/AuthContext.jsx";
+import { useAuth } from "@/context/AuthContext.jsx";
 
 const Header = memo(() => {
 
