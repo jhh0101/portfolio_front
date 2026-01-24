@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link, useNavigate} from "react-router-dom";
 import './ProductCard.css';
 import AuctionCountdown from "../end-time/AuctionCountdown.jsx";
 
@@ -9,7 +10,7 @@ const ProductCard = ({data}) => {
 
     return (
         <div className={"product-card"}>
-            <a href={`/product/${productId}`}>
+            <Link to={`/product/${productId}`}>
                 <div className={"product-image-wrapper"}>
                     <img src={productResponse.mainImageUrl} alt={productResponse.title}/>
                 </div>
@@ -18,7 +19,7 @@ const ProductCard = ({data}) => {
                     <p className={"price"}>현재가 : {auctionResponse.currentPrice.toLocaleString()}원</p>
                     <AuctionCountdown deadline={new Date(auctionResponse.endTime)} />
                 </div>
-            </a>
+            </Link>
         </div>
     );
 };
