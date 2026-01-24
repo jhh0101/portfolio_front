@@ -1,9 +1,9 @@
-import React from "react";
+import React, { memo } from "react";
 import './Footer.css'
-import {Link} from "react-router-dom";
-import {FaGithub} from "react-icons/fa";
+import { Link } from "react-router-dom";
+import { FaGithub } from "react-icons/fa";
 
-const Footer = () => {
+const Footer = memo(() => {
     return (
         <footer className={"footer-container"}>
             <div className={"d-flex align-items-center justify-content-between text-white"}>
@@ -27,10 +27,11 @@ const Footer = () => {
                     <Link to={"/privacy"} className={"privacy-policy"}>Privacy Policy</Link>
                     <Link to={"/terms"} className={"terms-of-use"}>Terms of Use</Link>
                 </div>
-                <a href={"https://github.com/jhh0101/portfolio"} target={"_blank"}> <FaGithub className={"git-icon"} /> </a>
+                <a href={"https://github.com/jhh0101/portfolio"} target={"_blank"}> <FaGithub className={"git-icon"}/>
+                </a>
             </div>
         </footer>
     )
-}
+});
 
 export default Footer;

@@ -1,9 +1,9 @@
-import React from "react";
-import {Link, useNavigate} from 'react-router-dom';
+import React, { memo, useCallback } from "react";
+import { Link, useNavigate } from 'react-router-dom';
 import './Header.css';
-import {useAuth} from "../../context/AuthContext.jsx";
+import { useAuth } from "../../context/AuthContext.jsx";
 
-const Header = () => {
+const Header = memo(() => {
 
     const { isLoggedIn, logout, user } = useAuth(); // 전역 상태 사용
     const navigate = useNavigate();
@@ -50,5 +50,5 @@ const Header = () => {
             </div>
         </header>
     );
-};
+});
 export default Header;
