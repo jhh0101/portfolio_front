@@ -2,8 +2,8 @@ import React from "react";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 import './MainBanner.css'
-import LeftArrow from '../../assets/arrow-left.svg';
-import RightArrow from '../../assets/arrow-right.svg';
+import LeftArrow from '@/assets/arrow-left.svg';
+import RightArrow from '@/assets/arrow-right.svg';
 
 // Swiper 스타일 임포트 (필수)
 import 'swiper/css';

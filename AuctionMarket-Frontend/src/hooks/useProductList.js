@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import {productService} from "../api/productService.js";
+import {productService} from "@/api/productService.js";
 
 export const useProductList = (searchParams = {}) => {
     const {title = "", path = "", sort = "", size = 0} = searchParams;

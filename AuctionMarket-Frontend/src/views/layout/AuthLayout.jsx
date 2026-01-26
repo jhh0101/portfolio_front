@@ -1,6 +1,6 @@
 import React from 'react';
 import "./AuthLayout.css"
-import authImg from '../../assets/auth-image.jpg' // 공통 이미지
+import authImg from '@/assets/auth-image.jpg' // 공통 이미지
 
 const AuthLayout = ({ title, children }) => {
     return (

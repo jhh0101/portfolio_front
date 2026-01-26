@@ -1,4 +1,4 @@
-import {useProductImage} from "../../../hooks/useProductImage.js";
+import {useProductImage} from "@/hooks/useProductImage.js";
 import {useState, useEffect} from "react";
 
 const ProductImage = ({productId}) => {

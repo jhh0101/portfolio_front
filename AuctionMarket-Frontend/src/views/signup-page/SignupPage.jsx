@@ -1,8 +1,8 @@
 // SignupPage.jsx
 import React, {useState} from "react";
 import "./SignupPage.css";
-import AuthLayout from "../layout/AuthLayout.jsx";
-import {useSignup} from "../../hooks/useSignup.js";
+import AuthLayout from "@/views/layout/AuthLayout.jsx";
+import {useSignup} from "@/hooks/useSignup.js";
 
 const SignupPage = () => {
     const { mutate, isPending } = useSignup();

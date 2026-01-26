@@ -1,13 +1,13 @@
 import './ProductPage.css';
-import { useProductDetail } from "../../../hooks/useProductDetail.js";
+import { useProductDetail } from "@/hooks/useProductDetail.js";
 import { useParams } from "react-router-dom";
-import AuctionCountdown from "../../../components/product/read/end-time/AuctionCountdown.jsx";
-import Breadcrumb from '../../../components/product/read/breadcrumb/Breadcrumb.jsx'
-import SubBreadcrumb from '../../../components/product/read/breadcrumb/SubBreadcrumb.jsx'
-import ProductImage from '../../../components/image/image-load/ProductImage.jsx'
-import ProductCount from '../../../components/product/read/product-count/ProductCount.jsx'
-import ProductInfo from '../../../components/product/read/product-info/ProductInfo.jsx'
-import ProductTab from "../../../components/product/read/product-tab/ProductTab.jsx";
+import AuctionCountdown from "@/components/product/read/end-time/AuctionCountdown.jsx";
+import Breadcrumb from '@/components/product/read/breadcrumb/Breadcrumb.jsx'
+import SubBreadcrumb from '@/components/product/read/breadcrumb/SubBreadcrumb.jsx'
+import ProductImage from '@/components/image/image-load/ProductImage.jsx'
+import ProductCount from '@/components/product/read/product-count/ProductCount.jsx'
+import ProductInfo from '@/components/product/read/product-info/ProductInfo.jsx'
+import ProductTab from "@/components/product/read/product-tab/ProductTab.jsx";
 
 const ProductPage = () => {
     const { productId } = useParams();

@@ -1,6 +1,6 @@
 import { useMutation } from '@tanstack/react-query';
 import { useNavigate } from "react-router-dom";
-import {signupService} from "../api/signupService.js";
+import {signupService} from "@/api/signupService.js";
 import toast from 'react-hot-toast';
 
 export const useSignup = () => {

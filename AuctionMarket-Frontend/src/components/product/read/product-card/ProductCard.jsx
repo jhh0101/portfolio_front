@@ -1,7 +1,7 @@
 import React, { memo, useState } from 'react';
 import { Link, useNavigate } from "react-router-dom";
 import './ProductCard.css';
-import AuctionCountdown from "../end-time/AuctionCountdown.jsx";
+import AuctionCountdown from "@/components/product/read/end-time/AuctionCountdown.jsx";
 
 
 const ProductCard = memo(({data}) => {
