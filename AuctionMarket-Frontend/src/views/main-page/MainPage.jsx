@@ -10,7 +10,7 @@ const MainPage = () => {
     const {newAuction, closingAuction, isLoading, isError} = useMainPageData();
 
     if (isError) {
-        return <div>서버 연결에 문제가 발생했습니다.</div>
+        return <div style={{height: "100vh", textAlign: "center"}}>서버 연결에 문제가 발생했습니다.</div>
     }
 
     return (
