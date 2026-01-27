@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useNavigate } from "react-router-dom";
-import { loginService } from '@/api/loginService.js'
+import { authService } from '@/api/authService.js'
 import toast from 'react-hot-toast';
 import {useAuth} from "@/context/AuthContext.jsx";
 
@@ -11,7 +11,7 @@ export const useLogin = () => {
 
     return useMutation({
         mutationFn: ({email, password}) =>
-            loginService.postLogin({email, password}),
+            authService.postLogin({email, password}),
         onSuccess: (res) => {
 
             if (!res.success) {

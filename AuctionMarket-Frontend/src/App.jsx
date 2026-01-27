@@ -15,9 +15,8 @@ function App() {
     return (
         <>
             <Toaster position="top-right" reverseOrder={false} />
-
-            <AuthProvider>
-                <Router>
+            <Router>
+                <AuthProvider>
                     <Header />
                     <Routes>
                         <Route path="/" element={<MainPage />} />
@@ -30,8 +29,8 @@ function App() {
                         <Route path="/privacy" element={<PolicyPage type={"privacy"} />} />
                     </Routes>
                     <Footer />
-                </Router>
-            </AuthProvider>
+                </AuthProvider>
+            </Router>
         </>
     );
 }

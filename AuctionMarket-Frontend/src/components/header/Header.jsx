@@ -2,6 +2,7 @@ import React, { memo } from "react";
 import { Link, useNavigate } from 'react-router-dom';
 import './Header.css';
 import { useAuth } from "@/context/AuthContext.jsx";
+import SessionTimer from "@/components/header/session-timer/SessionTimer.jsx";
 
 const Header = memo(() => {
 
@@ -38,6 +39,7 @@ const Header = memo(() => {
                 {/* 사용자 메뉴 */}
                 {isLoggedIn ? (
                     <div className="menu d-flex align-items-center">
+                        <SessionTimer deadline={new Date(Date.now() + 900000)} />
                         <Link to="/mypage" className="btn nav-btn2">My Page</Link>
                         <button onClick={handleLogout} className={"btn btn-dark nav-btn1"}>Log out</button>
                     </div>
