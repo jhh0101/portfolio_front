@@ -1,19 +1,21 @@
 import axios from "axios";
 
+let cachedAccessToken = null;
+
+export const setApiAccessToken = (token) => {
+    cachedAccessToken = token;
+};
+
 const api = axios.create({
     baseURL: import.meta.env.VITE_API_BASE_URL,
+    withCredentials: true,
 });
 
-// 요청 인터셉터 추가
 api.interceptors.request.use(
     (config) => {
-        // 로컬 스토리지에서 토큰을 가져옵니다.
-        // 로그인 시 저장한 키 이름(예: 'accessToken' 또는 'token')과 똑같아야 합니다.
-        const token = localStorage.getItem("token");
-
-        if (token) {
+        if (cachedAccessToken) {
             // 헤더에 토큰 추가
-            config.headers.Authorization = `Bearer ${token}`;
+            config.headers.Authorization = `Bearer ${cachedAccessToken}`;
         }
         return config;
     },
