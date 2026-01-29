@@ -42,10 +42,10 @@
 }
 
 .modal-body {
-    padding: 20px;
+    padding: 30px 25px 0;
 }
 
-.category-footer {
+.modal-footer {
     margin-top: 24px;
     display: flex;
     justify-content: flex-end;
@@ -53,8 +53,9 @@
     border-top: 1px solid #e8ecef;
 }
 
-.category-confirm-btn {
+.confirm-btn {
     padding: 12px 32px;
+    margin: 5px 0 20px;
     background-color: #141718;
     color: #ffffff;
     border: none;
@@ -64,7 +65,7 @@
     transition: background-color 0.2s;
 }
 
-.category-confirm-btn:hover {
+.confirm-btn:hover {
     background-color: #333333;
 }
 

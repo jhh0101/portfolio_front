@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useCategory } from '@/hooks/useCategory';
-import './CategorySelector.css';
 
 const CategorySelector = ({ setParams, onSelect, onConfirm, mode = 'register' }) => {
     const { data: categories, isLoading } = useCategory();
@@ -43,21 +42,19 @@ const CategorySelector = ({ setParams, onSelect, onConfirm, mode = 'register' })
 
     const handleConfirm = () => {
         if (tempSelection) {
-            // 특정 카테고리 선택 시
             if (mode === 'search' && setParams) {
                 setParams(prev => ({ ...prev, path: tempSelection.path, page: 0 }));
             }
         } else {
-            // 💡 [수정] "전체 카테고리"를 선택한 상태에서 확인을 누른 경우
             if (mode === 'search' && setParams) {
                 setParams(prev => ({ ...prev, path: "", page: 0 })); // path를 초기화하여 전체 검색
             }
         }
 
-        if (onConfirm) onConfirm(); // 모달 닫기
+        if (onConfirm) onConfirm();
     };
 
-    if (isLoading) return <div className="category-loading">로딩 중...</div>;
+    if (isLoading) return <div className="category-loading" style={{height: "100vh"}}>로딩 중...</div>;
 
     return (
         <div className="category-panel-section">
@@ -91,8 +88,8 @@ const CategorySelector = ({ setParams, onSelect, onConfirm, mode = 'register' })
                 </div>
             </div>
             {mode !== 'register' && (
-                <div className="category-footer">
-                    <button className="category-confirm-btn" onClick={handleConfirm}>확인</button>
+                <div className="modal-footer">
+                    <button className="confirm-btn" onClick={handleConfirm}>확인</button>
                 </div>
             )}
         </div>

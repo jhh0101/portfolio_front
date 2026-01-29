@@ -1,6 +1,10 @@
 import './ProductPage.css';
+import { useNavigate } from "react-router-dom";
 import { useProductDetail } from "@/hooks/useProductDetail.js";
+import { useBid } from "@/hooks/useBid.js";
 import { useParams } from "react-router-dom";
+import { useState } from "react";
+import { useAuth } from "@/context/AuthContext.jsx";
 import AuctionCountdown from "@/components/product/read/end-time/AuctionCountdown.jsx";
 import Breadcrumb from '@/components/product/read/breadcrumb/Breadcrumb.jsx'
 import SubBreadcrumb from '@/components/product/read/breadcrumb/SubBreadcrumb.jsx'
@@ -8,16 +12,33 @@ import ProductImage from '@/components/image/image-load/ProductImage.jsx'
 import ProductCount from '@/components/product/read/product-count/ProductCount.jsx'
 import ProductInfo from '@/components/product/read/product-info/ProductInfo.jsx'
 import ProductTab from "@/components/product/read/product-tab/ProductTab.jsx";
+import BidModal from "@/components/bid/bidding/BidModal.jsx";
+
 
 const ProductPage = () => {
     const { productId } = useParams();
     const { product, isLoading: isProductLoading } = useProductDetail(productId);
+    const { bidderList: bidder, isBidderLoading } = useBid(product?.auctionResponse.auctionId);
+    const navigate = useNavigate();
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const { isLoggedIn } = useAuth();
 
     const productInfo = product?.productDetailResponse || {};
     const auction = product?.auctionResponse || {};
+    const handleBidClick = () => {
+        if (!isLoggedIn) {
+            if (window.confirm("로그인이 필요한 서비스입니다.\n로그인 페이지로 이동하시겠습니까?")) {
+                navigate('/login');
+            } else {
+                return;
+            }
+        } else {
+            setIsModalOpen(true);
+        }
+    };
 
     if (isProductLoading) {
-        return <div className="loading">로딩 중...</div>;
+        return <div className="loading" style={{height: "100vh", alignItem: "center"}}>로딩 중...</div>;
     }
 
     const endTimeDate = new Date(auction.endTime);
@@ -30,17 +51,19 @@ const ProductPage = () => {
                 <ProductImage productId={productId} />
 
                 <div className="product-info-aside">
-                    <ProductCount info={productInfo}/>
+                    <ProductCount info={productInfo} bidder={bidder}/>
 
                     <ProductInfo info={auction} />
 
                     <AuctionCountdown deadline={endTimeDate} />
 
-                    <div className="purchase-actions">
-                        <button className="wishlist-btn">♡ Wishlist</button>
-                    </div>
-
-                    <button className="add-to-cart-btn">Product Bid</button>
+                    <button className="add-to-cart-btn" onClick={handleBidClick}>Product Bid</button>
+                    <BidModal
+                        isOpen={isModalOpen}
+                        onClose={() => setIsModalOpen(false)}
+                        auction={auction}
+                        product={productInfo}
+                    />
 
                     <div className="product-meta">
                         <div>
@@ -51,7 +74,7 @@ const ProductPage = () => {
                 </div>
             </div>
 
-            <ProductTab info={productInfo} />
+            <ProductTab bidder={bidder} isBidderLoading={isBidderLoading} productInfo={productInfo} />
 
         </div>
     );

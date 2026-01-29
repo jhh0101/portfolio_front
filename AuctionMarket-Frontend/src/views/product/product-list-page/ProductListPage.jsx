@@ -18,7 +18,7 @@ const ProductListPage = () => {
     const products = data?.content || [];
     const pageInfo = data || {};
 
-    if (isLoading) return <div className="loading">로딩 중...</div>;
+    if (isLoading) return <div className="loading"  style={{height: "100vh"}}>로딩 중...</div>;
     if (isError) return <div className="error">데이터를 불러오는 중 오류가 발생했습니다.</div>;
 
     return (

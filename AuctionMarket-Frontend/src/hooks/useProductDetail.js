@@ -6,7 +6,7 @@ export const useProductDetail = (productId) => {
     const queryClient = useQueryClient();
 
     const getProduct = useQuery({
-        queryKey: ['product', 'detail', productId],
+        queryKey: ['product', 'detail', String(productId)],
         queryFn: () => productService.getProduct(productId),
         enabled: !!productId,
     });
