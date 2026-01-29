@@ -2,7 +2,7 @@ import { useBid } from '@/hooks/useBid.js';
 import { jwtDecode } from "jwt-decode";
 
 export default function BidderCard({ auctionId, productId, bidId, rank, nickname, price}) {
-    const {bidCancel: cancel, isCancelLoading} = useBid(auctionId, productId);
+    const {bidCancel: cancel, isCancelLoading} = useBid(auctionId, productId, 0, { fetchList: false });
 
     const token = localStorage.getItem('token');
 

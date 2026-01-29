@@ -4,7 +4,7 @@ import toast from 'react-hot-toast';
 import './BidModal.css'
 
 const BidModal = ({ isOpen, onClose, auction, product }) => {
-    const { productBid, isBidding } = useBid(auction.auctionId, product.productId);
+    const { productBid, isBidding } = useBid(auction.auctionId, product.productId, 0, { fetchList: false });
     if (!isOpen) return null;
 
     const handleSubmit = async (e) => {

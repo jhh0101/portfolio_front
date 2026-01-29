@@ -2,8 +2,9 @@ import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { bidService } from "@/api/bidService.js"
 import toast from 'react-hot-toast';
 
-export const useBid = (auctionId, productId, page = 0) => {
+export const useBid = (auctionId, productId, page = 0, options = {}) => {
     const queryClient = useQueryClient();
+    const { fetchList = true } = options;
 
     const bidding = useMutation({
         mutationFn: ({bidPrice}) =>
@@ -27,7 +28,7 @@ export const useBid = (auctionId, productId, page = 0) => {
     const bidderList = useQuery({
         queryKey: ['bidder', 'list', String(auctionId), page],
         queryFn: () => bidService.getBidder({auctionId, page, size: 10}),
-        enabled: !!auctionId,
+        enabled: !!auctionId && fetchList,
     })
 
     const bidCancel = useMutation({
