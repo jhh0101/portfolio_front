@@ -1,18 +1,17 @@
 import React, { memo } from "react";
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './Header.css';
+import { useLogout } from "@/hooks/useLogout.js";
 import { useAuth } from "@/context/AuthContext.jsx";
 import SessionTimer from "@/components/header/session-timer/SessionTimer.jsx";
 
 const Header = memo(() => {
-
-    const { isLoggedIn, logout, user } = useAuth(); // 전역 상태 사용
-    const navigate = useNavigate();
+    const { mutate, isPending } = useLogout();
+    const { isLoggedIn, user, accessToken } = useAuth(); // 전역 상태 사용
 
     const handleLogout = () => {
         if (window.confirm("로그아웃 하시겠습니까?")) {
-            logout();
-            navigate('/login');
+            mutate(accessToken);
         }
     };
 
@@ -41,7 +40,7 @@ const Header = memo(() => {
                     <div className="menu d-flex align-items-center">
                         <SessionTimer deadline={new Date(Date.now() + 900000)} />
                         <Link to="/mypage" className="btn nav-btn2">My Page</Link>
-                        <button onClick={handleLogout} className={"btn btn-dark nav-btn1"}>Log out</button>
+                        <button onClick={handleLogout} className={"btn btn-dark nav-btn1"} disabled={isPending}>Log out</button>
                     </div>
                 ) : (
                     <div className="menu d-flex align-items-center">

@@ -1,10 +1,11 @@
 import { useCountdown } from "@/hooks/useCountdown.js";
 import { useRefreshToken } from "@/hooks/useRefreshToken.js";
 import {jwtDecode} from 'jwt-decode';
+import { useAuth } from "@/context/AuthContext.jsx";
 
 const SessionTimer = (deadline) => {
-    const token = localStorage.getItem('token');
-    const decoded = jwtDecode(token);
+    const { accessToken } = useAuth();
+    const decoded = jwtDecode(accessToken);
     const expireDate = new Date(decoded.exp * 1000);
     const { minutes, seconds } = useCountdown(expireDate);
     const { mutate } = useRefreshToken();

@@ -1,86 +1,92 @@
 import React, { createContext, useState, useContext, useEffect } from 'react';
-import {jwtDecode} from 'jwt-decode';
+import { useMutation } from '@tanstack/react-query';
+import { jwtDecode } from 'jwt-decode';
 import { useLocation } from 'react-router-dom';
-
+import { authService } from "@/api/authService.js";
+import { setApiAccessToken } from "@/api/axios.js";
 
 const AuthContext = createContext(undefined);
 
 export const AuthProvider = ({ children }) => {
-    const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem('token'));
+    const [accessToken, setAccessToken] = useState(null);
     const [user, setUser] = useState(null);
+    const [isInitializing, setIsInitializing] = useState(true);
+
+    const isLoggedIn = !!accessToken;
+
     const location = useLocation();
 
-    const updateUserFromToken = (token) => {
-        try {
-            const decoded = jwtDecode(token);
-            setUser({ role: decoded.role }); // 토큰의 role 저장 (예: 'SELLER')
-        } catch (error) {
-            console.error("토큰 디코딩 실패:", error);
-            setUser(null);
-        }
-    };
-
-    // 3. 앱이 처음 켜질 때 실행
-    useEffect(() => {
-        const token = localStorage.getItem('token');
-        if (token) {
-            updateUserFromToken(token);
-        }
-    }, []);
-
     const login = (token) => {
-        if (!token || typeof token !== 'string') {
-            throw new Error("유효하지 않은 토큰입니다.");
-        }
+        if (!token || typeof token !== 'string') return;
 
         try {
             const decoded = jwtDecode(token);
-
             if (decoded.exp && decoded.exp * 1000 < Date.now()) {
-                throw new Error("만료된 토큰입니다.");
+                throw new Error("만료된 토큰");
             }
-            localStorage.setItem('token', token);
-            setIsLoggedIn(true);
-            setUser({role: decoded.role});
+            setAccessToken(token);
+            setApiAccessToken(token);
+            setUser({ role: decoded.role, nickname: decoded.nickname }); // 필요한 정보 저장
+            console.log("로그인 처리 완료");
         } catch (e) {
-            console.error("토큰 처리 실패 : ", e);
-            throw e;
+            console.error("토큰 에러:", e);
+            logout();
         }
     };
 
-    // 로그아웃 시 실행할 함수
     const logout = () => {
-        localStorage.removeItem('token');
-        setIsLoggedIn(false);
+        setAccessToken(null);
+        setApiAccessToken(null);
         setUser(null);
     };
 
+    const { mutate: refreshMutate } = useMutation({
+        mutationFn: () => authService.refreshToken(),
+        onSuccess: (res) => {
+            if (res.success) {
+                login(res.data);
+            } else {
+                logout();
+            }
+        },
+        onError: () => {
+            logout();
+        },
+        onSettled: () => {
+            setIsInitializing(false);
+        }
+    });
+
+    useEffect(() => {
+        refreshMutate();
+    }, []);
+
     useEffect(() => {
         const checkToken = () => {
-            const token = localStorage.getItem('token');
-            if (!token) return; // 토큰 없으면 패스
+            if (!accessToken) return;
 
             try {
-                const decoded = jwtDecode(token);
-                // 작성하신 그 로직이 여기서 매번 돌아야 합니다!
+                const decoded = jwtDecode(accessToken);
                 if (decoded.exp && decoded.exp * 1000 < Date.now()) {
-                    localStorage.removeItem('token');
-                    setIsLoggedIn(false);
-                    setUser(null);
-                    alert("로그인 시간이 만료되었습니다.");
+                    alert("세션이 만료되었습니다.");
+                    logout();
                     window.location.href = '/login';
                 }
             } catch (e) {
-                localStorage.removeItem('token');
+                logout();
             }
         };
 
         checkToken();
-    }, [location]);
+    }, [location, accessToken]);
 
+
+    if (isInitializing) {
+        return null;
+    }
 
     return (
-        <AuthContext.Provider value={{ isLoggedIn, login, logout, user}}>
+        <AuthContext.Provider value={{ isLoggedIn, login, logout, user, accessToken }}>
             {children}
         </AuthContext.Provider>
     );
