@@ -1,4 +1,4 @@
-import { useBid } from '@/hooks/useBid.js';
+import { useBid } from '@/hooks/bid/useBid.js';
 import { jwtDecode } from "jwt-decode";
 
 export default function BidderCard({ auctionId, productId, bidId, rank, nickname, price}) {

@@ -1,4 +1,4 @@
-import { useProductAdd } from '@/hooks/useProductAdd.js';
+import { useProductAdd } from '@/hooks/product/useProductAdd.js';
 import './ProductAddPage.css';
 import CategorySelector from "@/components/category/CategorySelector.jsx";
 import ImageUpload from '@/components/image/image-upload/ImageUpload.jsx';

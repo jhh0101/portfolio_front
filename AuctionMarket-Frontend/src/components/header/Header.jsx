@@ -1,7 +1,7 @@
 import React, { memo } from "react";
 import { Link } from 'react-router-dom';
 import './Header.css';
-import { useLogout } from "@/hooks/useLogout.js";
+import { useLogout } from "@/hooks/auth/useLogout.js";
 import { useAuth } from "@/context/AuthContext.jsx";
 import SessionTimer from "@/components/header/session-timer/SessionTimer.jsx";
 

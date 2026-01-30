@@ -27,7 +27,6 @@ export const AuthProvider = ({ children }) => {
             setAccessToken(token);
             setApiAccessToken(token);
             setUser({ role: decoded.role, nickname: decoded.nickname }); // 필요한 정보 저장
-            console.log("로그인 처리 완료");
         } catch (e) {
             console.error("토큰 에러:", e);
             logout();
@@ -69,8 +68,8 @@ export const AuthProvider = ({ children }) => {
                 const decoded = jwtDecode(accessToken);
                 if (decoded.exp && decoded.exp * 1000 < Date.now()) {
                     alert("세션이 만료되었습니다.");
-                    logout();
-                    window.location.href = '/login';
+                    // logout();
+                    // window.location.href = '/login';
                 }
             } catch (e) {
                 logout();

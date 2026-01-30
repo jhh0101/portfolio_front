@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useCategory } from '@/hooks/useCategory';
+import { useCategory } from '@/hooks/category/useCategory';
 import toast from 'react-hot-toast';
 
 const CategorySelector = ({ setParams, onSelect, onConfirm, mode = 'register' }) => {

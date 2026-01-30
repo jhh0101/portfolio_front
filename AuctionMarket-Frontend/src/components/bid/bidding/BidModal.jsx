@@ -1,6 +1,5 @@
 import React from 'react';
-import { useBid } from "@/hooks/useBid.js";
-import toast from 'react-hot-toast';
+import { useBid } from "@/hooks/bid/useBid.js";
 import './BidModal.css'
 
 const BidModal = ({ isOpen, onClose, auction, product }) => {

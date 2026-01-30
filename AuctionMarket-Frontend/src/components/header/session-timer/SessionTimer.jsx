@@ -1,5 +1,5 @@
-import { useCountdown } from "@/hooks/useCountdown.js";
-import { useRefreshToken } from "@/hooks/useRefreshToken.js";
+import { useCountdown } from "@/hooks/common/useCountdown.js";
+import { useRefreshToken } from "@/hooks/auth/useRefreshToken.js";
 import {jwtDecode} from 'jwt-decode';
 import { useAuth } from "@/context/AuthContext.jsx";
 
