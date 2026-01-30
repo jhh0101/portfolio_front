@@ -1,7 +1,7 @@
 import './ProductPage.css';
 import { useNavigate } from "react-router-dom";
-import { useProductDetail } from "@/hooks/useProductDetail.js";
-import { useBid } from "@/hooks/useBid.js";
+import { useProductDetail } from "@/hooks/product/useProductDetail.js";
+import { useBid } from "@/hooks/bid/useBid.js";
 import { useParams } from "react-router-dom";
 import { useState } from "react";
 import { useAuth } from "@/context/AuthContext.jsx";

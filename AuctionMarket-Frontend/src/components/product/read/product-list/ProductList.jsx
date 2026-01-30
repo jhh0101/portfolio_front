@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import ProductCard from '@/components/product/read/product-card/ProductCard.jsx';
 import CategorySearch from "@/components/category/CategorySearch.jsx";
-import {useCategoryLookup} from '@/hooks/useCategoryLookup.js'
+import {useCategoryLookup} from '@/hooks/category/useCategoryLookup.js'
 import './ProductList.css';
 
 // Swiper 관련 임포트 추가

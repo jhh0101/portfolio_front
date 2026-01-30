@@ -1,5 +1,5 @@
 import {Link, useNavigate} from "react-router-dom";
-import {useLogin} from "@/hooks/useLogin.js";
+import {useLogin} from "@/hooks/auth/useLogin.js";
 import AuthLayout from "@/views/layout/AuthLayout.jsx"; // 버튼 등 전용 스타일만 남김
 import "./LoginPage.css";
 

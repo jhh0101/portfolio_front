@@ -1,5 +1,5 @@
 import React from 'react';
-import { useProductBreadcrumb } from '@/hooks/useProductBreadcrumb.js'
+import { useProductBreadcrumb } from '@/hooks/category/useProductBreadcrumb.js'
 
 const Breadcrumb = ({productId}) => {
     const { breadcrumb, productTitle, isLoading } = useProductBreadcrumb(productId);

@@ -1,5 +1,5 @@
 import React from 'react';
-import {useCountdown} from "@/hooks/useCountdown.js";
+import {useCountdown} from "@/hooks/common/useCountdown.js";
 import './AuctionCountdown.css';
 
 const AuctionCountdown = ({ deadline }) => {

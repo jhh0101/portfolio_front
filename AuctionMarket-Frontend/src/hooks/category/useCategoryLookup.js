@@ -1,4 +1,4 @@
-import { useCategory } from "@/hooks/useCategory.js";
+import { useCategory } from "@/hooks/category/useCategory.js";
 
 export const useCategoryLookup = () => {
     return useCategory({
