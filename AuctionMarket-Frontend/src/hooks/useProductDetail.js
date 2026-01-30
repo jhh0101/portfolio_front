@@ -16,7 +16,6 @@ export const useProductDetail = (productId) => {
             productService.postProduct(productRequest, auctionRequest),
         onSuccess: (res) => {
             queryClient.invalidateQueries({ queryKey: ['products', 'list']});
-            alert("상품이 등록되었습니다.");
         },
     });
 

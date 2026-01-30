@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useCategory } from '@/hooks/useCategory';
+import toast from 'react-hot-toast';
 
 const CategorySelector = ({ setParams, onSelect, onConfirm, mode = 'register' }) => {
     const { data: categories, isLoading } = useCategory();
@@ -30,6 +31,7 @@ const CategorySelector = ({ setParams, onSelect, onConfirm, mode = 'register' })
     const handleSmallSelect = (cat) => {
         setActiveIds(prev => ({ ...prev, small: cat.categoryId }));
         handleCategoryClick(cat);
+        if (onSelect) onSelect(cat);
     };
 
     const handleSelectAll = () => {
@@ -53,6 +55,8 @@ const CategorySelector = ({ setParams, onSelect, onConfirm, mode = 'register' })
 
         if (onConfirm) onConfirm();
     };
+
+
 
     if (isLoading) return <div className="category-loading" style={{height: "100vh"}}>로딩 중...</div>;
 
