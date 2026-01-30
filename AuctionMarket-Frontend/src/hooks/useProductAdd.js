@@ -3,8 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { useProductDetail } from '@/hooks/useProductDetail';
 import { useProductImage } from '@/hooks/useProductImage';
 import { getFormattedDate, formatTime } from '@/utils/dataFormatter.js';
-
 import toast from 'react-hot-toast';
+
 export const useProductAdd = () => {
     const navigate = useNavigate();
     const { addProduct, isAdding } = useProductDetail();
@@ -14,7 +14,7 @@ export const useProductAdd = () => {
     const [imagePreviews, setImagePreviews] = useState([]);
     const [imageFiles, setImageFiles] = useState([]);
     const [formData, setFormData] = useState({
-        categoryId: 1, title: '', description: '',
+        categoryId: null, title: '', description: '',
         startPrice: '', startTime: '', endTime: '',
     });
 
@@ -28,11 +28,22 @@ export const useProductAdd = () => {
         setFormData(prev => ({ ...prev, [name]: value }));
     };
 
+    const handleCategorySelect = (categoryObj) => {
+        const fakeEvent = {
+            target: {
+                name: 'categoryId',
+                value: categoryObj.categoryId
+            }
+        };
+
+        handleChange(fakeEvent);
+    };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         const payload = {
             productRequest: {
-                categoryId: Number(formData.categoryId),
+                categoryId: formData.categoryId ? Number(formData.categoryId) : null,
                 title: formData.title,
                 description: formData.description,
             },
@@ -42,6 +53,11 @@ export const useProductAdd = () => {
                 endTime: formatTime(formData.endTime),
             },
         };
+
+        if (payload.productRequest.categoryId === null) {
+            toast.error("소분류를 선택해주세요!");
+            return;
+        }
 
         try {
             const result = await addProduct(payload);
@@ -64,7 +80,7 @@ export const useProductAdd = () => {
         formData, setFormData,
         imageStates: { imagePreviews, setImagePreviews, imageFiles, setImageFiles },
         timeLimits: { minStartTime, minEndTime },
-        handlers: { handleChange, handleSubmit },
+        handlers: { handleChange, handleSubmit, handleCategorySelect},
         status: { isAdding }
     };
 };

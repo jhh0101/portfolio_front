@@ -8,7 +8,7 @@ import StartAndEndTime from "@/components/product/write/product-add-time/StartAn
 const ProductAddPage = () => {
     const {
         formData, setFormData, imageStates,
-        timeLimits, handlers, status
+        timeLimits, handlers, status,
     } = useProductAdd();
 
     return (
@@ -45,8 +45,7 @@ const ProductAddPage = () => {
                         {/* 카테고리 (넓게 배치) */}
                         <div className="form-section">
                             <CategorySelector
-                                formData={formData}
-                                setFormData={setFormData}
+                                onSelect={handlers.handleCategorySelect}
                                 mode={"register"} />
                         </div>
 
