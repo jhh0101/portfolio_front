@@ -7,10 +7,14 @@ const ProductImage = ({productId}) => {
     const [selectedImage, setSelectedImage] = useState(null);
 
     useEffect(() => {
-        if (images.length > 0 && !selectedImage) {
-            setSelectedImage(images[0].imageUrl);
+        if (images.length > 0) {
+            const isCurrentValid = images.some(img => img.imageUrl === selectedImage);
+
+            if (!isCurrentValid) {
+                setSelectedImage(images[0].imageUrl);
+            }
         }
-    }, [images, selectedImage]);
+    }, [images]);
 
     if (isImagesLoading) {
         return <div className="loading">로딩 중...</div>;

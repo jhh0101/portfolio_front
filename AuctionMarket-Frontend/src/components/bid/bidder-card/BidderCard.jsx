@@ -1,13 +1,11 @@
 import { useBid } from '@/hooks/bid/useBid.js';
-import { jwtDecode } from "jwt-decode";
+import { useAuth } from "@/context/AuthContext.jsx";
 
 export default function BidderCard({ auctionId, productId, bidId, rank, nickname, price}) {
     const {bidCancel: cancel, isCancelLoading} = useBid(auctionId, productId, 0, { fetchList: false });
+    const { user } = useAuth();
 
-    const token = localStorage.getItem('token');
-
-    const myNickname = token ? jwtDecode(token).nickname : null;
-
+    const myNickname = user.nickname;
     const cancelBtn = myNickname === nickname && rank === 1;
 
     const handleCancel = async (e) => {

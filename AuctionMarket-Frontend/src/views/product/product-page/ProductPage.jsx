@@ -1,6 +1,7 @@
 import './ProductPage.css';
 import { useNavigate } from "react-router-dom";
 import { useProductDetail } from "@/hooks/product/useProductDetail.js";
+import { useProductDelete } from "@/hooks/product/useProductDelete.js";
 import { useBid } from "@/hooks/bid/useBid.js";
 import { useParams } from "react-router-dom";
 import { useState } from "react";
@@ -18,13 +19,27 @@ import BidModal from "@/components/bid/bidding/BidModal.jsx";
 const ProductPage = () => {
     const { productId } = useParams();
     const { product, isLoading: isProductLoading } = useProductDetail(productId);
+    const { mutateAsync: deleteProduct, isPending: isDeleteProductPending  } = useProductDelete(productId);
     const { bidderList: bidder, isBidderLoading } = useBid(product?.auctionResponse.auctionId);
     const navigate = useNavigate();
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const { isLoggedIn } = useAuth();
+    const { isLoggedIn, user } = useAuth();
+
+    const isSeller = user?.nickname === product?.productDetailResponse.seller;
 
     const productInfo = product?.productDetailResponse || {};
     const auction = product?.auctionResponse || {};
+
+
+    const handleModify = () => {
+        navigate(`/product/modify/${productId}`);
+    };
+
+    const handleDelete = () => {
+        deleteProduct();
+        navigate(`/`);
+    };
+
     const handleBidClick = () => {
         if (!isLoggedIn) {
             if (window.confirm("로그인이 필요한 서비스입니다.\n로그인 페이지로 이동하시겠습니까?")) {
@@ -56,8 +71,18 @@ const ProductPage = () => {
                     <ProductInfo info={auction} />
 
                     <AuctionCountdown deadline={endTimeDate} />
-
-                    <button className="add-to-cart-btn" onClick={handleBidClick}>Product Bid</button>
+                    {isSeller ? (
+                        <div className="seller-buttons">
+                            <button className="btn-edit" onClick={handleModify}>
+                                수정하기
+                            </button>
+                            <button className="btn-delete" onClick={handleDelete} disabled={isDeleteProductPending}>
+                                {isDeleteProductPending ? "삭제 중..." : "삭제"}
+                            </button>
+                        </div>
+                    ) : (
+                        <button className="add-to-cart-btn" onClick={handleBidClick}>Product Bid</button>
+                    )}
                     <BidModal
                         isOpen={isModalOpen}
                         onClose={() => setIsModalOpen(false)}

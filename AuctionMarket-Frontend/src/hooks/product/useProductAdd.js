@@ -29,10 +29,12 @@ export const useProductAdd = () => {
     };
 
     const handleCategorySelect = (categoryObj) => {
+        const value = categoryObj ? categoryObj.categoryId : null;
+
         const fakeEvent = {
             target: {
                 name: 'categoryId',
-                value: categoryObj.categoryId
+                value: value
             }
         };
 
@@ -73,6 +75,7 @@ export const useProductAdd = () => {
             navigate(`/product/${newId}`);
         } catch (err) {
             console.error("등록 실패 : ", err);
+            toast.error("상품 등록 중 문제가 발생했습니다.");
         }
     };
 

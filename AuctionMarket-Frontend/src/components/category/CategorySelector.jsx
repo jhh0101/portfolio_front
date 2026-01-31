@@ -1,14 +1,68 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useCategory } from '@/hooks/category/useCategory';
 import toast from 'react-hot-toast';
 
-const CategorySelector = ({ setParams, onSelect, onConfirm, mode = 'register' }) => {
+const CategorySelector = ({ setParams, onSelect, onConfirm, initialCategoryId, mode = 'register' }) => {
     const { data: categories, isLoading } = useCategory();
     const [mediumList, setMediumList] = useState([]);
     const [smallList, setSmallList] = useState([]);
     const [activeIds, setActiveIds] = useState({ large: "", medium: "", small: "" });
 
     const [tempSelection, setTempSelection] = useState(null);
+    const [isInitialized, setIsInitialized] = useState(false);
+
+    // initialCategoryId가 있을 때 초기 선택 상태 설정
+    useEffect(() => {
+        if (categories && initialCategoryId && !isInitialized) {
+            const findCategoryPath = (cats, targetId, path = []) => {
+                for (const cat of cats) {
+                    const newPath = [...path, cat];
+                    
+                    if (cat.categoryId === targetId) {
+                        return newPath;
+                    }
+                    
+                    if (cat.children && cat.children.length > 0) {
+                        const result = findCategoryPath(cat.children, targetId, newPath);
+                        if (result) return result;
+                    }
+                }
+                return null;
+            };
+
+            const categoryPath = findCategoryPath(categories, initialCategoryId);
+
+            if (categoryPath) {
+                const [large, medium, small] = categoryPath;
+                
+                // 대분류 설정
+                if (large) {
+                    setActiveIds(prev => ({ ...prev, large: large.categoryId }));
+                    setMediumList(large.children || []);
+                    setTempSelection(large);
+                }
+                
+                // 중분류 설정
+                if (medium) {
+                    setActiveIds(prev => ({ ...prev, medium: medium.categoryId }));
+                    setSmallList(medium.children || []);
+                    setTempSelection(medium);
+                }
+                
+                // 소분류 설정
+                if (small) {
+                    setActiveIds(prev => ({ ...prev, small: small.categoryId }));
+                    setTempSelection(small);
+                }
+                
+                // 가장 하위 카테고리를 onSelect로 전달
+                const selectedCategory = small || medium || large;
+                if (onSelect) onSelect(selectedCategory);
+                
+                setIsInitialized(true);
+            }
+        }
+    }, [categories, initialCategoryId, isInitialized, onSelect]);
 
     const handleCategoryClick = (cat) => {
         setTempSelection(cat);
@@ -91,7 +145,7 @@ const CategorySelector = ({ setParams, onSelect, onConfirm, mode = 'register' })
                     </ul>
                 </div>
             </div>
-            {mode !== 'register' && (
+            {mode === 'search' && (
                 <div className="modal-footer">
                     <button className="confirm-btn" onClick={handleConfirm}>확인</button>
                 </div>

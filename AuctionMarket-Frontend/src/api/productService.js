@@ -21,6 +21,20 @@ export const productService = {
         return response.data;
     },
 
+    modifyProduct: async (productId, productData, auctionData) => {
+        const requestBody = {
+            productRequest: productData,
+            auctionRequest: auctionData
+        }
+        const response = await api.patch(`/product/${productId}`, requestBody);
+        return response.data;
+    },
+
+    deleteProduct: async (productId) => {
+        const response = await api.delete(`/product/${productId}`);
+        return response.data;
+    },
+
     // 2. 이미지 다중 업로드 (Multipart)
     uploadImages: async (productId, files) => {
         const formData = new FormData();
@@ -34,6 +48,17 @@ export const productService = {
     loadImages: async (productId) => {
         const images = await api.get(`/product/${productId}/images`);
         return images.data;
+    },
+
+    deleteImages: async (imageId) => {
+        const images = await api.delete(`/product/${imageId}/image`)
+        return images.data;
+    },
+
+    deleteAllImages: async (productId) => {
+        const images = await api.delete(`/product/${productId}/images`)
+        return images.data;
     }
+
 
 };
