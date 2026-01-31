@@ -1,59 +1,85 @@
-const ImageUpload = ({imagePreviews, imageFiles, setImageFiles, setImagePreviews}) => {
+import React, { useEffect, useState } from 'react';
 
-    // 3. 핸들러 함수들 수정
-    const handleImageChange = (e) => {
+const ImageUpload = ({
+                         imageFiles,
+                         setImageFiles,
+                         existingImages = [],
+                         onRemoveExisting = () => {},
+                     }) => {
+    const [previews, setPreviews] = useState([]);
+
+    // 새 이미지 파일에 대한 프리뷰 URL 생성 및 메모리 해제
+    useEffect(() => {
+        const objectUrls = imageFiles.map(file => URL.createObjectURL(file));
+        setPreviews(objectUrls);
+
+        return () => objectUrls.forEach(url => URL.revokeObjectURL(url));
+    }, [imageFiles]);
+
+    const totalCount = existingImages.length + imageFiles.length;
+
+    const handleAddImages = (e) => {
         const files = Array.from(e.target.files);
-
-        // 기존 파일들과 합치기 (중복 선택 가능하게)
+        if (totalCount + files.length > 5) {
+            alert("이미지는 최대 5장까지 등록 가능합니다.");
+            return;
+        }
         setImageFiles(prev => [...prev, ...files]);
-
-        // 미리보기 URL 생성 및 기존 미리보기에 합치기
-        const newPreviews = files.map(file => URL.createObjectURL(file));
-        setImagePreviews(prev => [...prev, ...newPreviews]);
     };
 
-    const handleRemoveImage = (index) => {
-        URL.revokeObjectURL(imagePreviews[index]);
-
+    const handleRemoveNew = (index) => {
         setImageFiles(prev => prev.filter((_, i) => i !== index));
-        setImagePreviews(prev => prev.filter((_, i) => i !== index));
     };
 
     return (
-        <>
-            <div className="multi-upload-container">
-                <label className="section-label">Product Images ({imageFiles.length}/5)</label>
-                <div className="image-grid">
-                    {imagePreviews.map((src, index) => (
-                        <div key={index} className="image-item">
-                            <img src={src} alt={`preview ${index}`} />
-                            <button
-                                type="button"
-                                className="remove-btn"
-                                onClick={() => handleRemoveImage(index)}
-                            >
-                                ✕
-                            </button>
-                        </div>
-                    ))}
+        <div className="multi-upload-container">
+            <label className="section-label">Product Images ({totalCount}/5)</label>
+            <div className="image-grid">
+                {/* 기존 이미지 목록 */}
+                {existingImages.map((img, index) => (
+                    <div key={`existing-${img.imageId || index}`} className="image-item">
+                        <img src={img.imageUrl} alt="existing" />
+                        <button
+                            type="button"
+                            className="remove-btn"
+                            onClick={() => onRemoveExisting(index)}
+                        >
+                            ✕
+                        </button>
+                    </div>
+                ))}
 
-                    {imageFiles.length < 5 && (
-                        <label className="add-image-box">
-                            <span className="plus-icon">+</span>
-                            <p>Add Photo</p>
-                            <input
-                                type="file"
-                                accept="image/*"
-                                onChange={handleImageChange}
-                                multiple
-                                hidden
-                            />
-                        </label>
-                    )}
-                </div>
+                {/* 새로 추가된 이미지 프리뷰 */}
+                {previews.map((src, index) => (
+                    <div key={`new-${index}`} className="image-item new-item">
+                        <img src={src} alt="new preview" />
+                        <button
+                            type="button"
+                            className="remove-btn"
+                            onClick={() => handleRemoveNew(index)}
+                        >
+                            ✕
+                        </button>
+                    </div>
+                ))}
+
+                {/* 추가 버튼 */}
+                {totalCount < 5 && (
+                    <label className="add-image-box">
+                        <span className="plus-icon">+</span>
+                        <p>Add Photo</p>
+                        <input
+                            type="file"
+                            accept="image/*"
+                            multiple
+                            hidden
+                            onChange={handleAddImages}
+                        />
+                    </label>
+                )}
             </div>
             <p className="upload-hint">You can upload up to 5 photos.</p>
-        </>
+        </div>
     );
 };
 

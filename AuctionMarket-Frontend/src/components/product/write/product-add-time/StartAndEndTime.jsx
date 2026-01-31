@@ -1,4 +1,4 @@
-const StartAndEndTime = ({minStartTime, minEndTime, handleChange}) => {
+const StartAndEndTime = ({minStartTime, minEndTime, handleChange, endTime}) => {
     return (
         <div className="time-group">
             <div className="input-group">
@@ -7,7 +7,7 @@ const StartAndEndTime = ({minStartTime, minEndTime, handleChange}) => {
             </div>
             <div className="input-group">
                 <label className="input-label">End Time</label>
-                <input type="datetime-local" name="endTime" min={minEndTime} onChange={handleChange} required/>
+                <input type="datetime-local" name="endTime" min={minEndTime} onChange={handleChange} value={endTime} required/>
             </div>
         </div>
     );

@@ -36,6 +36,8 @@
 .product-gallery .main-image img {
     width: 100%;
     display: block;
+    height: 450px;
+    object-fit: contain
 }
 .badge-new {
     position: absolute;
@@ -227,4 +229,40 @@
     .product-main-content {
         grid-template-columns: 1fr;
     }
+}
+
+.seller-buttons {
+    display: flex;
+    gap: 10px; /* 버튼 사이 간격 */
+    width: 100%;
+}
+
+/* 수정/삭제 버튼 공통 스타일 */
+.seller-buttons button {
+    flex: 1; /* 1:1 비율로 공간 차지 */
+    padding: 15px 0; /* 기존 버튼 높이에 맞게 조절 */
+    border-radius: 4px; /* 기존 디자인에 맞게 */
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+/* 수정 버튼 (눈에 띄지만 공격적이지 않은 색) */
+.btn-edit {
+    background-color: #f3f4f6; /* 연한 회색 */
+    color: #333;
+    border: 1px solid #d1d5db;
+}
+.btn-edit:hover {
+    background-color: #e5e7eb;
+}
+
+/* 삭제 버튼 (경고의 의미) */
+.btn-delete {
+    background-color: white;
+    color: #ef4444; /* 빨간색 텍스트 */
+    border: 1px solid #ef4444;
+}
+.btn-delete:hover {
+    background-color: #fff1f2; /* 연한 빨강 배경 */
 }
