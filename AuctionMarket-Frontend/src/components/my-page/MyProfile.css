@@ -1,0 +1,104 @@
+/* 폼 전체 컨테이너 */
+.form-container {
+    max-width: 600px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 24px; /* 각 입력 줄 사이의 간격 */
+}
+
+
+/* 라벨 스타일 */
+.form-label {
+    min-width: 140px; /* 라벨들의 시작점을 맞추고 싶으면 값을 조정하세요. 싫으면 지워도 됨 */
+    margin-right: 16px;
+    font-size: 15px;
+    font-weight: 500;
+    color: #6C7275;
+    white-space: nowrap; /* 줄바꿈 방지 */
+}
+
+/* 입력창 스타일 (핵심!) */
+.form-input {
+    flex: 1; /* 남은 공간을 얘가 다 차지함 (우측 끝 정렬의 비밀) */
+    border: none;
+    border-bottom: 1px solid #E8ECEF; /* 밑줄 디자인 */
+    padding: 8px 0;
+    font-size: 16px;
+    color: #141718;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+/* 포커스 됐을 때 밑줄 색 변경 */
+.form-input:focus {
+    border-bottom: 1px solid #141718;
+}
+
+.mypage-container {
+    max-width: 600px; /* 전체 폭 */
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+/* 섹션 제목 (Account Details, Password) */
+.section-title {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 24px;
+    color: #141718;
+}
+
+.divider {
+    height: 1px;
+    background-color: #E8ECEF;
+    margin: 40px 0; /* 위아래 여백 넉넉하게 */
+}
+
+.form-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px; /* 줄 간격 */
+}
+
+.form-label {
+    min-width: 140px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #6C7275;
+}
+
+.form-input {
+    flex: 1; /* 남은 공간 꽉 채우기 */
+    border: none;
+    border-bottom: 1px solid #E8ECEF;
+    padding: 8px 0;
+    font-size: 16px;
+    outline: none;
+    transition: border-bottom 0.2s;
+}
+
+.form-input:focus {
+    border-bottom: 1px solid #141718;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 10px;
+}
+
+.btn-black {
+    padding: 10px 24px;
+    background-color: #141718;
+    color: white;
+    border-radius: 6px;
+    border: none;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.btn-black:hover {
+    background-color: #333;
+}

@@ -1,0 +1,72 @@
+.mypage-vertical-container {
+    max-width: 1120px;
+    margin: 60px auto;
+    padding: 0 20px;
+}
+
+.mypage-main-title {
+    font-size: 48px;
+    font-weight: 600;
+    text-align: left;
+    margin-bottom: 50px;
+}
+
+.mypage-layout {
+    display: flex;
+    gap: 80px; /* 메뉴와 컨텐츠 사이의 넓은 간격 */
+}
+
+/* 세로 탭 바 */
+.vertical-tabs {
+    width: 240px;
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    border-right: 1px solid #E8ECEF; /* 오른쪽에 연한 구분선 */
+    padding-right: 20px;
+}
+
+.vertical-tab-btn {
+    background: none;
+    border: none;
+    text-align: left;
+    padding: 16px 0;
+    font-size: 16px;
+    font-weight: 500;
+    color: #6C7275;
+    cursor: pointer;
+    transition: all 0.2s;
+    border-bottom: 1px solid transparent;
+}
+
+.vertical-tab-btn:hover {
+    color: #141718;
+}
+
+/* 활성화 상태: 텍스트는 진하게, 오른쪽 끝에 강조선 */
+.vertical-tab-btn.active {
+    color: #141718;
+    font-weight: 600;
+    position: relative;
+}
+
+.vertical-tab-btn.active::after {
+    content: '';
+    position: absolute;
+    right: -21px; /* 부모 border-right와 겹치게 */
+    top: 25%;
+    height: 50%;
+    width: 2px;
+    background-color: #141718;
+}
+
+.logout-btn {
+    margin-top: 20px;
+    color: #6C7275;
+}
+
+/* 컨텐츠 영역 */
+.vertical-tabs-content {
+    flex-grow: 1;
+    min-height: 500px;
+}
