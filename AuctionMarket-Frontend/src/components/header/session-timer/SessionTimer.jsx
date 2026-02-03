@@ -4,7 +4,7 @@ import {jwtDecode} from 'jwt-decode';
 import { useAuth } from "@/context/AuthContext.jsx";
 
 const SessionTimer = (deadline) => {
-    const { accessToken } = useAuth();
+    const { user, accessToken } = useAuth();
     const decoded = jwtDecode(accessToken);
     const expireDate = new Date(decoded.exp * 1000);
     const { minutes, seconds } = useCountdown(expireDate);
@@ -19,6 +19,7 @@ const SessionTimer = (deadline) => {
 
     return (
         <div className="token-timer">
+            <p className={"d-flex align-items-center mb-0 me-3"}>접속 중: {user.nickname}</p>
             {isFinished ? (
                 <p className={"d-flex align-items-center mb-0 me-3"}> 로그인 시간 만료 </p>
             ) : (

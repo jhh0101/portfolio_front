@@ -4,6 +4,7 @@ import {AuthProvider} from "@/context/AuthContext.jsx";
 import Header from '@/components/header/Header.jsx';
 import Footer from "@/components/footer/Footer.jsx";
 import MainPage from "@/views/main-page/MainPage.jsx";
+import MyPage from "@/views/my-page/MyPage.jsx";
 import LoginPage from "@/views/login-page/LoginPage.jsx";
 import SignupPage from "@/views/signup-page/SignupPage.jsx";
 import ProductAddPage from "@/views/product/product-add-page/ProductAddPage.jsx";
@@ -27,6 +28,7 @@ function App() {
                         <Route path="/product/:productId" element={<ProductPage />} />
                         <Route path="/product/modify/:productId" element={<ProductModifyPage />} />
                         <Route path="/shop" element={<ProductListPage />} />
+                        <Route path="/mypage" element={<MyPage />} />
                         <Route path="/terms" element={<PolicyPage type={"terms"} />} />
                         <Route path="/privacy" element={<PolicyPage type={"privacy"} />} />
                     </Routes>
