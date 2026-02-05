@@ -6,7 +6,7 @@ export const useUpdateProfile = (userId) => {
     const queryClient = useQueryClient();
     return useMutation({
         mutationFn: ({nickname, phone}) =>
-            userService.updateProfile(userId, {nickname, phone}),
+            userService.updateProfile({nickname, phone}),
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ['user', 'profile', String(userId)] });
             toast.success("회원 정보 수정 성공!");

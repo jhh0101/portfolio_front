@@ -7,7 +7,7 @@ export const useGetProfile = (userId) => {
     return useQuery({
         queryKey: ['user', 'profile', String(userId)],
         queryFn: () =>
-            userService.getProfile(userId),
+            userService.getProfile(),
         enabled: !!userId,
     });
 };

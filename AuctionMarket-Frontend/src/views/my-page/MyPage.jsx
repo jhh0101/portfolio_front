@@ -2,9 +2,13 @@ import { useState } from 'react';
 import MyProfile from '@/components/my-page/MyProfile.jsx';
 import MyBids from '@/components/my-page/MyBids.jsx';
 import WonAuctions from '@/components/my-page/WonAuctions.jsx';
+import { useAuth } from "@/context/AuthContext.jsx";
+import { jwtDecode } from 'jwt-decode';
 import './MyPage.css'
 
 const MyPage = () => {
+    const { accessToken } = useAuth();
+    const decoded = jwtDecode(accessToken);
     const [activeTab, setActiveTab] = useState('profile');
 
     const tabMenus = [
@@ -39,8 +43,8 @@ const MyPage = () => {
 
                 {/* 우측 컨텐츠 영역 */}
                 <section className="vertical-tabs-content">
-                    {activeTab === 'profile' && <MyProfile />}
-                    {activeTab === 'bids' && <MyBids />}
+                    {activeTab === 'profile' && <MyProfile decoded={decoded}/>}
+                    {activeTab === 'bids' && <MyBids decoded={decoded}/>}
                     {activeTab === 'won' && <WonAuctions />}
                 </section>
             </div>
