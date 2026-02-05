@@ -6,18 +6,18 @@ export const userService =  {
         return response.data;
     },
 
-    getProfile: async (userId) => {
-        const response = await api.get(`/user/${userId}/profile`);
+    getProfile: async () => {
+        const response = await api.get(`/user/my/profile`);
         return response.data;
     },
 
-    updateProfile: async (userId, updateRequest) => {
-        const response = await api.patch(`/user/${userId}/profile`, updateRequest);
+    updateProfile: async (updateRequest) => {
+        const response = await api.patch(`/user/my/profile/edit`, updateRequest);
         return response.data;
     },
 
     updatePassword: async (userId, updatePasswordRequest) => {
-        const response = await api.patch(`/user/${userId}/new-password`, updatePasswordRequest);
+        const response = await api.patch(`/user/new-password`, updatePasswordRequest);
         return response.data;
     }
 }

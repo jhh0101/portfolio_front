@@ -29,7 +29,7 @@ const Header = memo(() => {
                     <Link to="/">Home</Link>
                     <Link to="/shop">Shop</Link>
                     <Link to="/product">Product</Link>
-                    <Link to="/contact">Contact Us</Link>
+                    <Link to="/about">About</Link>
                     {user?.role === 'SELLER' && (
                         <Link to="/product-add">Product Add</Link>
                     )}

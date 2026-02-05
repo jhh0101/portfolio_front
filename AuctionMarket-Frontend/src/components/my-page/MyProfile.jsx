@@ -1,15 +1,13 @@
 import {useGetProfile} from '@/hooks/user/useGetProfile.js';
 import {useUpdateProfile} from '@/hooks/user/useUpdateProfile.js';
 import {useUpdatePassword} from "@/hooks/user/useUpdatePassword.js";
-import { useAuth } from "@/context/AuthContext.jsx";
-import { jwtDecode } from 'jwt-decode';
+
 import UserDashboard from '@/components/my-page/UserDashboard.jsx';
 import toast from 'react-hot-toast';
 import './MyProfile.css'
 
-const MyProfile = () => {
-    const { accessToken } = useAuth();
-    const decoded = jwtDecode(accessToken);
+const MyProfile = ({decoded}) => {
+
     const { data: profile, isLoading } = useGetProfile(decoded.sub);
     const { mutateAsync: updateProfile, isPending: isProfilePending } = useUpdateProfile(decoded.sub);
     const { mutateAsync: updatePassword, isPending: isPasswordPending } = useUpdatePassword(decoded.sub);
@@ -26,25 +24,20 @@ const MyProfile = () => {
     const handleUpdatePassword = async (e) => {
         e.preventDefault();
 
-        // 1. 폼 데이터 가져오기
-        const form = e.currentTarget; // form 요소 저장 (비동기 안에서 e.target 접근 문제 방지)
+        const form = e.currentTarget;
         const formData = new FormData(form);
         const payload = Object.fromEntries(formData.entries());
 
-        // 2. [중요] 비밀번호 확인 검증 (유효성 검사)
         if (payload.newPassword !== payload.confirmPassword) {
             toast.error("새 비밀번호가 일치하지 않습니다.");
             return;
         }
 
-        // 3. 서버 요청 (await를 써서 요청이 끝날 때까지 기다림)
         try {
             await updatePassword(payload);
 
-            // 4. 성공했을 때만 초기화 (선택사항, 그냥 밖에서 해도 됨)
             form.reset();
         } catch (error) {
-            // 에러 처리 (필요시)
             console.error(error);
         }
     };

@@ -28,7 +28,9 @@ const ProductTab = ({productInfo, bidder, isBidderLoading}) => {
                             <p>{productInfo.description}</p>
                         </div>
                     ) : (
-                        <BidderList bidder={bidder} isBidderLoading={isBidderLoading} productInfo={productInfo} />
+                        <div style={{height: "650px"}}>
+                            <BidderList bidder={bidder} isBidderLoading={isBidderLoading} productInfo={productInfo} />
+                        </div>
                     )}
                 </div>
             </div>
