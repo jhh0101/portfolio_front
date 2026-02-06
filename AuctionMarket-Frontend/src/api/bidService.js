@@ -21,7 +21,7 @@ export const bidService = {
         return response.data;
     },
 
-    myBids: async ({page = 0, size = 10}) => {
+    myBids: async ({page = 0, size = 5}) => {
         const response = await api.get(`/auction/my/bid`, {
             params: {
                 page: page,

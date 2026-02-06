@@ -1,0 +1,45 @@
+/* 오른쪽 영역 컨테이너 */
+.auction-action-right {
+    display: flex;
+    flex-direction: column; /* 세로로 쌓기 */
+    align-items: flex-end;  /* 오른쪽 정렬 */
+    gap: 10px;              /* 가격표와 버튼 사이 간격 */
+    min-width: 150px;       /* 최소 너비 확보 */
+}
+
+/* 기존 가격 박스 스타일 유지하되 조금 다듬기 */
+.price-badge-won {
+    border: 1px solid #ddd;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    background-color: #fff;
+    color: #333;
+}
+
+/* ⭐ 리뷰 작성 버튼 스타일 */
+.btn-review-write {
+    background-color: #222; /* 사이트 테마에 맞는 진한 색 */
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: background 0.2s;
+    width: 100%; /* 가격표랑 너비 맞추거나, auto로 하거나 */
+}
+
+.btn-review-write:hover {
+    background-color: #444; /* 호버 효과 */
+}
+
+/* (반응형) 모바일에서는 버튼이 꽉 차게 */
+@media screen and (max-width: 768px) {
+    .auction-action-right {
+        align-items: stretch; /* 가로 꽉 채우기 */
+        width: 100%;
+        margin-top: 10px;
+    }
+}

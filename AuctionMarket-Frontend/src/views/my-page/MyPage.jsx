@@ -43,9 +43,9 @@ const MyPage = () => {
 
                 {/* 우측 컨텐츠 영역 */}
                 <section className="vertical-tabs-content">
-                    {activeTab === 'profile' && <MyProfile decoded={decoded}/>}
-                    {activeTab === 'bids' && <MyBids decoded={decoded}/>}
-                    {activeTab === 'won' && <WonAuctions />}
+                    {activeTab === 'profile' && <MyProfile decoded={decoded} />}
+                    {activeTab === 'bids' && <MyBids decoded={decoded} />}
+                    {activeTab === 'won' && <WonAuctions decoded={decoded} />}
                 </section>
             </div>
         </div>
