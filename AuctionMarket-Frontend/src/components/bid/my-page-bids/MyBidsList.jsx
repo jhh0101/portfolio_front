@@ -54,7 +54,6 @@ const MyBidsList = ({ productsAndAuctions }) => {
                                     {/* 2. 내 입찰가 (보조 정보니까 연하게) */}
                                     <span
                                         className="auction-badge"
-                                        style={{ color: '#888' }}
                                     >
                                         입찰가 : {item.myMaxBidPrice.toLocaleString()}원
                                     </span>

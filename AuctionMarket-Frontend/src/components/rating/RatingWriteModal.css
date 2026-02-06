@@ -1,0 +1,170 @@
+/* =========================================
+   1. 모달 크기 재정의 (Global CSS 덮어쓰기)
+   ========================================= */
+.modal-content.review-modal {
+    width: 480px !important;
+}
+
+/* =========================================
+   2. 내부 컨텐츠 스타일 (제품 정보 & 입력 폼)
+   ========================================= */
+.product-info-card {
+    display: flex;
+    align-items: center;
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 24px;
+    border: 1px solid #eee;
+}
+
+.product-thumb {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 6px;
+    margin-right: 15px;
+    background-color: #ddd;
+    border: 1px solid #ececec;
+}
+
+.product-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.seller-name {
+    font-size: 12px;
+    color: #888;
+    margin-bottom: 4px;
+}
+
+.product-title {
+    font-size: 15px;
+    font-weight: 600;
+    margin: 0;
+    color: #333;
+    line-height: 1.4;
+    word-break: break-all;
+}
+
+/* 폼 그룹 간격 */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-label {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #333;
+}
+
+/* 인풋 스타일 */
+.form-input,
+.form-textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 14px;
+    color: #333;
+    box-sizing: border-box;
+    transition: border-color 0.2s;
+}
+
+.form-input:focus,
+.form-textarea:focus {
+    border-color: #141718;
+    outline: none;
+}
+
+.form-textarea {
+    resize: none;
+    min-height: 100px;
+    line-height: 1.5;
+}
+
+/* =========================================
+   3. 버튼 레이아웃 (새로고침 버그 완벽 해결)
+   ========================================= */
+
+/* 푸터 영역: 여백 재조정 */
+.review-modal .modal-footer {
+    padding: 20px 24px 24px;
+    border-top: 1px solid #f0f0f0;
+    margin-top: 0 !important; /* 전역 마진 제거 */
+    display: flex;
+    justify-content: center; /* 버튼 하나일 때 중앙 정렬 */
+    align-items: center;
+}
+
+/* 버튼 그룹: 무조건 가로 배치 & 양 끝 정렬 */
+.button-group {
+    display: flex !important; /* 전역 스타일 무시 */
+    flex-direction: row !important; /* 무조건 가로 */
+    justify-content: space-between !important; /* 양 끝으로 벌림 [삭제] ... [수정] */
+    align-items: center;
+    width: 100%;
+    gap: 12px;
+}
+
+/* [핵심] 전역 CSS (.confirm-btn)의 방해 공작 차단
+   width: 100%와 margin 때문에 상하 배치가 되는 것을 막습니다.
+*/
+.review-modal .confirm-btn,
+.review-modal .delete-btn {
+    margin: 0 !important; /* 전역 마진(5px 0 20px) 제거 */
+    height: 48px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 15px;
+    box-sizing: border-box;
+}
+
+/* 수정 완료 버튼 (오른쪽, 검정색) */
+.review-modal .confirm-btn {
+    flex: 1; /* 남은 공간 차지 */
+    background-color: #141718;
+    color: #ffffff;
+    border: none;
+    width: auto !important; /* 전역 width: 100% 무시 */
+    max-width: 100%;
+}
+
+.review-modal .confirm-btn:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+/* 삭제 버튼 (왼쪽, 흰색+빨강) */
+.delete-btn {
+    width: 100px !important; /* 고정 크기 */
+    flex: none !important;   /* 늘어나지 않음 */
+    background-color: #fff;
+    border: 1px solid #ff4d4f;
+    color: #ff4d4f;
+    border-radius: 8px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.delete-btn:hover {
+    background-color: #fff1f0;
+    border-color: #d9363e;
+    color: #d9363e;
+}
+
+/* 별 아이콘 호버 시 약간 커지게 */
+.star-rating-container svg:hover {
+    transform: scale(1.1);
+}
+
+/* 별 아이콘 클릭 시 살짝 눌리는 느낌 */
+.star-rating-container svg:active {
+    transform: scale(0.9);
+}
