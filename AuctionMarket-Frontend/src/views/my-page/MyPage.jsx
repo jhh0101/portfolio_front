@@ -1,12 +1,13 @@
 import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
-import MyProfile from '@/components/my-page/MyProfile.jsx';
-import MyBids from '@/components/my-page/MyBids.jsx';
-import WonAuctions from '@/components/my-page/WonAuctions.jsx';
+import MyProfile from '@/components/my-page/profile/MyProfile.jsx';
+import MyBids from '@/components/my-page/bids/MyBids.jsx';
+import WonAuctions from '@/components/my-page/orders/WonAuctions.jsx';
 import { useAuth } from "@/context/AuthContext.jsx";
 import { jwtDecode } from 'jwt-decode';
 import './MyPage.css'
 import WithdrawnModal from "@/components/user/WithdrawnModal.jsx";
+import MyProducts from "@/components/my-page/products/MyProducts.jsx";
 
 const MyPage = () => {
     const { accessToken, logout } = useAuth();
@@ -19,13 +20,15 @@ const MyPage = () => {
         return null;
     }
 
-    console.log(decoded.role);
-
     const tabMenus = [
         { id: 'profile', label: 'Account Details' },
         { id: 'bids', label: 'My Bids' },
         { id: 'won', label: 'Won Auctions' },
     ];
+
+    if (decoded.role ==='SELLER'){
+        tabMenus.push({ id: 'products', label: 'My Products' })
+    }
 
     const handleLogout = () => {
         logout();
@@ -38,6 +41,7 @@ const MyPage = () => {
                 {activeTab === 'profile' && <>My Account</>}
                 {activeTab === 'bids' && <>My Bids</>}
                 {activeTab === 'won' && <>My Won Auctions</>}
+                {activeTab === 'products' && <>My Products</>}
             </h1>
 
             <div className="mypage-layout">
@@ -59,6 +63,7 @@ const MyPage = () => {
                     {activeTab === 'profile' && <MyProfile decoded={decoded} />}
                     {activeTab === 'bids' && <MyBids decoded={decoded} />}
                     {activeTab === 'won' && <WonAuctions decoded={decoded} />}
+                    {activeTab === 'products' && <MyProducts decoded={decoded} />}
                 </section>
 
                 <WithdrawnModal

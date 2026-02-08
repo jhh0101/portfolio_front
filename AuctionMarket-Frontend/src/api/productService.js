@@ -35,6 +35,11 @@ export const productService = {
         return response.data;
     },
 
+    myProducts: async (searchParams) => {
+        const response = await api.get(`/product/my-product`, {params: searchParams});
+        return response.data;
+    },
+
     // 2. 이미지 다중 업로드 (Multipart)
     uploadImages: async (productId, files) => {
         const formData = new FormData();
@@ -58,7 +63,6 @@ export const productService = {
     deleteAllImages: async (productId) => {
         const images = await api.delete(`/product/${productId}/images`)
         return images.data;
-    }
-
+    },
 
 };
