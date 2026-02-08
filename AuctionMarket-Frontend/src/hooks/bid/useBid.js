@@ -46,6 +46,12 @@ export const useBid = (auctionId, productId, page = 0, options = {}) => {
             queryClient.invalidateQueries({
                 queryKey: ['bidder', 'list', String(auctionId), page],
             });
+            queryClient.invalidateQueries({
+                queryKey: ['user', 'status', String(userId)],
+            });
+            queryClient.invalidateQueries({
+                queryKey: ['products', 'list']
+            });
             toast.success(`입찰 취소 성공!`);
         },
     })

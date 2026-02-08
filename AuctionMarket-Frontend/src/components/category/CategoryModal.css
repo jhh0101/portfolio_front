@@ -69,9 +69,15 @@
     background-color: #333333;
 }
 
-/* 선택된 항목 스타일 보강 */
 .cat-list li.selected {
     background-color: #f3f5f7;
     color: #141718;
     font-weight: 700;
+}
+
+.confirm-btn:disabled {
+    background-color: #cccccc;
+    color: #666666;
+    cursor: not-allowed;
+    opacity: 0.7;
 }
