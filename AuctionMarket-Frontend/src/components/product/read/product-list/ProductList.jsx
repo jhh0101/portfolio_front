@@ -24,7 +24,7 @@ const ProductList = ({ title, products, mode = 'carousel', params, setParams }) 
         <ProductCard key={item.productResponse.productId} data={item} />
     ));
 
-    const [searchTitle, setSearchTitle] = React.useState("");
+    const [searchTitle, setSearchTitle] = useState("");
 
     const handleSearch = (e) => {
         if (e.key === 'Enter') {

@@ -34,6 +34,7 @@ export const useProductDetail = (productId) => {
             productService.postProduct(productRequest, auctionRequest),
         onSuccess: (res) => {
             queryClient.invalidateQueries({ queryKey: ['products', 'list']});
+            queryClient.invalidateQueries({ queryKey: ['products', 'my']});
         },
     });
 
