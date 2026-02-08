@@ -19,5 +19,15 @@ export const userService =  {
     updatePassword: async (userId, updatePasswordRequest) => {
         const response = await api.patch(`/user/new-password`, updatePasswordRequest);
         return response.data;
+    },
+
+    withdrawn: async (password) => {
+        const response = await api.post(`/user/withdrawn`, password);
+        return response.data;
+    },
+
+    withdrawalStatus: async () => {
+        const response = await api.get(`/user/withdrawal-status`);
+        return response.data;
     }
 }
