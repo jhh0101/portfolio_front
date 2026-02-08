@@ -1,8 +1,7 @@
 import {useGetProfile} from '@/hooks/user/useGetProfile.js';
 import {useUpdateProfile} from '@/hooks/user/useUpdateProfile.js';
 import {useUpdatePassword} from "@/hooks/user/useUpdatePassword.js";
-
-import UserDashboard from '@/components/my-page/UserDashboard.jsx';
+import UserDashboard from './UserDashboard.jsx';
 import toast from 'react-hot-toast';
 import './MyProfile.css'
 
