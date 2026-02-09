@@ -1,5 +1,5 @@
 import './ProductPage.css';
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useProductDetail, useProductDelete } from "@/hooks/product";
 import { useBid } from "@/hooks/bid";
@@ -19,14 +19,24 @@ const ProductPage = () => {
     const { mutateAsync: deleteProduct, isPending: isDeleteProductPending  } = useProductDelete(productId);
     const { bidderList: bidder, isBidderLoading } = useBid(product?.auctionResponse.auctionId);
     const navigate = useNavigate();
-    const [isModalOpen, setIsModalOpen] = useState(false);
     const { isLoggedIn, user } = useAuth();
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [now, setNow] = useState(new Date());
 
     const isSeller = user?.nickname === product?.productDetailResponse.seller;
 
     const productInfo = product?.productDetailResponse || {};
     const auction = product?.auctionResponse || {};
 
+    const startTime = new Date(auction?.startTime)
+    let isStart = startTime > now;
+
+        useEffect(() => {
+            const timer = setInterval(() => {
+                setNow(new Date());
+            }, 1000);
+            return () => clearInterval(timer);
+        }, []);
 
     const handleModify = () => {
         navigate(`/product/modify/${productId}`);
@@ -67,7 +77,12 @@ const ProductPage = () => {
 
                     <ProductInfo info={auction} />
 
-                    <AuctionCountdown deadline={endTimeDate} />
+                    {isStart ? (
+                        <AuctionCountdown key="upcoming" mode={"upcoming"} deadline={auction?.startTime} />
+                    ) : (
+                        <AuctionCountdown key="active" deadline={auction?.endTime} />
+                    )}
+
                     {isSeller ? (
                         <div className="seller-buttons">
                             <button className="btn-edit" onClick={handleModify}>
@@ -78,7 +93,7 @@ const ProductPage = () => {
                             </button>
                         </div>
                     ) : (
-                        <button className="add-to-cart-btn" onClick={handleBidClick}>Product Bid</button>
+                        <button className="add-to-cart-btn" onClick={handleBidClick} disabled={isStart}>Product Bid</button>
                     )}
                     <BidModal
                         isOpen={isModalOpen}
