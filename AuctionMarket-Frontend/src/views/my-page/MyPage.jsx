@@ -1,13 +1,13 @@
 import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
-import MyProfile from '@/components/my-page/profile/MyProfile.jsx';
-import MyBids from '@/components/my-page/bids/MyBids.jsx';
-import WonAuctions from '@/components/my-page/orders/WonAuctions.jsx';
-import { useAuth } from "@/context/AuthContext.jsx";
 import { jwtDecode } from 'jwt-decode';
+import { useAuth } from "@/context/AuthContext.jsx";
+import MyProfile from '@/views/my-page/components/profile/MyProfile.jsx';
+import WonAuctions from '@/views/my-page/components/orders/WonAuctions.jsx';
+import MyBids from '@/views/my-page/components/bids/MyBids.jsx';
+import MyProducts from "@/views/my-page/components/products/MyProducts.jsx";
+import WithdrawnModal from "@/views/my-page/components/user/WithdrawnModal.jsx";
 import './MyPage.css'
-import WithdrawnModal from "@/components/user/WithdrawnModal.jsx";
-import MyProducts from "@/components/my-page/products/MyProducts.jsx";
 
 const MyPage = () => {
     const { accessToken, logout } = useAuth();

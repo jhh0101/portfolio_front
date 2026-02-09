@@ -1,8 +1,8 @@
 import {useState} from "react";
-import {useProductList} from '@/hooks/product/useProductList.js'
-import './ProductListPage.css';
+import {useProductList} from '@/hooks/product'
 import ProductList from "@/components/product/read/product-list/ProductList.jsx";
 import Pagination from "@/components/common/pagination/Pagination.jsx";
+import './ProductListPage.css';
 
 const ProductListPage = () => {
     const [params, setParams] = useState({
