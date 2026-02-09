@@ -1,9 +1,8 @@
-// src/views/main-page/MainPage.jsx
 import React from "react";
-import {useMainPageData} from "@/hooks/product/useMainPageData.js";
-import MainBanner from "@/components/main-banner/MainBanner.jsx";
+import {useMainPageData} from "@/hooks/product";
 import ProductList from "@/components/product/read/product-list/ProductList.jsx";
-import ProductCardSkeleton from "@/components/common/ProductCardSkeleton.jsx";
+import ProductCardSkeleton from "@/components/common/skeleton/ProductCardSkeleton.jsx";
+import MainBanner from "@/views/main-page/components/main-banner/MainBanner.jsx";
 import './MainPage.css'
 
 const MainPage = () => {

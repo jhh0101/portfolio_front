@@ -3,7 +3,6 @@ import CategoryModal from './CategoryModal';
 import CategorySelector from "./CategorySelector.jsx";
 import './CategorySearch.css';
 
-// CategorySearch.jsx
 const CategorySearch = ({ formData, setFormData, setParams, categoryName, mode = "search" }) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
 

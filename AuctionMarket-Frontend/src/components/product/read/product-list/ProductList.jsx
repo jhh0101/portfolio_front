@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import ProductCard from '@/components/product/read/product-card/ProductCard.jsx';
 import CategorySearch from "@/components/category/CategorySearch.jsx";
 import {useCategoryLookup} from '@/hooks/category/useCategoryLookup.js'
+import SearchFilter from "@/components/product/search/SearchFilter.jsx";
 import './ProductList.css';
 
 // Swiper 관련 임포트 추가
@@ -44,28 +45,11 @@ const ProductList = ({ title, products, mode = 'carousel', params, setParams }) 
                         <a href={"/shop"} className="more-link">More Products →</a>
                     </>
                 ) : (
-                    <div className="search-filter-section">
-                        <div className="title-search-bar">
-                            <input
-                                type="text"
-                                placeholder="상품명 검색..."
-                                value={searchTitle}
-                                onChange={(e) => setSearchTitle(e.target.value)}
-                                onKeyDown={handleSearch}
-                            />
-                        </div>
-                        <div className="filter-spacer">
-                            <CategorySearch setParams={setParams} categoryName={categoryName} />
-                        </div>
-                        <div className="sort-filter-wrapper">
-                            <select className="sort-select" onChange={handleSortChange} value={params?.sort || "createdAt"} >
-                                <option value="createdAt">최신 등록순</option>
-                                <option value="endingSoon">마감 임박순</option>
-                                <option value="priceLow">최저가순</option>
-                                <option value="priceHight">최고가순</option>
-                            </select>
-                        </div>
-                    </div>
+                    <SearchFilter
+                        params={params}
+                        setParams={setParams}
+                        categoryName={categoryName}
+                    />
                 )}
             </div>
             {/* [수정] 모드에 따른 본문 출력 분기 */}

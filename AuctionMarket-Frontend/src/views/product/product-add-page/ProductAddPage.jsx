@@ -1,9 +1,9 @@
-import { useProductAdd } from '@/hooks/product/useProductAdd.js';
-import './ProductAddPage.css';
+import { useProductAdd } from '@/hooks/product';
 import CategorySelector from "@/components/category/CategorySelector.jsx";
 import ImageUpload from '@/components/image/image-upload/ImageUpload.jsx';
 import StartPrice from "@/components/product/write/product-add-price/StartPrice.jsx";
 import StartAndEndTime from "@/components/product/write/product-add-time/StartAndEndTime.jsx";
+import './ProductAddPage.css';
 
 const ProductAddPage = () => {
     const {

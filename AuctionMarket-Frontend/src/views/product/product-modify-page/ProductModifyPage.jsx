@@ -1,6 +1,5 @@
 import { useParams, useNavigate } from "react-router-dom";
-import { useProductDetail } from "@/hooks/product/useProductDetail.js";
-import { useProductEdit } from '@/hooks/product/useProductEdit.js';
+import { useProductDetail, useProductEdit } from "@/hooks/product";
 import CategorySelector from "@/components/category/CategorySelector.jsx";
 import ImageUpload from '@/components/image/image-upload/ImageUpload.jsx';
 import StartPrice from "@/components/product/write/product-add-price/StartPrice.jsx";

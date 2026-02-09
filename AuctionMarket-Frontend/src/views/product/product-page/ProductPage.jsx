@@ -1,19 +1,16 @@
 import './ProductPage.css';
-import { useNavigate } from "react-router-dom";
-import { useProductDetail } from "@/hooks/product/useProductDetail.js";
-import { useProductDelete } from "@/hooks/product/useProductDelete.js";
-import { useBid } from "@/hooks/bid/useBid.js";
-import { useParams } from "react-router-dom";
 import { useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { useProductDetail, useProductDelete } from "@/hooks/product";
+import { useBid } from "@/hooks/bid";
 import { useAuth } from "@/context/AuthContext.jsx";
 import AuctionCountdown from "@/components/product/read/end-time/AuctionCountdown.jsx";
-import Breadcrumb from '@/components/product/read/breadcrumb/Breadcrumb.jsx'
-import SubBreadcrumb from '@/components/product/read/breadcrumb/SubBreadcrumb.jsx'
-import ProductImage from '@/components/image/image-load/ProductImage.jsx'
 import ProductCount from '@/components/product/read/product-count/ProductCount.jsx'
-import ProductInfo from '@/components/product/read/product-info/ProductInfo.jsx'
-import ProductTab from "@/components/product/read/product-tab/ProductTab.jsx";
-import BidModal from "@/components/bid/bidding/BidModal.jsx";
+import { Breadcrumb, SubBreadcrumb } from '@/views/product/product-page/product/breadcrumb';
+import ProductInfo from '@/views/product/product-page/product/product-info/ProductInfo.jsx'
+import ProductTab from "@/views/product/product-page/product/product-tab/ProductTab.jsx";
+import BidModal from "@/views/product/product-page/bid/BidModal.jsx";
+import ProductImage from '@/views/product/product-page/image-load/ProductImage.jsx';
 
 
 const ProductPage = () => {

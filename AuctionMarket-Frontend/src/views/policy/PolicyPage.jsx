@@ -1,5 +1,5 @@
 import React from 'react';
-import {TERMS_DATA, PRIVACY_DATA} from "@/constants/policyData.js";
+import {TERMS_DATA, PRIVACY_DATA} from "./policyData.js";
 import './PolicyPage.css'
 
 const PolicyPage = ({ type }) => {
