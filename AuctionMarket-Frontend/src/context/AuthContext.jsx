@@ -1,6 +1,6 @@
 import React, { createContext, useState, useContext, useEffect, useMemo } from 'react';
 import { useNavigate } from "react-router-dom";
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { jwtDecode } from 'jwt-decode';
 import { useLocation } from 'react-router-dom';
 import { authService } from "@/api/authService.js";
@@ -16,6 +16,7 @@ export const AuthProvider = ({ children }) => {
 
     const navigate = useNavigate();
     const location = useLocation();
+    const queryClient = useQueryClient();
 
     const isLoggedIn = !!accessToken;
 
@@ -40,16 +41,18 @@ export const AuthProvider = ({ children }) => {
     const { mutate: logoutMutate } = useMutation({
         mutationFn: (data) => authService.postLogout(data), // { userId } 형태로 받음
         onSuccess: (res) => {
+            clearAuthState();
+            queryClient.clear();
             if (!res.success) {
-                // 실패해도 클라이언트는 로그아웃 처리해야 함
                 console.warn(res.message || "로그아웃 요청 실패");
             }
             toast.success("로그아웃 성공!");
             navigate('/login');
         },
         onError: (err) => {
-            // 서버 로그아웃 실패해도 클라이언트는 강제 로그아웃
             console.error("로그아웃 API 에러:", err);
+            clearAuthState();
+            queryClient.clear();
             navigate('/login');
         }
     });
@@ -95,14 +98,12 @@ export const AuthProvider = ({ children }) => {
     };
 
     const logout = () => {
-        // 토큰에 정보가 있다면 서버에 로그아웃 요청
         if (decoded?.sub) {
-            // ✨ [주의] mutationFn이 ({userId}) 구조 분해를 하므로 객체로 전달해야 함
             logoutMutate({ userId: decoded.sub });
+        } else {
+            clearAuthState();
+            navigate('/login');
         }
-
-        // 로컬 상태 초기화
-        clearAuthState();
     };
 
     // ✨ [핵심 해결] 새로고침 시 로직 수정

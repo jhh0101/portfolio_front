@@ -29,5 +29,5 @@ export const userService =  {
     withdrawalStatus: async () => {
         const response = await api.get(`/user/withdrawal-status`);
         return response.data;
-    }
+    },
 }
