@@ -3,8 +3,15 @@ import './UserDashboard.css';
 
 const UserDashboard = ({ user }) => {
     const isSeller = user.data?.role === 'SELLER';
+    let roleDisplayName = null;
 
-    const roleDisplayName = isSeller ? '판매자 (Seller)' : '일반 회원 (Buyer)';
+    if (isSeller){
+        roleDisplayName = '판매자 (Seller)';
+    } else if(user.data?.role === 'ADMIN') {
+        roleDisplayName = '관리자 (Admin)';
+    } else {
+        roleDisplayName = '일반 회원 (Buyer)';
+    }
 
     return (
         <div className="dashboard-container">

@@ -1,17 +1,15 @@
 import React, { memo } from "react";
 import { Link } from 'react-router-dom';
 import './Header.css';
-import { useLogout } from "@/hooks/auth/useLogout.js";
 import { useAuth } from "@/context/AuthContext.jsx";
 import SessionTimer from "@/components/common/header/session-timer/SessionTimer.jsx";
 
 const Header = memo(() => {
-    const { mutate, isPending } = useLogout();
-    const { isLoggedIn, user, accessToken } = useAuth(); // 전역 상태 사용
+    const { isLoggedIn, user, logout } = useAuth(); // 전역 상태 사용
 
     const handleLogout = () => {
         if (window.confirm("로그아웃 하시겠습니까?")) {
-            mutate(accessToken);
+            logout();
         }
     };
 
@@ -33,6 +31,9 @@ const Header = memo(() => {
                     {user?.role === 'SELLER' && (
                         <Link to="/product-add">Product Add</Link>
                     )}
+                    {user?.role === 'ADMIN' && (
+                        <Link to="/admin">Dashboard</Link>
+                    )}
                 </nav>
 
                 {/* 사용자 메뉴 */}
@@ -40,7 +41,7 @@ const Header = memo(() => {
                     <div className="menu d-flex align-items-center">
                         <SessionTimer deadline={new Date(Date.now() + 900000)} />
                         <Link to="/mypage" className="btn nav-btn2">My Page</Link>
-                        <button onClick={handleLogout} className={"btn btn-dark nav-btn1"} disabled={isPending}>Log out</button>
+                        <button onClick={handleLogout} className={"btn btn-dark nav-btn1"} >Log out</button>
                     </div>
                 ) : (
                     <div className="menu d-flex align-items-center">
