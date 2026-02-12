@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import {useSuspend, useSuspensionStatus} from "@/hooks/admin";
 
-const SuspendModal = ({ isOpen, onClose, userId, logout }) => {
+const SuspendModal = ({ isOpen, onClose, userId }) => {
     const {data: userStatus, isLoading} = useSuspensionStatus(userId)
     const {mutateAsync: suspend, isPending} = useSuspend(userId);
     const [isChecked, setIsChecked] = useState(false);

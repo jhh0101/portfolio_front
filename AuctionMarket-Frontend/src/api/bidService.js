@@ -29,6 +29,26 @@ export const bidService = {
             }
         });
         return response.data;
+    },
+
+    userBids: async ({userId, page}) => {
+        const response = await api.get(`admin/${userId}/bid`, {
+            params: {
+                page: page,
+                size: 10,
+            }
+        });
+        return response.data;
+    },
+
+    userBidList: async ({userId, auctionId, page}) => {
+        const response = await api.get(`admin/${auctionId}/bid-list/${userId}`, {
+            params: {
+                page: page,
+                size: 10,
+            }
+        });
+        return response.data;
     }
 
 };

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import MemberBids from '@/views/admin-page/components/bids/MemberBids.jsx'
 import UserDetailArea from './UserDetailArea.jsx'
 import './MemberList.css';
 
@@ -7,9 +8,9 @@ const MemberList = ({ users }) => {
     const [activeTab, setActiveTab] = useState('detail');
 
     const tabMenus = [
-        { id: 'detail', label: 'User detail' },
-        { id: 'bids', label: 'User Bids' },
-        { id: 'products', label: 'User Products' },
+        { id: 'detail', label: 'Detail' },
+        { id: 'bids', label: 'Bids' },
+        { id: 'products', label: 'Products' },
         { id: 'won', label: 'Won Auctions' },
     ];
 
@@ -65,8 +66,9 @@ const MemberList = ({ users }) => {
                                         </button>
                                     ))}
                                 </div>
-                                <div className="tab-content">
+                                <div className="member-tab-content">
                                     {activeTab === 'detail' && <UserDetailArea user={user}/>}
+                                    {activeTab === 'bids' && <MemberBids user={user}/>}
                                 </div>
                             </div>
                         )}

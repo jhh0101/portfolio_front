@@ -21,5 +21,6 @@ export const adminService =  {
     suspensionReason: async ({userId}) => {
         const response = await api.get(`admin/suspension-reason/${userId}`);
         return response.data;
-    }
+    },
+
 }
