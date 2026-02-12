@@ -7,8 +7,8 @@ const UserDetailArea = ({ user }) => {
     const [isReasonModalOpen, setIsReasonModalOpen] = useState(false);
 
     return (
-        <div className="member-details">
-            <div className="detail-grid">
+        <div className="member-details" style={{height: "100%"}}>
+            <div className="detail-grid" style={{height: "80%"}}>
                 <div className="detail-item">
                     <span className="detail-label">이름</span>
                     <span className="detail-value">{user.username}</span>
@@ -24,6 +24,10 @@ const UserDetailArea = ({ user }) => {
                 <div className="detail-item">
                     <span className="detail-label">평점</span>
                     <span className="detail-value">{user.avgRating} / 5.0</span>
+                </div>
+                <div className="detail-item">
+                    <span className="detail-label">집 주소</span>
+                    <span className="detail-value">OO시 OO구 OOO로 123길 1-2</span>
                 </div>
                 <div className="detail-item">
                     <span className="detail-label">회원 상태</span>

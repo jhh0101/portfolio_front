@@ -91,7 +91,6 @@
 
 }
 
-/* 상태 뱃지 (색상은 JS에서 동적으로 제어) */
 .auction-badge {
     padding: 4px 8px;
     border-radius: 4px;
