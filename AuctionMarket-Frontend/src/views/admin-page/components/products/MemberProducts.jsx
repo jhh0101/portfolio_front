@@ -40,19 +40,21 @@ const MemberProducts = ({user}) => {
             height: "100%",
             display: "flex",
             flexDirection: "column",
-            margin: "0 50px"
+            margin: "0 25px",
         }}>
-                <SearchFilter
-                    params={params}
-                    setParams={setParams}
-                    categoryName={categoryName}
-                />
             {productsAndAuctions.length > 0 ? (
-                    <MemberProductList
-                        productsAndAuctions={productsAndAuctions}
-                        isFetchingNextPage={isFetchingNextPage}
-                        ref={ref}
-                    />
+                    <>
+                        <SearchFilter
+                            params={params}
+                            setParams={setParams}
+                            categoryName={categoryName}
+                        />
+                        <MemberProductList
+                            productsAndAuctions={productsAndAuctions}
+                            isFetchingNextPage={isFetchingNextPage}
+                            ref={ref}
+                        />
+                    </>
                 ) : (
                     <div className="empty-container">
                         <div className="empty-message">
