@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
 import {useUserBids} from '@/hooks/admin';
-import MemberBidsList from "./MemberBidsList.jsx";
+import MemberBidList from "./MemberBidList.jsx";
 
 const MemberBids = ({user}) => {
     const { ref, inView } = useInView();
@@ -27,9 +27,10 @@ const MemberBids = ({user}) => {
             height: "100%",
             display: "flex",
             flexDirection: "column",
+            margin: "0 50px"
         }}>
             {productsAndAuctions.length > 0 ? (
-                    <MemberBidsList productsAndAuctions={productsAndAuctions} isFetchingNextPage={isFetchingNextPage} ref={ref} user={user}/>
+                    <MemberBidList productsAndAuctions={productsAndAuctions} isFetchingNextPage={isFetchingNextPage} ref={ref} user={user}/>
                 ) : (
                     <div className="empty-container">
                         <div className="empty-message">

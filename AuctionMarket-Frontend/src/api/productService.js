@@ -65,4 +65,16 @@ export const productService = {
         return images.data;
     },
 
+    // admin 전용
+        adminProducts: async ({userId, page, searchParams}) => {
+        const response = await api.get(`admin/${userId}/product`, {
+            params: {
+                page: page,
+                size: 5,
+                ...searchParams
+            }
+        });
+        return response.data;
+    },
+
 };

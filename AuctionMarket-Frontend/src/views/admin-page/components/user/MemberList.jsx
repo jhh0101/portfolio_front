@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import MemberBids from '@/views/admin-page/components/bids/MemberBids.jsx'
+import MemberProducts from '@/views/admin-page/components/Products/MemberProducts.jsx'
+import MemberOrders from '@/views/admin-page/components/orders/MemberOrders.jsx'
 import UserDetailArea from './UserDetailArea.jsx'
 import './MemberList.css';
 
@@ -9,8 +11,8 @@ const MemberList = ({ users }) => {
 
     const tabMenus = [
         { id: 'detail', label: 'Detail' },
-        { id: 'bids', label: 'Bids' },
         { id: 'products', label: 'Products' },
+        { id: 'bids', label: 'Bids' },
         { id: 'won', label: 'Won Auctions' },
     ];
 
@@ -68,7 +70,9 @@ const MemberList = ({ users }) => {
                                 </div>
                                 <div className="member-tab-content">
                                     {activeTab === 'detail' && <UserDetailArea user={user}/>}
+                                    {activeTab === 'products' && <MemberProducts user={user}/>}
                                     {activeTab === 'bids' && <MemberBids user={user}/>}
+                                    {activeTab === 'won' && <MemberOrders user={user}/>}
                                 </div>
                             </div>
                         )}

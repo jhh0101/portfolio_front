@@ -1,6 +1,7 @@
 import {useState} from "react";
 import {Navigate} from "react-router-dom";
-import Members from "./components/user/Members.jsx";
+import Members from "@/views/admin-page/components/user/Members.jsx";
+import MemberProducts from "@/views/admin-page/components/products/MemberProducts.jsx";
 
 const AdminPage = ({user}) => {
     const [activeTab, setActiveTab] = useState('members');
@@ -39,7 +40,7 @@ const AdminPage = ({user}) => {
 
                 <section className="vertical-tabs-content">
                     {activeTab === 'members' && <Members />}
-                    {/*{activeTab === 'bids' && <MyBids decoded={decoded} />}*/}
+                    {/*{activeTab === 'bids' && <MemberProducts />}*/}
                     {/*{activeTab === 'won' && <WonAuctions decoded={decoded} />}*/}
                     {/*{activeTab === 'products' && <MyProducts decoded={decoded} />}*/}
                 </section>

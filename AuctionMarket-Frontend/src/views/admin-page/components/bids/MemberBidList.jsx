@@ -1,25 +1,18 @@
 import React, { useState, forwardRef } from 'react';
 import MemberBidsModal from './MemberBidsModal.jsx'
 
-const MemberBidsList = forwardRef(({ productsAndAuctions, isFetchingNextPage, user }, ref) => {
+const MemberBidList = forwardRef(({ productsAndAuctions, isFetchingNextPage, user }, ref) => {
     const [isBidListModalOpen, setIsBidListModalOpen] = useState(false);
-    const [expandedId, setExpandedId] = useState(null);
-
-    const toggleExpand = (id) => {
-        setExpandedId(prev => (prev === id ? null : id));
-    };
 
     return (
-        <div className="auction-list-container" style={{padding: "5px"}} onClick={() => setIsBidListModalOpen(true)}>
+        <div className="auction-list-container" onClick={() => setIsBidListModalOpen(true)}>
             {productsAndAuctions.map((item) => {
-                const isOpen = expandedId === item.productResponse.productId;
                 const isLosing = item.auctionResponse.currentPrice > item.myMaxBidPrice;
 
                 return (
                     <div key={`${item.productResponse.productId}`} className="auction-item-wrapper">
                         <div
                             className="auction-row"
-                            onClick={() => toggleExpand(item.productResponse.productId)}
                         >
                             <img
                                 src={item.productResponse.mainImageUrl || "https://via.placeholder.com/80"}
@@ -69,4 +62,4 @@ const MemberBidsList = forwardRef(({ productsAndAuctions, isFetchingNextPage, us
     );
 });
 
-export default MemberBidsList;
+export default MemberBidList;
