@@ -29,18 +29,26 @@ const MemberBidList = forwardRef(({ productsAndAuctions, isFetchingNextPage, use
 
                             <div className="auction-right-side">
                                 <div className={"auction-price"}>
-                                    <span
-                                        className="auction-badge"
-                                        style={{
-                                            color: isLosing ? '#e53935' : '#2e7d32',
-                                            fontWeight: 'bold'
-                                        }}
-                                    >
-                                        현재가 : {item.auctionResponse.currentPrice.toLocaleString()}원
-                                    </span>
-                                    <span className="auction-badge">
-                                        입찰가 : {item.myMaxBidPrice.toLocaleString()}원
-                                    </span>
+                                    {item.auctionResponse.status === 'ENDED' ? (
+                                        <span className="auction-badge">
+                                                종료된 경매 입니다.
+                                            </span>
+                                    ) : (
+                                        <>
+                                            <span
+                                                className="auction-badge"
+                                                style={{
+                                                    color: isLosing ? '#e53935' : '#2e7d32',
+                                                    fontWeight: 'bold'
+                                                }}
+                                            >
+                                                현재가 : {item.auctionResponse.currentPrice.toLocaleString()}원
+                                            </span>
+                                            <span className="auction-badge">
+                                                입찰가 : {item.myMaxBidPrice.toLocaleString()}원
+                                            </span>
+                                        </>
+                                    )}
                                 </div>
                             </div>
                         </div>

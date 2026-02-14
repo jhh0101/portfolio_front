@@ -1,19 +1,11 @@
-import React, { useState } from 'react';
-import './WonAuctionsList.css';
-import RatingWriteModal from "@/views/my-page/components/orders/rating/RatingWriteModal.jsx";
+import React, { forwardRef } from 'react';
+import { Link } from "react-router-dom";
 
-const WonAuctionsList = ({ myOrders }) => {
-    const [expandedId, setExpandedId] = useState(null);
-
-    const openReviewModal = (id) => {
-        setExpandedId(prev => (prev === id ? null : id));
-    };
+const MemberOrderList = forwardRef(({ userOrders, isFetchingNextPage }, ref) => {
 
     return (
         <div className="auction-list-container">
-            {myOrders.map((item) => {
-                const isOpen = expandedId === item.productId;
-
+            {userOrders.map((item) => {
                 return (
                     <div key={`${item.productId}`} className="auction-item-wrapper">
                         <div
@@ -42,28 +34,16 @@ const WonAuctionsList = ({ myOrders }) => {
                                         최종 입찰가 : {item.finalPrice.toLocaleString()}원
                                     </span>
                                 </div>
-                                <button
-                                    className="btn-review-write"
-                                    onClick={() => openReviewModal(item.productId)}
-                                >
-                                    리뷰 작성하기
-                                </button>
                             </div>
                         </div>
-
-                        {isOpen && (
-                            <RatingWriteModal
-                                isOpen={isOpen}
-                                onClose={() => setExpandedId(null)}
-                                product={item}
-                            />
-
-                        )}
                     </div>
                 );
             })}
+            <div ref={ref} className="loading-trigger" style={{display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                {isFetchingNextPage ? '로딩 중...' : null}
+            </div>
         </div>
     );
-};
+});
 
-export default WonAuctionsList;
+export default MemberOrderList;

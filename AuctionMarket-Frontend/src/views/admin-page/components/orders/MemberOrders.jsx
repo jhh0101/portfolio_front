@@ -1,17 +1,20 @@
 import { useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
-import {useUserBids} from '@/hooks/admin';
-import MemberBidList from "./MemberBidList.jsx";
+import {useUserOrders} from '@/hooks/admin';
+import MemberOrderList from "./MemberOrderList.jsx";
 
-const MemberBids = ({user}) => {
+const MemberOrders = ({user}) => {
     const { ref, inView } = useInView();
+
     const {
-        data: userBids,
+        data: userOrders,
         fetchNextPage,
         hasNextPage,
         isFetchingNextPage,
         isLoading
-    } = useUserBids(user.userId);
+    } = useUserOrders({
+        userId: user.userId,
+    });
 
     useEffect(() => {
         if (inView && hasNextPage) {
@@ -20,7 +23,7 @@ const MemberBids = ({user}) => {
     }, [inView, hasNextPage, fetchNextPage]);
 
     if (isLoading) return <div style={{textAlign: "center"}}>로딩 중 ...</div>
-    const productsAndAuctions = userBids?.pages.flatMap(page => page.data.content) || [];
+    const userOrder = userOrders?.pages.flatMap(page => page.data.content) || [];
 
     return (
         <div style={{
@@ -29,12 +32,17 @@ const MemberBids = ({user}) => {
             flexDirection: "column",
             margin: "0 25px",
         }}>
-            {productsAndAuctions.length > 0 ? (
-                    <MemberBidList productsAndAuctions={productsAndAuctions} isFetchingNextPage={isFetchingNextPage} ref={ref} user={user}/>
+
+            {userOrder.length > 0 ? (
+                    <MemberOrderList
+                        userOrders={userOrder}
+                        isFetchingNextPage={isFetchingNextPage}
+                        ref={ref}
+                    />
                 ) : (
                     <div className="empty-container">
                         <div className="empty-message">
-                            아직 참여한 경매가 없습니다.
+                            아직 등록한 경매가 없습니다.
                         </div>
                     </div>
                 )
@@ -43,4 +51,4 @@ const MemberBids = ({user}) => {
     );
 };
 
-export default MemberBids;
+export default MemberOrders;

@@ -40,7 +40,7 @@ const MyProducts = ({decoded}) => {
                 categoryName={categoryName}
             />
             {myProducts?.data?.content?.length > 0 ? (
-                <MyProductList productsAndAuctions={productsAndAuctions} params={params} setParams={setParams}/>
+                <MyProductList productsAndAuctions={productsAndAuctions} />
             ) : (
                 <>
                     <div className="empty-container">
