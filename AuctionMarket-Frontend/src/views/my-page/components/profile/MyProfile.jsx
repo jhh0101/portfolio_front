@@ -1,11 +1,10 @@
-import {useGetProfile, useUpdateProfile, useUpdatePassword} from '@/hooks/user';
+import {useUpdateProfile, useUpdatePassword} from '@/hooks/user';
 import UserDashboard from './UserDashboard.jsx';
 import toast from 'react-hot-toast';
 import './MyProfile.css'
 
-const MyProfile = ({decoded}) => {
+const MyProfile = ({decoded, profile, isLoading}) => {
 
-    const { data: profile, isLoading } = useGetProfile(decoded.sub);
     const { mutateAsync: updateProfile, isPending: isProfilePending } = useUpdateProfile(decoded.sub);
     const { mutateAsync: updatePassword, isPending: isPasswordPending } = useUpdatePassword(decoded.sub);
 

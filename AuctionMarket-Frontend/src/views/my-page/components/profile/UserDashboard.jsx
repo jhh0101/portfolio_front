@@ -34,8 +34,18 @@ const UserDashboard = ({ user }) => {
 
             {/* --- 하단 영역 (Role) --- */}
             <div className="dashboard-bottom">
-                <span className="stat-label">Role</span>
-                <span className="stat-value role-badge">{roleDisplayName}</span>
+                <div className={`stat-box ${user.data?.role === 'USER' ? 'split' : 'full'}`}>
+                    <span className="stat-label">Role</span>
+                    <span className="stat-value role-badge">{roleDisplayName}</span>
+                </div>
+                {user.data?.role === 'USER' && (
+                    <div className="stat-box split">
+                        <span className="stat-label">Apply Status</span>
+                        <span className="stat-value role-badge">{user.data?.sellerStatus}</span>
+                    </div>
+                )}
+
+
             </div>
         </div>
     );
