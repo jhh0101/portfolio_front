@@ -1,12 +1,14 @@
 import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import { jwtDecode } from 'jwt-decode';
+import {useGetProfile} from '@/hooks/user';
 import { useAuth } from "@/context/AuthContext.jsx";
 import MyProfile from '@/views/my-page/components/profile/MyProfile.jsx';
 import WonAuctions from '@/views/my-page/components/orders/WonAuctions.jsx';
 import MyBids from '@/views/my-page/components/bids/MyBids.jsx';
 import MyProducts from "@/views/my-page/components/products/MyProducts.jsx";
 import WithdrawnModal from "@/views/my-page/components/user/WithdrawnModal.jsx";
+import SellerApplyPage from "@/views/my-page/components/seller/SellerApplyPage.jsx";
 import './MyPage.css'
 
 const MyPage = () => {
@@ -14,6 +16,7 @@ const MyPage = () => {
     const decoded = accessToken ? jwtDecode(accessToken) : null;
     const [activeTab, setActiveTab] = useState('profile');
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const { data: profile, isLoading } = useGetProfile(decoded.sub);
     const navigate = useNavigate();
 
     if (!decoded) {
@@ -28,6 +31,8 @@ const MyPage = () => {
 
     if (decoded.role ==='SELLER'){
         tabMenus.push({ id: 'products', label: 'My Products' })
+    } else if (decoded.role ==='USER'){
+        tabMenus.push({ id: 'seller', label: 'Seller Apply' })
     }
 
     const handleLogout = () => {
@@ -42,6 +47,7 @@ const MyPage = () => {
                 {activeTab === 'bids' && <>My Bids</>}
                 {activeTab === 'won' && <>My Won Auctions</>}
                 {activeTab === 'products' && <>My Products</>}
+                {activeTab === 'seller' && <>Seller Apply</>}
             </h1>
 
             <div className="mypage-layout">
@@ -60,10 +66,11 @@ const MyPage = () => {
                 </nav>
 
                 <section className="vertical-tabs-content">
-                    {activeTab === 'profile' && <MyProfile decoded={decoded} />}
+                    {activeTab === 'profile' && <MyProfile decoded={decoded} profile={profile} isLoading={isLoading} />}
                     {activeTab === 'bids' && <MyBids decoded={decoded} />}
                     {activeTab === 'won' && <WonAuctions decoded={decoded} />}
                     {activeTab === 'products' && <MyProducts decoded={decoded} />}
+                    {activeTab === 'seller' && <SellerApplyPage decoded={decoded} profile={profile} isLoading={isLoading} />}
                 </section>
 
                 <WithdrawnModal

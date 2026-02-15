@@ -95,7 +95,8 @@
 
 .member-tab-header {
     display: flex;
-    gap: 40px;
+    gap: 30px;
+    padding: 0 0 0 5px;
 }
 
 /* --- 하단 확장 영역 (상세 정보) --- */
