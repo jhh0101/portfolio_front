@@ -1,7 +1,10 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './UserDashboard.css';
+import RejectReasonModal from "./RejectReasonModal.jsx";
 
 const UserDashboard = ({ user }) => {
+    const [isReasonModalOpen, setIsReasonModalOpen] = useState(false);
+
     const isSeller = user.data?.role === 'SELLER';
     let roleDisplayName = null;
 
@@ -41,11 +44,20 @@ const UserDashboard = ({ user }) => {
                 {user.data?.role === 'USER' && (
                     <div className="stat-box split">
                         <span className="stat-label">Apply Status</span>
-                        <span className="stat-value role-badge">{user.data?.sellerStatus}</span>
+                        <span className="stat-value role-badge">
+                            {user.data?.sellerStatus}
+                            {user.data?.sellerStatus === 'REJECTED' && (
+                                <button className={"btn btn-outline-danger ms-2"} style={{height: "30px", fontSize: "10px"}} onClick={() => setIsReasonModalOpen(true)}>거절 사유</button>
+                            )}
+                        </span>
+
                     </div>
                 )}
-
-
+                <RejectReasonModal
+                    isOpen={isReasonModalOpen}
+                    onClose={() => setIsReasonModalOpen(false)}
+                    user={user?.data}
+                />
             </div>
         </div>
     );
