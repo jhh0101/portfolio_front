@@ -1,7 +1,7 @@
 import {useState} from "react";
 import {Navigate} from "react-router-dom";
 import Members from "@/views/admin-page/components/user/Members.jsx";
-import MemberProducts from "@/views/admin-page/components/products/MemberProducts.jsx";
+import Application from "@/views/admin-page/components/seller/Application.jsx";
 
 const AdminPage = ({user}) => {
     const [activeTab, setActiveTab] = useState('members');
@@ -12,17 +12,14 @@ const AdminPage = ({user}) => {
 
     const tabMenus = [
         { id: 'members', label: 'Member List' },
-        { id: 'bids', label: 'My Bids' },
-        { id: 'won', label: 'Won Auctions' },
+        { id: 'apply', label: 'Apply List' },
     ];
 
     return (
         <div className="mypage-vertical-container">
             <h1 className="mypage-main-title">
                 {activeTab === 'members' && <>Member List</>}
-                {activeTab === 'products' && <>My Products</>}
-                {activeTab === 'bids' && <>My Bids</>}
-                {activeTab === 'won' && <>My Won Auctions</>}
+                {activeTab === 'apply' && <>Apply List</>}
             </h1>
 
             <div className="mypage-layout">
@@ -40,9 +37,7 @@ const AdminPage = ({user}) => {
 
                 <section className="vertical-tabs-content">
                     {activeTab === 'members' && <Members />}
-                    {/*{activeTab === 'bids' && <MemberProducts />}*/}
-                    {/*{activeTab === 'won' && <WonAuctions decoded={decoded} />}*/}
-                    {/*{activeTab === 'products' && <MyProducts decoded={decoded} />}*/}
+                    {activeTab === 'apply' && <Application />}
                 </section>
             </div>
         </div>
