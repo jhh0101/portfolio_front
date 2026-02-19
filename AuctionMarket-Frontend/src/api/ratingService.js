@@ -18,5 +18,10 @@ export const ratingService = {
     deleteRating: async ({ratingId}) => {
         const response = await api.delete(`/rating/delete/${ratingId}`);
         return response.data;
-    }
+    },
+
+    ratingList: async ({toUserId}) => {
+        const response = await api.get(`/rating/${toUserId}/list`);
+        return response.data;
+    },
 };

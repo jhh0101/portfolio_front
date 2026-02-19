@@ -27,10 +27,6 @@ const ApplyRejectModal = ({ isOpen, onClose, apply }) => {
                 <form onSubmit={handleSubmit}>
                     <div className="modal-body">
                         Nick Name : <h5 style={{display: "inline"}}>{apply?.data?.nickname}님</h5>
-                        {/*<p>Point : {userStatus.data?.currentPoint.toLocaleString()} P </p>*/}
-                        {/*<p>⚠️ 정지 시 아래 내역은 자동 취소됩니다. </p>*/}
-                        {/*<p className={"mb-0"}> - 진행 중인 입찰 : {bidCount} 건</p>*/}
-                        {/*<p className={"mb-0"}> - 진행 중인 경매 : {productCount} 건</p>*/}
                         <br/>
                         <br/>
                         <textarea
