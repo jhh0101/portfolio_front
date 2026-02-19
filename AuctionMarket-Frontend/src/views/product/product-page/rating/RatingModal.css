@@ -1,0 +1,4 @@
+.header-col.from, .card-col.from { width: 15%; text-align: center; }
+.header-col.product, .card-col.product { width: 25%; text-align: center; }
+.header-col.comment, .card-col.comment { width: 50%; text-align: center; }
+.header-col.score, .card-col.score { width: 10%; text-align: center; }

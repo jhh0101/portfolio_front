@@ -11,16 +11,24 @@ import ProductInfo from '@/views/product/product-page/product/product-info/Produ
 import ProductTab from "@/views/product/product-page/product/product-tab/ProductTab.jsx";
 import BidModal from "@/views/product/product-page/bid/BidModal.jsx";
 import ProductImage from '@/views/product/product-page/image-load/ProductImage.jsx';
+import RatingModal from "./rating/RatingModal.jsx";
 
 
 const ProductPage = () => {
     const { productId } = useParams();
+
     const { product, isLoading: isProductLoading } = useProductDetail(productId);
+
     const { mutateAsync: deleteProduct, isPending: isDeleteProductPending  } = useProductDelete(productId);
     const { bidderList: bidder, isBidderLoading } = useBid(product?.auctionResponse.auctionId);
+
     const navigate = useNavigate();
+
     const { isLoggedIn, user } = useAuth();
+
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isRatingModalOpen, setIsRatingModalOpen] = useState(false);
+
     const [now, setNow] = useState(new Date());
 
     const isSeller = user?.nickname === product?.productDetailResponse.seller;
@@ -30,6 +38,9 @@ const ProductPage = () => {
 
     const startTime = new Date(auction?.startTime)
     let isStart = startTime > now;
+
+    const endTime = new Date(auction?.endTime)
+    let isEnd = endTime < now;
 
         useEffect(() => {
             const timer = setInterval(() => {
@@ -93,7 +104,7 @@ const ProductPage = () => {
                             </button>
                         </div>
                     ) : (
-                        <button className="add-to-cart-btn" onClick={handleBidClick} disabled={isStart}>Product Bid</button>
+                        <button className="add-to-cart-btn" onClick={handleBidClick} disabled={isStart || isEnd}>Product Bid</button>
                     )}
                     <BidModal
                         isOpen={isModalOpen}
@@ -104,7 +115,9 @@ const ProductPage = () => {
 
                     <div className="product-meta">
                         <div>
-                            <span>SELLER : {productInfo.seller}</span>
+                            <span onClick={() => setIsRatingModalOpen(true)}>
+                                SELLER : {productInfo.seller} / ({Number(productInfo.ratingScore || 0).toFixed(1)}) [리뷰 보기]
+                            </span>
                         </div>
                         <SubBreadcrumb productId={productId} />
                     </div>
@@ -112,6 +125,11 @@ const ProductPage = () => {
             </div>
 
             <ProductTab bidder={bidder} isBidderLoading={isBidderLoading} productInfo={productInfo} />
+            <RatingModal
+                isOpen={isRatingModalOpen}
+                onClose={() => setIsRatingModalOpen(false)}
+                toUserId={productInfo.sellerId}
+            />
 
         </div>
     );
