@@ -2,7 +2,7 @@ import { useState } from 'react';
 import {useRejectReason} from "@/hooks/seller";
 
 const RejectReasonModal = ({ isOpen, onClose, user }) => {
-    const {data: reason, isLoading} = useRejectReason(user.userId);
+    const {data: reason, isLoading} = useRejectReason(user.userId, isOpen);
 
     if (!isOpen) return null;
 
