@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import './UserDashboard.css';
 import RejectReasonModal from "./RejectReasonModal.jsx";
+import PointPaymentButton from "@/views/my-page/components/toss/PointPaymentButton.jsx";
 
 const UserDashboard = ({ user }) => {
     const [isReasonModalOpen, setIsReasonModalOpen] = useState(false);
@@ -23,7 +24,10 @@ const UserDashboard = ({ user }) => {
                 {/* 1. Point 영역: 판매자면 반반(split), 아니면 꽉차게(full) */}
                 <div className={`stat-box ${isSeller ? 'split' : 'full'}`}>
                     <span className="stat-label">Point</span>
-                    <span className="stat-value">{user.data?.point.toLocaleString()} P</span>
+                    <div className="stat-value-group">
+                        <span className="stat-value">{user.data?.point.toLocaleString()} P</span>
+                        <PointPaymentButton user={user?.data} />
+                    </div>
                 </div>
 
                 {/* 2. Rating 영역: 판매자일 때만 보임 */}
@@ -47,7 +51,11 @@ const UserDashboard = ({ user }) => {
                         <span className="stat-value role-badge">
                             {user.data?.sellerStatus}
                             {user.data?.sellerStatus === 'REJECTED' && (
-                                <button className={"btn btn-outline-danger ms-2"} style={{height: "30px", fontSize: "10px"}} onClick={() => setIsReasonModalOpen(true)}>거절 사유</button>
+                                <button className={"btn btn-outline-danger ms-2"}
+                                        style={{height: "30px", fontSize: "10px"}}
+                                        onClick={() => setIsReasonModalOpen(true)}>
+                                    거절 사유
+                                </button>
                             )}
                         </span>
 
