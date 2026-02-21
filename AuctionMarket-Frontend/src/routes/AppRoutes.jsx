@@ -10,7 +10,8 @@ import ProductModifyPage from "@/views/product/product-modify-page/ProductModify
 import ProductPage from "@/views/product/product-page/ProductPage.jsx";
 import PolicyPage from "@/views/policy/PolicyPage.jsx";
 import ProductListPage from "@/views/product/product-list-page/ProductListPage.jsx";
-import AdminPage from "../views/admin-page/AdminPage.jsx";
+import AdminPage from "@/views/admin-page/AdminPage.jsx";
+import SuccessPage from "@/views/my-page/components/toss/success/SuccessPage.jsx";
 
 const AppRoutes = () => {
     const {accessToken} = useAuth();
@@ -28,6 +29,7 @@ const AppRoutes = () => {
             <Route path="/terms" element={<PolicyPage type={"terms"} />} />
             <Route path="/privacy" element={<PolicyPage type={"privacy"} />} />
             <Route path="/admin" element={<AdminPage user={user} />} />
+            <Route path="/payment/success" element={<SuccessPage user={user} />} />
         </Routes>
     );
 };
