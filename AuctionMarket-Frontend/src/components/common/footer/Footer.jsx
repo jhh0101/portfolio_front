@@ -15,8 +15,8 @@ const Footer = memo(() => {
                 <nav className="nav-links d-none d-md-flex ">
                     <Link to="/" className={"text-white"}>Home</Link>
                     <Link to="/shop" className={"text-white"}>Shop</Link>
-                    <Link to="/product" className={"text-white"}>Product</Link>
-                    <Link to="/contact" className={"text-white"}>Contact Us</Link>
+                    <Link to="/ai/chat" className={"text-white"}>AI Chat</Link>
+                    <Link to="/about" className={"text-white"}>About</Link>
                 </nav>
             </div>
             <br/>
