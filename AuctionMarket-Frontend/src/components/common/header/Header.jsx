@@ -26,7 +26,7 @@ const Header = memo(() => {
                 <nav className="nav-links d-none d-md-flex">
                     <Link to="/">Home</Link>
                     <Link to="/shop">Shop</Link>
-                    <Link to="/product">Product</Link>
+                    <Link to="/ai/chat">AI Chat</Link>
                     <Link to="/about">About</Link>
                     {user?.role === 'SELLER' && (
                         <Link to="/product-add">Product Add</Link>
