@@ -13,6 +13,7 @@ import ProductListPage from "@/views/product/product-list-page/ProductListPage.j
 import AdminPage from "@/views/admin-page/AdminPage.jsx";
 import SuccessPage from "@/views/my-page/components/toss/success/SuccessPage.jsx";
 import AiChatView from "@/views/ai-chat-page/AiChatView.jsx";
+import AboutPage from "@/views/about-page/AboutPage.jsx";
 
 const AppRoutes = () => {
     const {accessToken} = useAuth();
@@ -32,6 +33,7 @@ const AppRoutes = () => {
             <Route path="/admin" element={<AdminPage user={user} />} />
             <Route path="/payment/success" element={<SuccessPage user={user} />} />
             <Route path="/ai/chat" element={<AiChatView />} />
+            <Route path="/about" element={<AboutPage />} />
         </Routes>
     );
 };

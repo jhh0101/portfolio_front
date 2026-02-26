@@ -13,35 +13,37 @@ const MainPage = () => {
     }
 
     return (
-        <div className="main-page">
-            <MainBanner />
+        <>
+        <MainBanner />
+            <div className="main-page">
 
-            {/* 신규 경매 섹션 */}
-            {isLoading ? (
-                <div className="product-grid">
-                    {[1, 2, 3, 4, 5].map((n) => (
-                        <ProductCardSkeleton key={n} />
-                    ))}
-                </div>
-            ) : newAuction.content.length === 0 ? (
-                <p>등록된 상품이 없습니다.</p>
-            ) : (
-                <ProductList title={"신규 경매 상품"} products={newAuction.content} mode="carousel" />
-            )}
+                {/* 신규 경매 섹션 */}
+                {isLoading ? (
+                    <div className="product-grid">
+                        {[1, 2, 3, 4, 5].map((n) => (
+                            <ProductCardSkeleton key={n} />
+                        ))}
+                    </div>
+                ) : newAuction.content.length === 0 ? (
+                    <p>등록된 상품이 없습니다.</p>
+                ) : (
+                    <ProductList title={"신규 경매 상품"} products={newAuction.content} mode="carousel" />
+                )}
 
-            {/* 마감 임박 섹션 */}
-            {isLoading ? (
-                <div className="product-grid">
-                    {[1, 2, 3, 4, 5].map((n) => (
-                        <ProductCardSkeleton key={n} />
-                    ))}
-                </div>
-            ) : closingAuction.content.length === 0 ? (
-                <p>등록된 상품이 없습니다.</p>
-            ) : (
-                <ProductList title={"마감 임박 상품"} products={closingAuction.content} mode="carousel" />
-            )}
-        </div>
+                {/* 마감 임박 섹션 */}
+                {isLoading ? (
+                    <div className="product-grid">
+                        {[1, 2, 3, 4, 5].map((n) => (
+                            <ProductCardSkeleton key={n} />
+                        ))}
+                    </div>
+                ) : closingAuction.content.length === 0 ? (
+                    <p>등록된 상품이 없습니다.</p>
+                ) : (
+                    <ProductList title={"마감 임박 상품"} products={closingAuction.content} mode="carousel" />
+                )}
+            </div>
+        </>
     );
 };
 
