@@ -7,8 +7,8 @@ export const useSignup = () => {
     const navigate = useNavigate();
 
     return useMutation({
-        mutationFn: ({email, username, nickname, phone, password}) =>
-            userService.postSignup({email, username, nickname, phone, password}),
+        mutationFn: ({email, username, nickname, baseAddress, detailAddress, phone, password}) =>
+            userService.postSignup({email, username, nickname, baseAddress, detailAddress, phone, password}),
         onSuccess: (res) => {
             if (!res.success) {
                 throw new Error(res.message || "요청 실패");

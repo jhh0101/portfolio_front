@@ -1,4 +1,6 @@
+import {useState, useEffect} from 'react';
 import {useUpdateProfile, useUpdatePassword} from '@/hooks/user';
+import SearchAddress from "@/components/common/address/SearchAddress.jsx";
 import UserDashboard from './UserDashboard.jsx';
 import toast from 'react-hot-toast';
 import './MyProfile.css'
@@ -7,6 +9,14 @@ const MyProfile = ({decoded, profile, isLoading}) => {
 
     const { mutateAsync: updateProfile, isPending: isProfilePending } = useUpdateProfile(decoded.sub);
     const { mutateAsync: updatePassword, isPending: isPasswordPending } = useUpdatePassword(decoded.sub);
+
+    const [baseAddress, setBaseAddress] = useState("");
+
+    useEffect(() => {
+        if (profile?.data?.baseAddress) {
+            setBaseAddress(profile.data.baseAddress);
+        }
+    }, [profile?.data?.baseAddress]);
 
     const handleUpdateProfile = async (e) => {
         e.preventDefault();
@@ -66,6 +76,24 @@ const MyProfile = ({decoded, profile, isLoading}) => {
                                placeholder={profile?.data?.nickname}
                                defaultValue={profile?.data?.nickname} />
                     </div>
+
+                    <div className={"form-group"} style={{display: "flex", alignItems: "center"}}>
+                        <label className="form-label">Base Address</label>
+                        <input type="text"
+                               name="baseAddress"
+                               style={{flex: "7", marginRight: "6px"}}
+                               value={baseAddress || ""}
+                               required placeholder={profile?.data?.baseAddress} readOnly />
+                        <SearchAddress onSearch={setBaseAddress} />
+                    </div>
+                    <div className={"form-group"}>
+                        <label className="form-label">Detail Address</label>
+                        <input type="text"
+                               name="detailAddress"
+                               placeholder={profile?.data?.detailAddress}
+                               defaultValue={profile?.data?.detailAddress} />
+                    </div>
+
                     <div className="form-group">
                         <label className="form-label">Phone<p>(Number Only)</p></label>
                         <input type="text" name="phone" className="form-input"
