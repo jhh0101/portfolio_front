@@ -1,16 +1,13 @@
 /* [1] 전체 컨테이너 설정 */
 .product-list {
     /* 3열일 때 이미지가 너무 비대해지지 않도록 최대 너비를 조절합니다 */
-    max-width: 1100px;
+    max-width: 100%;
     margin: 60px auto;
     padding: 0 20px;
 }
 
 /* [2] 필터 헤더 배치 (제목 - 카테고리 - 정렬) */
 .product-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     margin-bottom: 24px;
 }
 

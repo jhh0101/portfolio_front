@@ -39,23 +39,25 @@ const ProductList = ({ title, products, mode = 'carousel', params, setParams }) 
         <section className={`product-list ${mode}`}>
             <div className="product-header">
                 {mode === 'carousel' ? (
-                    <>
+                    <div style={{display: "flex", justifyContent: "space-between", alignItems: "center"}}>
                         <h2>{title}</h2>
                         <a href={"/shop"} className="more-link">More Products →</a>
-                    </>
+                    </div>
                 ) : (
-                    <SearchFilter
-                        params={params}
-                        setParams={setParams}
-                        categoryName={categoryName}
-                    />
+                    <div style={{maxWidth: "1050px", margin: "0 auto"}}>
+                        <SearchFilter
+                            params={params}
+                            setParams={setParams}
+                            categoryName={categoryName}
+                        />
+                    </div>
                 )}
             </div>
             {/* [수정] 모드에 따른 본문 출력 분기 */}
             {mode === 'carousel' ? (
                 // 캐러셀 모드: Swiper 사용
-                <>
-                    <hr />
+                <div>
+                    <hr style={{marginBottom: "-40px"}}/>
                     <Swiper
                         modules={[Navigation, Pagination, Autoplay]}
                         spaceBetween={20}
@@ -75,10 +77,10 @@ const ProductList = ({ title, products, mode = 'carousel', params, setParams }) 
                         ))}
 
                     </Swiper>
-                </>
+                </div>
             ) : (
                 // 그리드 모드: 일반 div 레이아웃 사용
-                <div className="product-grid-layout">
+                <div className="product-grid-layout"  style={{maxWidth: "1050px", margin: "0 auto"}}>
                     {renderProducts()}
                 </div>
             )}
