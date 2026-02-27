@@ -75,3 +75,27 @@
     color: #141718;
     border: 1px solid #141718;
 }
+.demo-buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.demo-buttons button {
+    width: 100%; /* 그리드 칸을 꽉 채우게 만듦 */
+    padding: 8px 12px;
+    font-size: 13px;
+    background-color: #f8f9fa;
+    color: #495057;
+    border: 1px solid #dee2e6;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.demo-buttons button:hover {
+    background-color: #e9ecef;
+    border-color: #adb5bd;
+    color: #000;
+}

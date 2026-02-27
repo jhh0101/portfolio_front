@@ -1,11 +1,16 @@
+import {useState} from "react";
 import {Link, useNavigate} from "react-router-dom";
 import {useLogin} from "@/hooks/auth";
+import UserLoginButton from "@/views/login-page/components/auth/UserLoginButton.jsx";
 import AuthLayout from "@/components/common/layout/AuthLayout.jsx";
 import "./LoginPage.css";
 
 const LoginPage = () => {
     const navigate = useNavigate();
     const { mutate, isPending } = useLogin();
+
+    const [emailInput, setEmailInput] = useState("");
+    const [passwordInput, setPasswordInput] = useState("");
 
     const handleLogin = (e) => {
         e.preventDefault();
@@ -16,12 +21,16 @@ const LoginPage = () => {
     return (
         <AuthLayout title="Sign In">
             <form onSubmit={handleLogin}>
-                <input type="email" name={"email"} required placeholder="Your email address" />
-                <input type="password" name={"password"} required placeholder="Password" />
+                <input type="email" name={"email"} value={emailInput} required placeholder="Your email address" />
+                <input type="password" name={"password"} value={passwordInput} required placeholder="Password" />
 
-                <div className="form-options">
-                    <label><input type="checkbox" /> Remember me </label>
-                    <Link to={"/forgot"} className="forgot-password"> Forgot password?</Link>
+                <div className="demo-login-section" style={{ margin: '15px 0', textAlign: 'left' }}>
+                    <p style={{ fontSize: '12px', color: '#888', marginBottom: '8px' }}>
+                        * 테스트 계정으로 빠르게 둘러보기
+                    </p>
+                    <div className="demo-buttons">
+                        <UserLoginButton emailInput={setEmailInput} passwordInput={setPasswordInput} />
+                    </div>
                 </div>
 
                 <button type="submit" className="login-btn" disabled={isPending}>
