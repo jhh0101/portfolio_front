@@ -28,15 +28,6 @@ node_modules/
 dist/
 dist-ssr/
 
-# 2. 환경 변수 파일 (가장 중요! 보안 정보가 들어있음)
-.env
-.env.local
-.env.development
-.env.development.local
-.env.test.local
-.env.production.local
-.env.production
-
 # 3. 에디터 및 OS 설정 파일
 .vscode/
 .idea/
