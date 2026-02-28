@@ -1,0 +1,230 @@
+/* 컨테이너 */
+.member-list-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 800px;
+    margin: 0 auto;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+/* 리스트 아이템 껍데기 */
+.member-item-wrapper {
+    border: 1px solid #eee;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    background-color: #fff;
+    transition: all 0.2s ease;
+}
+
+.member-item-wrapper:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* 클릭 가능한 상단 영역 (Row) */
+.member-row {
+    display: flex;
+    justify-content: space-between; /* 양쪽 정렬 */
+    align-items: center;
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+    cursor: pointer;
+    background-color: white;
+}
+
+/* 왼쪽 정보 영역 */
+.member-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    flex: 1;
+    min-width: 0; /* 말줄임표 처리를 위해 필수 */
+}
+
+.member-email {
+    font-size: 18px;
+    font-weight: 700;
+    color: #333;
+}
+
+.member-meta {
+    font-size: 13px;
+    color: #666;
+    margin-top: 4px;
+}
+
+/* 오른쪽 뱃지 및 화살표 영역 */
+.member-right-side {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* 뱃지 그룹 (포인트, Role) */
+.member-badges {
+    display: flex;
+    gap: 8px;
+}
+
+/* 개별 뱃지 스타일 (이미지처럼 박스 형태) */
+.member-badge {
+    padding: 6px 12px;
+    border: 1px solid #ddd; /* 회색 테두리 */
+    border-radius: 6px;     /* 둥근 모서리 */
+    background-color: #fff;
+    color: #555;
+    font-size: 13px;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+/* 화살표 아이콘 */
+.member-arrow {
+    font-size: 12px;
+    color: #ccc;
+    margin-left: 10px;
+    transition: transform 0.3s ease;
+}
+
+.member-arrow.open {
+    transform: rotate(180deg);
+}
+
+.member-tab-header {
+    display: flex;
+    gap: 30px;
+    padding: 0 0 0 5px;
+}
+
+/* --- 하단 확장 영역 (상세 정보) --- */
+.member-details {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-top: 1px solid #eee;
+    animation: slideDown 0.3s ease-out;
+}
+
+.member-tab-content {
+    height: 385px;
+    overflow: auto;
+}
+
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* 상세 정보 그리드 */
+.detail-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.detail-item {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.detail-label {
+    font-size: 12px;
+    color: #888;
+    font-weight: 600;
+}
+
+.detail-value {
+    font-size: 14px;
+    color: #333;
+}
+
+/* 버튼 영역 */
+.detail-actions {
+    display: flex;
+    justify-content: flex-end;
+    border-top: 1px solid #e9ecef;
+    padding-top: 15px;
+}
+
+.btn-suspend {
+    background-color: #fff;
+    border: 1px solid #ff4d4f;
+    color: #ff4d4f;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-suspend:hover {
+    background-color: #ff4d4f;
+    color: white;
+}
+
+/* 가로 탭 바 */
+.horizontal-tabs {
+    border-top: 1px solid #e8ecef;
+}
+
+.horizontal-tab-btn {
+    background: none;
+    border: none;
+    text-align: center;
+    padding: 16px 0;
+    margin-left: 16px;
+    font-size: 16px;
+    font-weight: 500;
+    color: #6C7275;
+    cursor: pointer;
+    transition: all 0.2s;
+    border-bottom: 2px solid transparent;
+}
+
+.horizontal-tab-btn:hover {
+    color: #141718;
+}
+
+/* 활성화 상태: 텍스트는 진하게, 오른쪽 끝에 강조선 */
+.horizontal-tab-btn.active {
+    color: #141718;
+    font-weight: 600;
+    border-bottom: 2px solid #141718;
+}
+
+.horizontal-tab-btn.active::after {
+    content: '';
+    right: -21px;
+    top: 25%;
+    height: 50%;
+    width: 2px;
+    background-color: #141718;
+}
+
+/* --- 모바일 반응형 --- */
+@media screen and (max-width: 768px) {
+    .member-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .member-right-side {
+        width: 100%;
+        justify-content: space-between; /* 모바일에서는 뱃지와 화살표 양끝 정렬 */
+    }
+
+    .member-badges {
+        flex-wrap: wrap; /* 공간 부족하면 줄바꿈 */
+    }
+
+    .detail-grid {
+        grid-template-columns: 1fr; /* 상세정보 한 줄로 */
+    }
+}
+

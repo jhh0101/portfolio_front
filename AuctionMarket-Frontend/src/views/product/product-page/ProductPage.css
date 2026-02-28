@@ -1,0 +1,278 @@
+.product-page-container {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    font-family: 'Inter', sans-serif;
+}
+
+/* 브레드크럼 */
+.breadcrumb {
+    font-size: 14px;
+    color: #605f5f;
+    margin-bottom: 24px;
+}
+.breadcrumb span {
+    color: #141718;
+    font-weight: 500;
+}
+
+.product-main-content {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 60px;
+}
+
+.product-gallery {
+    margin-top: 35px;
+}
+
+/* 이미지 섹션 */
+.product-gallery .main-image {
+    position: relative;
+    background-color: #f3f5f7;
+    border-radius: 8px;
+    overflow: hidden;
+}
+.product-gallery .main-image img {
+    width: 100%;
+    display: block;
+    height: 450px;
+    object-fit: contain
+}
+.badge-new {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    background: #fff;
+    padding: 4px 12px;
+    border-radius: 4px;
+    font-weight: bold;
+}
+.thumbnail-list {
+    display: flex;
+    gap: 12px;
+    margin-top: 16px;
+}
+.thumbnail-list img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    cursor: pointer;
+    border: 2px solid transparent;
+}
+.thumbnail-list img.active {
+    border-color: #141718;
+}
+
+/* 정보 섹션 */
+.product-title {
+    font-size: 40px;
+    margin: 16px 0;
+}
+
+.auction-stats-container {
+    width: 100%;
+}
+
+.auction-badge {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    border: 1px solid;
+}
+
+/* 조회수 배지 스타일 */
+.view-badge {
+    background-color: #f8f9fa;
+    color: #495057;
+    border-color: #dee2e6;
+    text-align: center;
+    line-height: 30px;
+}
+
+/* 입찰현황 배지 스타일 */
+.bid-badge {
+    background-color: #e7f1ff;
+    color: #0d6efd;
+    border-color: #b3d7ff;
+    text-align: center;
+}
+.tab-content {
+    white-space: pre-wrap;
+    line-height: 1.6;
+    word-break: break-all;
+}
+
+.product-price {
+    margin-bottom: 24px;
+    display: block;
+    align-items: center;
+    gap: 12px;
+}
+.product-price-div {
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.current-price {
+    font-size: 28px;
+    font-weight: 600;
+}
+.start-price {
+    color: #6c7275;
+    font-size: 20px;
+}
+
+/* 옵션 선택 */
+.option-label {
+    font-weight: 600;
+    margin-top: 24px;
+}
+.color-variants {
+    display: flex;
+    gap: 12px;
+    margin-top: 8px;
+}
+.color-dot {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid #fff;
+    outline: 1px solid #e8ecef;
+}
+.color-dot.active {
+    outline: 2px solid #141718;
+}
+.color-dot.black { background: #000; }
+.color-dot.gold { background: #c5a267; }
+.color-dot.white { background: #fff; }
+
+/* 구매 액션 */
+.purchase-actions {
+    display: flex;
+    gap: 16px;
+    height: 50px;
+    margin-top: 32px;
+}
+.quantity-selector {
+    display: flex;
+    align-items: center;
+    background: #f3f5f7;
+    border-radius: 8px;
+    padding: 8px 16px;
+    gap: 16px;
+}
+.quantity-selector button {
+    border: none;
+    background: none;
+    font-size: 20px;
+    cursor: pointer;
+}
+.wishlist-btn {
+    flex: 1;
+    background: none;
+    border: 1px solid #141718;
+    border-radius: 8px;
+    cursor: pointer;
+}
+.add-to-cart-btn {
+    width: 100%;
+    margin-top: 12px;
+    padding: 16px;
+    background: #141718;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.add-to-cart-btn:disabled {
+    background-color: #cccccc;
+    color: #666666;
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+/* 메타 정보 */
+.product-meta {
+    margin-top: 32px;
+    font-size: 12px;
+    color: #6c7275;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.product-meta span { color: #141718; font-weight: 600; }
+
+/* 탭 섹션 */
+.product-tabs {
+    margin-top: 80px;
+    border-top: 1px solid #e8ecef;
+}
+.tab-header {
+    display: flex;
+    gap: 40px;
+    margin-bottom: 32px;
+}
+.tab-header span {
+    padding: 16px 0;
+    cursor: pointer;
+    color: #6c7275;
+    font-weight: 600;
+}
+.tab-header span.active {
+    color: #141718;
+    border-bottom: 2px solid #141718;
+}
+
+/* 반응형 */
+@media (max-width: 850px) {
+    .product-main-content {
+        grid-template-columns: 1fr;
+    }
+}
+
+.seller-buttons {
+    display: flex;
+    gap: 10px; /* 버튼 사이 간격 */
+    width: 100%;
+}
+
+/* 수정/삭제 버튼 공통 스타일 */
+.seller-buttons button {
+    flex: 1; /* 1:1 비율로 공간 차지 */
+    padding: 15px 0; /* 기존 버튼 높이에 맞게 조절 */
+    border-radius: 4px; /* 기존 디자인에 맞게 */
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+/* 수정 버튼 (눈에 띄지만 공격적이지 않은 색) */
+.btn-edit {
+    background-color: #f3f4f6; /* 연한 회색 */
+    color: #333;
+    border: 1px solid #d1d5db;
+}
+.btn-edit:hover {
+    background-color: #e5e7eb;
+}
+
+/* 삭제 버튼 (경고의 의미) */
+.btn-delete {
+    background-color: white;
+    color: #ef4444; /* 빨간색 텍스트 */
+    border: 1px solid #ef4444;
+}
+.btn-delete:hover {
+    background-color: #fff1f2; /* 연한 빨강 배경 */
+}

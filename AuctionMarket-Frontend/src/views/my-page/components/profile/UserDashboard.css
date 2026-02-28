@@ -1,0 +1,86 @@
+/* 1. 전체 컨테이너 (그림자를 살짝 넣어 모던한 카드 느낌으로) */
+.dashboard-container {
+    max-width: 600px;
+    width: 100%;
+    margin: 0 auto 30px auto;
+    background-color: #ffffff;
+    border: 1px solid #e9ecef;
+    border-radius: 12px; /* 모서리를 조금 더 둥글게 */
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+    overflow: hidden;
+}
+
+/* 2. 상/하단 영역 묶음 */
+.dashboard-top, .dashboard-bottom {
+    display: flex;
+    width: 100%;
+}
+
+/* 🌟 하단 영역에만 연한 배경색을 주어 상단과 완벽히 분리시킵니다 */
+.dashboard-bottom {
+    border-top: 1px solid #e9ecef;
+    background-color: #f8f9fa;
+}
+
+/* 3. 개별 박스 (여백을 넉넉하게 주어 휑한 느낌을 없앰) */
+.stat-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 28px 16px; /* 위아래 여백을 줘서 안정감 부여 */
+}
+
+.stat-box.split { width: 50%; }
+.stat-box.full { width: 100%; }
+
+/* 가운데 세로 분리선 (연하고 부드럽게) */
+.dashboard-top .stat-box.split:first-child,
+.dashboard-bottom .stat-box.split:first-child {
+    border-right: 1px solid #e9ecef;
+}
+
+/* 4. 텍스트 라벨 (Point, Rating, Role 등) */
+.stat-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: #868e96;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* 5. 메인 숫자/텍스트 */
+.stat-value {
+    font-size: 20px;
+    font-weight: 700;
+    color: #212529;
+    display: flex;
+    align-items: center; /* 텍스트와 버튼 높이 맞춤 */
+}
+
+/* 6. 숫자와 버튼을 가로로 정렬 (1억 포인트가 들어와도 중앙 정렬 유지!) */
+.stat-value-group {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.amount-btn {
+    padding: 4px 12px;
+    font-size: 12px;
+    font-weight: 500;
+    border-radius: 4px;
+    background-color: #ffffff;
+    color: #6c757d;
+    border: 1px solid #ced4da;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.amount-btn:hover {
+    background-color: #f8f9fa;
+    color: #495057;
+}

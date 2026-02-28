@@ -1,0 +1,68 @@
+.signup-container {
+    display: flex;
+    width: 100%;
+    height: calc(100vh - 90px);
+    overflow: hidden; /* 만약을 대비해 내부 스크롤 방지 */
+}
+
+/* 왼쪽 이미지 섹션 */
+.signup-image-section {
+    flex: 1; /* 가로 공간 50% 차지 */
+    background-color: #f3f5f7; /* 사진 배경색과 맞춤 */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+.signup-image-section img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* 오른쪽 폼 섹션 */
+.signup-form-section {
+    flex: 1; /* 가로 공간 50% 차지 */
+    display: flex;
+    justify-content: center; /* 가로 중앙 정렬 */
+    align-items: center;     /* 세로 중앙 정렬 */
+    padding: 0 10%;
+}
+
+.form-wrapper {
+    width: 100%;
+    max-width: 400px; /* 폼이 너무 넓어지지 않게 제한 */
+}
+
+/* 입력창 스타일 */
+input[type="text"], input[type="password"] {
+    width: 100%;
+    padding: 12px 0;
+    margin: 15px 0;
+    border: none;
+    border-bottom: 1px solid #ccc; /* 밑줄만 있는 스타일 */
+    outline: none;
+}
+
+.signup-btn1 {
+    width: 100%;
+    padding: 15px;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    background-color: #000;
+    color: #fff;
+    border: white solid 1px;
+    margin-bottom: 5px;
+    margin-top: 5px;
+
+}
+
+.signup-btn1:hover {
+    color: #000000;
+    border: black solid 1px;
+    background-color: #f3f5f7;
+}

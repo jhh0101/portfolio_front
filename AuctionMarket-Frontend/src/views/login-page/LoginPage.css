@@ -1,0 +1,101 @@
+.button-group {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.login-btn {
+    background-color: #141718;
+    color: #fff;
+    padding: 16px;
+    border-radius: 8px;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.signup-btn {
+    background-color: transparent;
+    color: #141718;
+    padding: 16px;
+    border-radius: 8px;
+    border: 1px solid #141718;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.form-options {
+    display: flex;
+    justify-content: space-between; /* 왼쪽(기억하기)과 오른쪽(비번찾기)을 양 끝으로 */
+    align-items: center;
+    width: 100%;
+    margin: 20px 0;
+}
+
+.form-options label {
+    display: flex;         /* 체크박스와 글자를 가로로 배치 */
+    align-items: center;   /* 세로 중앙 정렬 */
+    gap: 8px;              /* 체크박스와 글자 사이 간격 */
+    white-space: nowrap;   /* ★ 글자가 길어도 절대 줄 바꿈 하지 않음 */
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.form-options input[type="checkbox"] {
+    margin: 0;             /* 기본 마진 제거해서 정렬 방해 안 하게 함 */
+    width: 16px;           /* 크기 고정 */
+    height: 16px;
+}
+
+.forgot-password {
+    cursor: pointer;
+    font-weight: 600;
+    color: #141718;
+}
+
+.login-btn, .signup-btn {
+    width: 100%;            /* 가로 꽉 채우기 */
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-bottom: 12px;    /* 버튼 사이 간격 */
+}
+
+.login-btn {
+    background-color: #141718;
+    color: #ffffff;
+    border: none;
+}
+
+.signup-btn {
+    background-color: #ffffff;
+    color: #141718;
+    border: 1px solid #141718;
+}
+.demo-buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.demo-buttons button {
+    width: 100%; /* 그리드 칸을 꽉 채우게 만듦 */
+    padding: 8px 12px;
+    font-size: 13px;
+    background-color: #f8f9fa;
+    color: #495057;
+    border: 1px solid #dee2e6;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.demo-buttons button:hover {
+    background-color: #e9ecef;
+    border-color: #adb5bd;
+    color: #000;
+}

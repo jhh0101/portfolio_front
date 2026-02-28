@@ -1,0 +1,56 @@
+import React, { memo } from "react";
+import { Link } from 'react-router-dom';
+import './Header.css';
+import { useAuth } from "@/context/AuthContext.jsx";
+import SessionTimer from "@/components/common/header/session-timer/SessionTimer.jsx";
+
+const Header = memo(() => {
+    const { isLoggedIn, user, logout } = useAuth(); // 전역 상태 사용
+
+    const handleLogout = () => {
+        if (window.confirm("로그아웃 하시겠습니까?")) {
+            logout();
+        }
+    };
+
+    return (
+        <header className={"header-container"}>
+            <div className={"container d-flex align-items-center justify-content-between"}>
+                <div className={"logo"}>
+                    <Link to="/" className="text-decoration-none text-dark fw-bold fs-3">
+                        Auction<span>.</span>
+                    </Link>
+                </div>
+
+                {/* 네비게이션 (Nav) */}
+                <nav className="nav-links d-none d-md-flex">
+                    <Link to="/">Home</Link>
+                    <Link to="/shop">Shop</Link>
+                    <Link to="/ai/chat">AI Chat</Link>
+                    <Link to="/about">About</Link>
+                    {user?.role === 'SELLER' && (
+                        <Link to="/product-add">Product Add</Link>
+                    )}
+                    {user?.role === 'ADMIN' && (
+                        <Link to="/admin">Dashboard</Link>
+                    )}
+                </nav>
+
+                {/* 사용자 메뉴 */}
+                {isLoggedIn ? (
+                    <div className="menu d-flex align-items-center">
+                        <SessionTimer deadline={new Date(Date.now() + 900000)} />
+                        <Link to="/mypage" className="btn nav-btn2">My Page</Link>
+                        <button onClick={handleLogout} className={"btn btn-dark nav-btn1"} >Log out</button>
+                    </div>
+                ) : (
+                    <div className="menu d-flex align-items-center">
+                        <Link to="/login" className="btn nav-btn2">Log In</Link>
+                        <Link to="/signup" className="btn btn-dark nav-btn1">Join Now</Link>
+                    </div>
+                )}
+            </div>
+        </header>
+    );
+});
+export default Header;

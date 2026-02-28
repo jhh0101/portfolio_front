@@ -1,0 +1,54 @@
+/* 전체 컨테이너 */
+.bidder-container {
+    width: 100%;
+    height: 100%;
+    background: #f5f5f5; /* 배경은 살짝 회색 */
+    padding: 15px;
+    border-radius: 10px;
+    box-sizing: border-box;
+}
+
+/* 1. 헤더 스타일 */
+.bidder-header {
+    display: flex;
+    padding: 0 15px 10px 15px; /* 좌우 패딩을 카드랑 맞춰줌 */
+    border-bottom: 2px solid #ddd;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #555;
+}
+
+.bidder-scroll-area {
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+}
+
+/* 3. 카드 스타일 (BidderCard) */
+.bidder-card {
+    display: flex;
+    align-items: center;
+    background: white;     /* 카드는 흰색 */
+    margin-bottom: 10px;   /* 카드 사이 간격 (그림처럼 띄우기) */
+    padding: 15px;
+    border-radius: 8px;    /* 둥근 모서리 */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* 그림자 효과 */
+    transition: transform 0.2s;
+}
+
+.bidder-card:hover {
+    transform: translateY(-2px); /* 마우스 올리면 살짝 뜸 */
+}
+
+/* 컬럼 비율 (헤더랑 카드랑 비율을 똑같이 맞춰야 정렬됨) */
+.header-col.rank, .card-col.rank { width: 15%; text-align: center; }
+.header-col.nickname, .card-col.nickname { width: 45%; padding-left: 10px; }
+.header-col.price, .card-col.price { width: 30%; text-align: right; font-weight: bold; }
+.card-col.close-btn { width: 10%; text-align: right; }
+
+/* 빈 화면 메시지 */
+.empty-message {
+    text-align: center;
+    padding-top: 50px;
+    color: #999;
+}
