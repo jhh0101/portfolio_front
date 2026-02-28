@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import MemberBids from '@/views/admin-page/components/bids/MemberBids.jsx'
-import MemberProducts from '@/views/admin-page/components/Products/MemberProducts.jsx'
+import MemberProducts from '@/views/admin-page/components/products/MemberProducts.jsx'
 import MemberOrders from '@/views/admin-page/components/orders/MemberOrders.jsx'
 import UserDetailArea from './UserDetailArea.jsx'
 import './MemberList.css';
