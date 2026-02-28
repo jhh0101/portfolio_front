@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="003e89eb-f6b7-44d8-bf94-fc66464edc4a" name="변경" comment="">
+      <change afterPath="$PROJECT_DIR$/.github/workflows/deploy.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Jenkinsfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/k8s/deployment.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/k8s/service.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/nginx.conf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vite.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/vite.config.js" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$/AuctionMarket-Frontend">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="AuctionMarket-Frontend" type="f1a62948:ProjectNode" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+        <option value="TypeScript File" />
+        <option value="package.json" />
+        <option value="CSS File" />
+        <option value="JavaScript File" />
+        <option value="JSX File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;jhh0101&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/jhh0101/portfolio_front.git&quot;,
+    &quot;accountId&quot;: &quot;3526af3c-6add-48e4-8bd4-adabf9d73ddd&quot;
+  }
+}</component>
+  <component name="KubernetesApiPersistence">{}</component>
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
+}</component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 5
+}</component>
+  <component name="ProjectId" id="37vNBfqlAMvLEDr3A7uybdG6LMq" />
+  <component name="ProjectViewState">
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;Node.js.SessionTimer.jsx.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;chore/setup-frontend-deployment&quot;,
+    &quot;javascript.nodejs.core.library.configured.version&quot;: &quot;22.19.0&quot;,
+    &quot;javascript.nodejs.core.library.typings.version&quot;: &quot;22.19.7&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/User/Documents/GitHub/portfolio_front/AuctionMarket-Frontend/src/views/about-page&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;모듈&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15039062&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.intellij.mcpserver.settings&quot;,
+    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;D:\\IntelliJ IDEA 2025.1\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\User\Documents\GitHub\portfolio_front\AuctionMarket-Frontend\src\views\about-page" />
+      <recent name="C:\Users\User\Documents\GitHub\portfolio_front\AuctionMarket-Frontend\src\views\my-page\components\toss" />
+      <recent name="C:\Users\User\Documents\GitHub\portfolio_front\AuctionMarket-Frontend\src\views\product\product-page\rating" />
+      <recent name="C:\Users\User\Documents\GitHub\portfolio_front\AuctionMarket-Frontend\src\views\product\product-page\seller" />
+      <recent name="C:\Users\User\Documents\GitHub\portfolio_front\AuctionMarket-Frontend\src\views\my-page\components\profile" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\User\Documents\GitHub\portfolio_front\AuctionMarket-Frontend\src\assets\about" />
+      <recent name="C:\Users\User\Documents\GitHub\portfolio_front\AuctionMarket-Frontend\src\views\admin-page\components" />
+      <recent name="C:\Users\User\Documents\GitHub\portfolio_front\AuctionMarket-Frontend\src\views\admin-page\components\user" />
+      <recent name="C:\Users\User\Documents\GitHub\portfolio_front\AuctionMarket-Frontend\src\views\admin-page\components\orders" />
+      <recent name="C:\Users\User\Documents\GitHub\portfolio_front\AuctionMarket-Frontend\src\views\admin-page\components\bids" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="AuctionMarket-Frontend.main" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="AuctionMarket-Frontend.main" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="AuctionMarket-Frontend.main" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="AuctionMarket-Frontend.main" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="AuctionMarket-Frontend.main" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="AuctionMarket-Frontend.main" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="AuctionMarket-Frontend.main" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="AuctionMarket-Frontend.main" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="AuctionMarket-Frontend.main" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="AuctionMarket-Frontend.main" />
+      <option name="filePath" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="AuctionMarket-Frontend.main" />
+      <option name="filePath" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="AuctionMarket-Frontend.main" />
+      <option name="filePath" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="AuctionMarket-Frontend.main" />
+      <option name="filePath" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="AuctionMarket-Frontend.main" />
+      <option name="filePath" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="AuctionMarket-Frontend.main" />
+      <option name="filePath" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="AuctionMarket-Frontend.main" />
+      <option name="filePath" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="AuctionMarket-Frontend.main" />
+      <option name="filePath" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="AuctionMarket-Frontend.main" />
+      <option name="filePath" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="AuctionMarket-Frontend.main" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="AuctionMarket-Frontend.main" />
+      <option name="filePath" />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-bf35d07a577b-intellij.indexing.shared.core-IU-252.26830.84" />
+        <option value="bundled-js-predefined-d6986cc7102b-3aa1da707db6-JavaScript-IU-252.26830.84" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="디폴트 작업">
+      <changelist id="003e89eb-f6b7-44d8-bf94-fc66464edc4a" name="변경" comment="" />
+      <created>1767779450388</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1767779450388</updated>
+      <workItem from="1767779451645" duration="18755000" />
+      <workItem from="1767858677070" duration="25809000" />
+      <workItem from="1767945220330" duration="25101000" />
+      <workItem from="1768118111333" duration="14478000" />
+      <workItem from="1768201291584" duration="3974000" />
+      <workItem from="1768302006681" duration="5779000" />
+      <workItem from="1768377314428" duration="2981000" />
+      <workItem from="1768710539377" duration="38004000" />
+      <workItem from="1768810915793" duration="9714000" />
+      <workItem from="1768841685864" duration="300000" />
+      <workItem from="1768842002039" duration="35000" />
+      <workItem from="1768842046482" duration="70000" />
+      <workItem from="1768842128712" duration="927000" />
+      <workItem from="1768843230299" duration="698000" />
+      <workItem from="1768844117935" duration="6784000" />
+      <workItem from="1768914018394" duration="8096000" />
+      <workItem from="1769083758299" duration="136000" />
+      <workItem from="1769083901216" duration="10944000" />
+      <workItem from="1769157447854" duration="14166000" />
+      <workItem from="1769240900471" duration="17660000" />
+      <workItem from="1769268565978" duration="48000" />
+      <workItem from="1769268628440" duration="698000" />
+      <workItem from="1769269336325" duration="919000" />
+      <workItem from="1769270271140" duration="388000" />
+      <workItem from="1769270667890" duration="61000" />
+      <workItem from="1769270736312" duration="312000" />
+      <workItem from="1769422857794" duration="10742000" />
+      <workItem from="1769438372631" duration="4814000" />
+      <workItem from="1769504557161" duration="1601000" />
+      <workItem from="1769506213147" duration="1717000" />
+      <workItem from="1769507944649" duration="3688000" />
+      <workItem from="1769511930555" duration="116000" />
+      <workItem from="1769512057120" duration="381000" />
+      <workItem from="1769512453690" duration="11300000" />
+      <workItem from="1769525552455" duration="5645000" />
+      <workItem from="1769537091973" duration="4000" />
+      <workItem from="1769589378678" duration="16440000" />
+      <workItem from="1769674487939" duration="7629000" />
+      <workItem from="1769751892437" duration="19647000" />
+      <workItem from="1769850491854" duration="15426000" />
+      <workItem from="1769936006087" duration="5177000" />
+      <workItem from="1770024978572" duration="11968000" />
+      <workItem from="1770107543460" duration="10033000" />
+      <workItem from="1770186867403" duration="18688000" />
+      <workItem from="1770286481631" duration="18857000" />
+      <workItem from="1770367134179" duration="18873000" />
+      <workItem from="1770451130489" duration="3860000" />
+      <workItem from="1770538455549" duration="4863000" />
+      <workItem from="1770550137394" duration="9753000" />
+      <workItem from="1770717695589" duration="14441000" />
+      <workItem from="1770799674509" duration="8224000" />
+      <workItem from="1770867357132" duration="25337000" />
+      <workItem from="1770972319388" duration="4272000" />
+      <workItem from="1771067226897" duration="12505000" />
+      <workItem from="1771140754158" duration="15299000" />
+      <workItem from="1771403812003" duration="6945000" />
+      <workItem from="1771486963904" duration="16050000" />
+      <workItem from="1771587926609" duration="7177000" />
+      <workItem from="1771649126371" duration="2244000" />
+      <workItem from="1771749528982" duration="597000" />
+      <workItem from="1771831486842" duration="994000" />
+      <workItem from="1771839435408" duration="178000" />
+      <workItem from="1771839641733" duration="420000" />
+      <workItem from="1771840079786" duration="5827000" />
+      <workItem from="1772007187408" duration="5288000" />
+      <workItem from="1772098096139" duration="16589000" />
+      <workItem from="1772182209142" duration="4404000" />
+      <workItem from="1772267470378" duration="2608000" />
+      <workItem from="1772282631501" duration="972000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>
