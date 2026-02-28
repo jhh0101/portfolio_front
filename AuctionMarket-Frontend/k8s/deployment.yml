@@ -1,0 +1,23 @@
+# -------------------------
+# Frontend Deployment
+# -------------------------
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: frontend-app
+  template:
+    metadata:
+      labels:
+        app: frontend-app
+    spec:
+      containers:
+        - name: frontend
+          image: jhh0101/portfolio-front:v1
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
