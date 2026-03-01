@@ -57,7 +57,7 @@ const ProductList = ({ title, products, mode = 'carousel', params, setParams }) 
             {mode === 'carousel' ? (
                 // 캐러셀 모드: Swiper 사용
                 <div>
-                    <hr style={{marginBottom: "-40px"}}/>
+                    <hr style={{marginBottom: "5px"}}/>
                     <Swiper
                         modules={[Navigation, Pagination, Autoplay]}
                         spaceBetween={20}

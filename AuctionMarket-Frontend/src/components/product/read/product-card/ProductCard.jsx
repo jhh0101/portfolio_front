@@ -35,8 +35,10 @@ const ProductCard = memo(({data}) => {
                     />
                 </div>
                 <div className={"product-info"}>
-                    <h4>{productResponse.title}</h4>
-                    <p className={"price"}>현재가 : {auctionResponse.currentPrice.toLocaleString()}원</p>
+                    <h4 className={"mt-3"}>{productResponse.title}</h4>
+                    <p className={"price mb-0"}>현재가</p>
+                    <p className={"price"}>{auctionResponse.currentPrice.toLocaleString()}원</p>
+                    
                     {isStart ? (
                         <AuctionCountdown key="upcoming" mode={"upcoming"} deadline={auctionResponse?.startTime} />
                     ) : (
