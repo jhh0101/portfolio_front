@@ -32,3 +32,9 @@
 .git-icon:hover {
     color: #ffffff;
 }
+
+@media (max-width: 850px) {
+    .footer-container {
+        padding: 30px 30px 0;
+    }
+}
