@@ -13,46 +13,34 @@ import BidModal from "@/views/product/product-page/bid/BidModal.jsx";
 import ProductImage from '@/views/product/product-page/image-load/ProductImage.jsx';
 import RatingModal from "./rating/RatingModal.jsx";
 
-
 const ProductPage = () => {
     const { productId } = useParams();
-
     const { product, isLoading: isProductLoading } = useProductDetail(productId);
-
-    const { mutateAsync: deleteProduct, isPending: isDeleteProductPending  } = useProductDelete(productId);
+    const { mutateAsync: deleteProduct, isPending: isDeleteProductPending } = useProductDelete(productId);
     const { bidderList: bidder, isBidderLoading } = useBid(product?.auctionResponse.auctionId);
-
     const navigate = useNavigate();
-
     const { isLoggedIn, user } = useAuth();
 
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isRatingModalOpen, setIsRatingModalOpen] = useState(false);
-
     const [now, setNow] = useState(new Date());
 
     const isSeller = user?.nickname === product?.productDetailResponse.seller;
-
     const productInfo = product?.productDetailResponse || {};
     const auction = product?.auctionResponse || {};
 
-    const startTime = new Date(auction?.startTime)
+    const startTime = new Date(auction?.startTime);
     let isStart = startTime > now;
 
-    const endTime = new Date(auction?.endTime)
+    const endTime = new Date(auction?.endTime);
     let isEnd = endTime < now;
 
-        useEffect(() => {
-            const timer = setInterval(() => {
-                setNow(new Date());
-            }, 1000);
-            return () => clearInterval(timer);
-        }, []);
+    useEffect(() => {
+        const timer = setInterval(() => setNow(new Date()), 1000);
+        return () => clearInterval(timer);
+    }, []);
 
-    const handleModify = () => {
-        navigate(`/product/modify/${productId}`);
-    };
-
+    const handleModify = () => navigate(`/product/modify/${productId}`);
     const handleDelete = () => {
         deleteProduct();
         navigate(`/`);
@@ -62,30 +50,31 @@ const ProductPage = () => {
         if (!isLoggedIn) {
             if (window.confirm("로그인이 필요한 서비스입니다.\n로그인 페이지로 이동하시겠습니까?")) {
                 navigate('/login');
-            } else {
-                return;
             }
         } else {
             setIsModalOpen(true);
         }
     };
 
-    if (isProductLoading) {
-        return <div className="loading" style={{height: "100vh", alignItem: "center"}}>로딩 중...</div>;
-    }
-
-    const endTimeDate = new Date(auction.endTime);
+    if (isProductLoading) return <div className="loading">로딩 중...</div>;
 
     return (
         <div className="product-page-container">
             <Breadcrumb productId={productId}/>
 
             <div className="product-main-content">
-                <ProductImage productId={productId} />
+                {/* 1. 제목: PC에서는 오른쪽 위, 모바일에서는 맨 위 */}
+                <h1 className="product-title">{productInfo.title}</h1>
 
+                {/* 2. 이미지 섹션 */}
+                <div className="product-image-wrapper">
+                    <ProductImage productId={productId} />
+                </div>
+
+                {/* 3. 정보 및 액션 섹션 */}
                 <div className="product-info-aside">
+                    {/* 주의: ProductCount.jsx 내부의 <h1> 태그는 반드시 삭제하세요! */}
                     <ProductCount info={productInfo} bidder={bidder}/>
-
                     <ProductInfo info={auction} />
 
                     {isStart ? (
@@ -96,27 +85,26 @@ const ProductPage = () => {
 
                     {isSeller ? (
                         <div className="seller-buttons">
-                            <button className="btn-edit" onClick={handleModify}>
-                                수정하기
-                            </button>
+                            <button className="btn-edit" onClick={handleModify}>수정하기</button>
                             <button className="btn-delete" onClick={handleDelete} disabled={isDeleteProductPending}>
                                 {isDeleteProductPending ? "삭제 중..." : "삭제"}
                             </button>
                         </div>
                     ) : (
-                        <button className="add-to-cart-btn" onClick={handleBidClick} disabled={isStart || isEnd}>Product Bid</button>
+                        <button className="add-to-cart-btn" onClick={handleBidClick} disabled={isStart || isEnd}>
+                            Product Bid
+                        </button>
                     )}
-                    <BidModal
-                        isOpen={isModalOpen}
-                        onClose={() => setIsModalOpen(false)}
-                        auction={auction}
-                        product={productInfo}
-                    />
 
                     <div className="product-meta">
-                        <div>
-                            <span onClick={() => setIsRatingModalOpen(true)}>
-                                SELLER : {productInfo.seller} / ({Number(productInfo.ratingScore || 0).toFixed(1)}) [리뷰 보기]
+                        <div className="seller-info-row">
+                            <span
+                                className="seller-info-link"
+                                onClick={() => setIsRatingModalOpen(true)}
+                            >
+                                <span className="label">SELLER :</span> {productInfo.seller} /
+                                <span className="score"> ({Number(productInfo.ratingScore || 0).toFixed(1)})</span>
+                                <span className="view-review"> [리뷰 보기]</span>
                             </span>
                         </div>
                         <SubBreadcrumb productId={productId} />
@@ -124,13 +112,9 @@ const ProductPage = () => {
                 </div>
             </div>
 
+            <BidModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} auction={auction} product={productInfo} />
             <ProductTab bidder={bidder} isBidderLoading={isBidderLoading} productInfo={productInfo} />
-            <RatingModal
-                isOpen={isRatingModalOpen}
-                onClose={() => setIsRatingModalOpen(false)}
-                toUserId={productInfo.sellerId}
-            />
-
+            <RatingModal isOpen={isRatingModalOpen} onClose={() => setIsRatingModalOpen(false)} toUserId={productInfo.sellerId} />
         </div>
     );
 };

@@ -2,7 +2,6 @@ const ProductCount = ({info, bidder}) => {
     // console.log(bidder.totalElements);
     return (
         <>
-            <h1 className="product-title">{info.title}</h1>
             <div className="auction-stats-container d-flex gap-2 mb-3">
                 <div className="auction-badge view-badge">
                     🔥 조회수 {info?.viewCount}
