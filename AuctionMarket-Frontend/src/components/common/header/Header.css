@@ -36,3 +36,51 @@
     align-items: center;
     gap: 20px;
 }
+
+@media screen and (max-width: 767px) {
+    .nav-links {
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background: white;
+        padding: 20px;
+        box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+        z-index: 999;
+
+        /* --- 핵심: 순서 뒤집기 --- */
+        display: flex;
+        flex-direction: column-reverse; /* 아래에 있는 요소를 위로 보냄 */
+    }
+
+    .nav-links a {
+        padding: 12px 0;
+        width: 100%;
+        text-align: center;
+        margin: 0; /* PC 마진 제거 */
+    }
+
+    .mobile-user-menu {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        /* 순서가 뒤집혔으므로 아래쪽에 경계선 추가 */
+        border-bottom: 1px solid #eee;
+        padding-bottom: 15px;
+        margin-bottom: 10px;
+        width: 100%;
+    }
+
+    /* 메뉴가 열렸을 때 버튼 너비 조정 */
+    .nav-btn1, .nav-btn2 {
+        width: 100%;
+    }
+}
+
+.hamburger {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+}

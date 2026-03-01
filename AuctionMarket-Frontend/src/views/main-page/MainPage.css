@@ -1,3 +1,9 @@
 .main-page {
     padding: 0 150px;
 }
+
+@media (max-width: 850px) {
+    .main-page {
+        padding: 0 5px;
+    }
+}
