@@ -12,7 +12,6 @@ const BidModal = ({ isOpen, onClose, auction, product }) => {
             setBidAmount('');
         }
     }, [isOpen]);
-
     if (!isOpen) return null;
 
     const handleSubmit = async (e) => {
@@ -30,8 +29,6 @@ const BidModal = ({ isOpen, onClose, auction, product }) => {
         const value = e.target.value.replace(/[^0-9]/g, '');
         setBidAmount(value);
     };
-
-
 
     return (
 

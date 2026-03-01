@@ -25,3 +25,4 @@ export const formatBidVerification = (price) => {
 
     return `입찰 희망가: ${result.trim()}`;
 };
+
