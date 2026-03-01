@@ -8,12 +8,13 @@ const Breadcrumb = ({productId}) => {
     }
 
     return (
-        <div>
-            <span>CATEGORY :</span>
+        /* 여기에 클래스명을 추가했습니다 */
+        <div className="breadcrumb">
+            <span className="breadcrumb-label">CATEGORY :</span>
             {breadcrumb.map((name, index) => (
-                <span key={index}>{""} {name} &gt; </span>
+                <span key={index}> {name} &gt; </span>
             ))}
-            <span> {productTitle} </span>
+            <span className="breadcrumb-title"> {productTitle} </span>
         </div>
     );
 };
