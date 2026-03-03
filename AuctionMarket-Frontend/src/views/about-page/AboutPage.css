@@ -1,0 +1,215 @@
+/* =========================================
+   공통 & PC 기본 스타일 (기존 인라인 스타일과 동일)
+========================================= */
+.about-container {
+    font-family: sans-serif;
+    color: #333;
+}
+
+/* 1. Hero Section */
+.hero-section {
+    background-color: #111;
+    color: #fff;
+    padding: 100px 20px;
+    text-align: center;
+}
+
+.hero-title {
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.hero-desc {
+    font-size: 1.2rem;
+    color: #ccc;
+    line-height: 1.6;
+    max-width: 650px;
+    margin: 0 auto;
+}
+
+/* 2. Core Features */
+.features-section {
+    padding: 80px 10%;
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+    background-color: #fff;
+}
+
+.feature-card {
+    flex: 1;
+    padding: 30px;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.feature-card-highlight {
+    background-color: #fafafa;
+}
+
+.feature-title {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    color: #000;
+}
+
+.highlight-text {
+    color: #e53e3e;
+}
+
+.feature-desc {
+    color: #666;
+    line-height: 1.5;
+}
+
+/* 3. Detailed Flow */
+.flow-section {
+    padding: 80px 10%;
+    background-color: #f9f9f9;
+}
+
+.flow-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 80px;
+    gap: 40px;
+}
+
+.flow-row-reverse {
+    display: flex;
+    align-items: center;
+    flex-direction: row-reverse;
+    gap: 40px;
+}
+
+.flow-text {
+    flex: 1;
+}
+
+.flow-title {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #000;
+}
+
+.flow-list {
+    list-style: none;
+    padding: 0;
+    color: #555;
+    line-height: 1.8;
+}
+
+.flow-img-wrapper {
+    flex: 1;
+}
+
+.flow-img {
+    width: 100%;
+    height: 100%;
+    max-height: 350px;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+/* 4. Developer's Note */
+.dev-note-section {
+    padding: 60px 10%;
+    text-align: center;
+    background-color: #fff;
+    border-top: 1px solid #eaeaea;
+}
+
+.dev-note-title {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    color: #000;
+}
+
+.dev-note-desc {
+    color: #666;
+    max-width: 595px;
+    margin: 0 auto 30px;
+    line-height: 1.6;
+}
+
+.github-btn {
+    display: inline-block;
+    padding: 10px 24px;
+    background-color: #000;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    border-radius: 4px;
+    text-decoration: none;
+}
+
+
+/* =========================================
+   ✨ Mobile 전용 반응형 미디어 쿼리 (가로 768px 이하)
+========================================= */
+@media screen and (max-width: 768px) {
+
+    /* PC에서만 보이던 줄바꿈 모바일에서는 해제 */
+    .br-pc-only {
+        display: none;
+    }
+
+    /* Hero Section 모바일 최적화 */
+    .hero-section {
+        padding: 60px 20px;
+    }
+
+    .hero-title {
+        font-size: 2rem; /* 폰트 크기 축소 */
+    }
+
+    .hero-desc {
+        font-size: 1rem;
+    }
+
+    /* Features Section 모바일 최적화 (가로 -> 세로 정렬) */
+    .features-section {
+        flex-direction: column;
+        padding: 50px 5%;
+        gap: 30px;
+    }
+
+    .feature-card {
+        padding: 25px;
+    }
+
+    /* Flow Section 모바일 최적화 (지그재그 -> 일관된 세로 정렬) */
+    .flow-section {
+        padding: 50px 5%;
+    }
+
+    .flow-row,
+    .flow-row-reverse {
+        flex-direction: column; /* 둘 다 세로 방향으로 변경 */
+        gap: 30px;
+        margin-bottom: 50px;
+    }
+
+    /* 마지막 요소 마진 제거 */
+    .flow-row-reverse {
+        margin-bottom: 0;
+    }
+
+    .flow-title {
+        font-size: 1.5rem;
+        text-align: center; /* 모바일에서는 제목 중앙 정렬이 예쁩니다 */
+    }
+
+    .flow-list {
+        font-size: 0.95rem;
+    }
+
+    /* Developer Note 모바일 최적화 */
+    .dev-note-section {
+        padding: 50px 5%;
+    }
+}
