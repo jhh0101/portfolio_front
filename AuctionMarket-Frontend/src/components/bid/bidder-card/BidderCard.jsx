@@ -5,7 +5,7 @@ export default function BidderCard({ auctionId, productId, bidId, rank, nickname
     const {bidCancel: cancel, isCancelLoading} = useBid(auctionId, productId, 0, { fetchList: false });
     const { user } = useAuth();
 
-    const myNickname = user.nickname;
+    const myNickname = user?.nickname;
     const cancelBtn = myNickname === nickname && rank === 1;
 
     const handleCancel = async (e) => {

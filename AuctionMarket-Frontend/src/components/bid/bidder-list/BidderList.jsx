@@ -14,15 +14,15 @@ const BidderList = ({bidder, productInfo, isBidderLoading}) => {
 
             <div className="bidder-scroll-area">
                 {bidder?.content?.length > 0 ? (
-                    bidder.content.map((bid, index) => (
+                    bidder?.content?.map((bid, index) => (
                         <BidderCard
-                            key={bid.bidId}
+                            key={bid?.bidId}
                             rank={index + 1}
-                            nickname={bid.nickname}
-                            price={bid.bidPrice}
-                            auctionId={bid.auctionId}
-                            bidId={bid.bidId}
-                            productId={productInfo.productId}
+                            nickname={bid?.nickname}
+                            price={bid?.bidPrice}
+                            auctionId={bid?.auctionId}
+                            bidId={bid?.bidId}
+                            productId={productInfo?.productId}
                         />
                     ))
                 ) : (
