@@ -21,8 +21,23 @@ const LoginPage = () => {
     return (
         <AuthLayout title="Sign In">
             <form onSubmit={handleLogin}>
-                <input type="email" name={"email"} value={emailInput} required placeholder="Your email address" />
-                <input type="password" name={"password"} value={passwordInput} required placeholder="Password" />
+                <input
+                    type="email"
+                    name={"email"}
+                    value={emailInput}
+                    onChange={(e) => setEmailInput(e.target.value)}
+                    required
+                    placeholder="Your email address"
+                />
+
+                <input
+                    type="password"
+                    name={"password"}
+                    value={passwordInput}
+                    onChange={(e) => setPasswordInput(e.target.value)}
+                    required
+                    placeholder="Password"
+                />
 
                 <div className="demo-login-section" style={{ margin: '15px 0', textAlign: 'left' }}>
                     <p style={{ fontSize: '12px', color: '#888', marginBottom: '8px' }}>
